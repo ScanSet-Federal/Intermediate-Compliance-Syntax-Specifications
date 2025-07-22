@@ -1,0 +1,89 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel7:def:301
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "^\\n*[^\\S#]*auth\\s+required\\s+pam_faillock.so\\s+(.*)\\n*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm deny set to 1,2, or 3."
+                subexpression "pattern match" "\\sdeny\\s*=\\s*[123]{1}[^\\S]"
+            STATE_END
+            STATE "Confirm even_deny_root is set."
+                subexpression "pattern match" "\\seven_deny_root\\s*"
+            STATE_END
+            STATE "Confirm fail_interval is >= 900."
+                subexpression "pattern match" "\\sfail_interval\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+            STATE "Confirm unlock_time >= 900."
+                subexpression "pattern match" "\\sunlock_time\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "^\\n*[^\\S#]*auth\\s+\\[default=die\\]\\s+pam_faillock.so\\s+(.*)\\n*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm deny set to 1,2, or 3."
+                subexpression "pattern match" "\\sdeny\\s*=\\s*[123]{1}[^\\S]"
+            STATE_END
+            STATE "Confirm even_deny_root is set."
+                subexpression "pattern match" "\\seven_deny_root\\s*"
+            STATE_END
+            STATE "Confirm fail_interval is >= 900."
+                subexpression "pattern match" "\\sfail_interval\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+            STATE "Confirm unlock_time >= 900."
+                subexpression "pattern match" "\\sunlock_time\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                filepath "/etc/pam.d/system-auth"
+                pattern "pattern match" "^\\n*[^\\S#]*auth\\s+required\\s+pam_faillock.so\\s+(.*)\\n*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm deny set to 1,2, or 3."
+                subexpression "pattern match" "\\sdeny\\s*=\\s*[123]{1}[^\\S]"
+            STATE_END
+            STATE "Confirm even_deny_root is set."
+                subexpression "pattern match" "\\seven_deny_root\\s*"
+            STATE_END
+            STATE "Confirm fail_interval is >= 900."
+                subexpression "pattern match" "\\sfail_interval\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+            STATE "Confirm unlock_time >= 900."
+                subexpression "pattern match" "\\sunlock_time\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                filepath "/etc/pam.d/system-auth"
+                pattern "pattern match" "^\\n*[^\\S#]*auth\\s+\\[default=die\\]\\s+pam_faillock.so\\s+(.*)\\n*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm deny set to 1,2, or 3."
+                subexpression "pattern match" "\\sdeny\\s*=\\s*[123]{1}[^\\S]"
+            STATE_END
+            STATE "Confirm even_deny_root is set."
+                subexpression "pattern match" "\\seven_deny_root\\s*"
+            STATE_END
+            STATE "Confirm fail_interval is >= 900."
+                subexpression "pattern match" "\\sfail_interval\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+            STATE "Confirm unlock_time >= 900."
+                subexpression "pattern match" "\\sunlock_time\\s*=\\s*((9\\d\\d)|([1-9]\\d\\d\\d+))\\s*"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

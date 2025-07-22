@@ -1,0 +1,26 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:110
+DEF
+    CRI OR
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/proxy"
+                parameter "enabled"
+            OBJECT_END
+            STATE "appcmdlistconfig result must equal False."
+                result equals "false"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST none_exist all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/proxy"
+                parameter "enabled"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

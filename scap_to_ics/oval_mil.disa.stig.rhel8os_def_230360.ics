@@ -1,0 +1,33 @@
+# oval:mil.disa.stig.rhel8os:def:230360
+DEF
+    SET obj_23036000 union
+        OBJECT
+            filepath "/etc/security/pwquality.conf"
+            pattern "pattern match" "^\\s*maxclassrepeat\\s*=\\s*(-?\\d*)\\s*(?:#.*)?$"
+            instance int "greater than or equal" "1"
+        OBJECT_END
+        OBJECT
+            BEHAVIOR recurse_down_local_d -1
+            path "/etc/security/pwquality.conf.d"
+            filename "pattern match" "\\.conf$"
+            pattern "pattern match" "^\\s*maxclassrepeat\\s*=\\s*(-?\\d*)\\s*(?:#.*)?$"
+            instance int "greater than or equal" "1"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    SET_REF obj_23036000
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression int "less than or equal" "4"
+                STATE_END
+                STATE "Value must be greater than threshold"
+                    subexpression int "greater than" "0"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

@@ -1,0 +1,29 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2001
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "systemctl is-enabled rngd"
+            OBJECT_END
+            STATE "Confirm rngd service enabled status is 'enabled'."
+                shell bash
+                command systemctl is-enabled rngd
+                stdout_line enabled
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "systemctl is-active rngd"
+            OBJECT_END
+            STATE "Confirm rngd service active status is 'active'."
+                shell bash
+                command systemctl is-active rngd
+                stdout_line active
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

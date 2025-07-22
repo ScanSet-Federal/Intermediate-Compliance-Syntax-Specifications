@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:801
+DEF
+    VAR var_801 string ""
+    CRI AND
+        CTN xmlfilecontent
+            TEST any_exist all
+            OBJECT
+                filepath VAR var_801 all
+                xpath "/configuration/runtime/loadFromRemoteSources/@enabled"
+            OBJECT_END
+            STATE "XML value not equal to 'true'"
+                value_of "case insensitive not equal" "true"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

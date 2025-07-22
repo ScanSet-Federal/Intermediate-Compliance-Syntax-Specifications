@@ -1,0 +1,23 @@
+# oval:mil.disa.fso.windows:def:4670
+DEF
+    CRI OR
+        CTN auditeventpolicysubcategories
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "Audit - Security Group Management - Success only"
+                security_group_management string equals "AUDIT_SUCCESS"
+            STATE_END
+        CTN_END
+        CTN auditeventpolicysubcategories
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "Audit - Security Group Management - Success and Failure"
+                security_group_management string equals "AUDIT_SUCCESS_FAILURE"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,23 @@
+# oval:mil.disa.stig.windows2019:def:205912
+DEF
+    CRI AND
+        CRI AND
+            CTN registry
+                TEST at_least_one_exists all OR
+                OBJECT
+                    hive "HKEY_LOCAL_MACHINE"
+                    key "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+                    name "SCRemoveOption"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    type reg_sz
+                    value 1
+                STATE_END
+                STATE "Compliance check condition"
+                    type reg_sz
+                    value 2
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

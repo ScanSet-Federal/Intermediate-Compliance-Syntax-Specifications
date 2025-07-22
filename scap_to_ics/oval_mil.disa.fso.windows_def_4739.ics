@@ -1,0 +1,14 @@
+# oval:mil.disa.fso.windows:def:4739
+DEF
+    CRI AND
+        CTN accesstoken
+            TEST at_least_one_exists all
+            OBJECT
+                security_principle string "pattern match" ".*"
+            OBJECT_END
+            STATE "Enable computer and user accounts to be trusted for delegation"
+                seenabledelegationprivilege boolean equals "0"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

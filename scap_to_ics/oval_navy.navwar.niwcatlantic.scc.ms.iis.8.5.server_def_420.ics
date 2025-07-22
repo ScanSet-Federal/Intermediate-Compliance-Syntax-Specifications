@@ -1,0 +1,78 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:420
+DEF
+    CRI OR
+        CRI AND
+            CTN cmdlet
+                TEST any_exist all
+                OBJECT
+                    module_name "WebAdministration"
+                    module_id nil
+                    module_version version nil
+                    verb "Get"
+                    noun "WebConfigurationProperty"
+                    parameters record
+                        field "filter" "system.web/authorization/*"
+                        field "name" "."
+                    select record
+                        field "property" "elementtagname,roles,users"
+                OBJECT_END
+                STATE "update"
+                    value record nil
+                STATE_END
+            CTN_END
+            CTN cmdlet
+                TEST any_exist all
+                OBJECT
+                    module_name "WebAdministration"
+                    module_id nil
+                    module_version version nil
+                    verb "Get"
+                    noun "WebConfigurationProperty"
+                    parameters record
+                        field "filter" "system.web/authorization/*"
+                        field "name" "."
+                    select record
+                        field "property" "elementtagname,roles,users"
+                OBJECT_END
+                STATE "update"
+                    value record nil
+                STATE_END
+            CTN_END
+        CRI_END
+        CTN cmdlet
+            TEST at_least_one_exists all
+            OBJECT
+                module_name "ServerManager"
+                module_id nil
+                module_version version nil
+                verb "Get"
+                noun "windowsfeature"
+                parameters record
+                    field "name" "web-asp-net,web-asp-net45"
+                select record
+                    field "property" "installstate"
+            OBJECT_END
+            STATE "Is install state not equal to installed"
+                value record nil
+            STATE_END
+        CTN_END
+        CTN service
+            TEST at_least_one_exists all
+            OBJECT
+                service_name equals "SPSearchHostController"
+            OBJECT_END
+        CTN_END
+        CTN service
+            TEST at_least_one_exists all
+            OBJECT
+                service_name equals "WsusService"
+            OBJECT_END
+        CTN_END
+        CTN service
+            TEST at_least_one_exists all
+            OBJECT
+                service_name equals "MSExchangeServiceHost"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

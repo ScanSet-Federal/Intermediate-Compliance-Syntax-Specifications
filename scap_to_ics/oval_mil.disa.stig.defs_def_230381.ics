@@ -1,0 +1,21 @@
+# oval:mil.disa.stig.defs:def:230381
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath string "/etc/pam.d/postlogin"
+                pattern "pattern match" "^\\s*session\\s+.+\\s+pam_lastlog\\.so\\s+(?:\\w+\\s+)*showfailed\\b\\s*(?:\\w+\\b\\s*)*\\s*(?:#.*)?$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST none_exist "none satisfy"
+            OBJECT
+                filepath string "/etc/pam.d/postlogin"
+                pattern "pattern match" "^\\s*session\\s+.+\\s+pam_lastlog\\.so\\s+(?:\\w+\\s+)*silent\\b\\s*(?:\\w+\\b\\s*)*\\s*(?:#.*)?$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

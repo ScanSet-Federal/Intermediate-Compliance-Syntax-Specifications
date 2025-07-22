@@ -1,0 +1,22 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:180
+DEF
+    SET obj_180 union
+        OBJECT
+            var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:1"
+        OBJECT_END
+        OBJECT
+            var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:4"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN variable
+            TEST at_least_one_exists "none satisfy"
+            OBJECT
+                SET_REF obj_180
+            OBJECT_END
+            STATE "Folder names cannot be in the path of boot drive"
+                value "pattern match" VAR var_6
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

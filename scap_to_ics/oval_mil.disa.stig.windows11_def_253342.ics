@@ -1,0 +1,57 @@
+# oval:mil.disa.stig.windows11:def:253342
+DEF
+    SET obj_25334200 union
+        OBJECT
+            filepath string "case insensitive equals" VAR var_25334201 at least one
+            trustee_sid string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    SET obj_25334203 union
+        OBJECT
+            filepath string "case insensitive equals" VAR var_25334202 at least one
+            trustee_sid string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CRI OR
+            CRI AND
+                CTN fileeffectiverights53
+                    TEST none_exist all
+                    OBJECT
+                        SET_REF obj_25334203
+                    OBJECT_END
+                CTN_END
+                CTN registry true
+                    TEST at_least_one_exists all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SYSTEM\\CurrentControlSet\\Services\\EventLog\\System"
+                        name string "file"
+                    OBJECT_END
+                    STATE "%SystemRoot% environment variable."
+                        value string "pattern match" "^(?i)%SystemRoot%.*$"
+                    STATE_END
+                CTN_END
+            CRI_END
+            CRI AND
+                CTN fileeffectiverights53
+                    TEST none_exist all
+                    OBJECT
+                        SET_REF obj_25334200
+                    OBJECT_END
+                CTN_END
+                CTN registry
+                    TEST at_least_one_exists all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SYSTEM\\CurrentControlSet\\Services\\EventLog\\System"
+                        name string "file"
+                    OBJECT_END
+                    STATE "%SystemRoot% environment variable."
+                        value string "pattern match" "^(?i)%SystemRoot%.*$"
+                    STATE_END
+                CTN_END
+            CRI_END
+        CRI_END
+    CRI_END
+DEF_END

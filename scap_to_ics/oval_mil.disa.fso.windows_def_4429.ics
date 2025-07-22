@@ -1,0 +1,14 @@
+# oval:mil.disa.fso.windows:def:4429
+DEF
+    CRI AND
+        CTN passwordpolicy
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "Password Complexity equals variable"
+                password_complexity boolean VAR var_442900
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

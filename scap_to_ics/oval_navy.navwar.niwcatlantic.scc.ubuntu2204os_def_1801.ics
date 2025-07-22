@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2204os:def:1801
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "aide -c /etc/aide/aide.conf \\-\\-check"
+                pattern "pattern match" "Start\\s+timestamp:"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must configure AIDE to perform file integrity checking on the file system."
+                exit_status int 0
+                stdout_line "pattern match" "Start\\s+timestamp:"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

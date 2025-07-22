@@ -1,0 +1,50 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:901
+DEF
+    VAR var_901 string ""
+    VAR var_902 string ""
+    CRI AND
+        CRI OR
+            CTN xmlfilecontent
+                TEST any_exist all
+                OBJECT
+                    filepath VAR var_901 all
+                    xpath "/configuration/system.net[1]/defaultProxy[1]/@enabled"
+                OBJECT_END
+                STATE "XML value not equal to 'false'"
+                    value_of "case insensitive not equal" "false"
+                STATE_END
+            CTN_END
+            CTN xmlfilecontent
+                TEST none_exist "at least one"
+                OBJECT
+                    filepath VAR var_901 all
+                    xpath "/configuration/system.net/defaultProxy/bypasslist/@*"
+                OBJECT_END
+            CTN_END
+            CTN xmlfilecontent
+                TEST none_exist "at least one"
+                OBJECT
+                    filepath VAR var_901 all
+                    xpath "/configuration/system.net/defaultProxy/module/@*"
+                OBJECT_END
+            CTN_END
+            CTN xmlfilecontent
+                TEST none_exist "at least one"
+                OBJECT
+                    filepath VAR var_901 all
+                    xpath "/configuration/system.net/defaultProxy/proxy/@*"
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CTN xmlfilecontent
+            TEST any_exist all
+            OBJECT
+                filepath VAR var_902 all
+                xpath "/configuration/system.net[1]/defaultProxy[1]/proxy[1]/@usesystemdefault"
+            OBJECT_END
+            STATE "XML value of 'True'."
+                value_of "case insensitive equals" "true"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

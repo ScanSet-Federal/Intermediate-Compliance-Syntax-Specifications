@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:4546
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+                name string "AllocateDASD"
+            OBJECT_END
+            STATE "Reg_Sz type and value is less than or equal to variable"
+                type reg_sz
+                value int "less than or equal" VAR var_454600
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

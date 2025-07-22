@@ -1,0 +1,19 @@
+# oval:mil.disa.stig.windows2022:def:254320
+DEF
+    CRI AND
+        CRI AND
+            CTN auditeventpolicysubcategories
+                TEST at_least_one_exists all OR
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "'Audit Policy Change' is set to 'Success' and 'Failure'"
+                    audit_policy_change string "AUDIT_SUCCESS_FAILURE"
+                STATE_END
+                STATE "Compliance check condition"
+                    audit_policy_change AUDIT_FAILURE
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

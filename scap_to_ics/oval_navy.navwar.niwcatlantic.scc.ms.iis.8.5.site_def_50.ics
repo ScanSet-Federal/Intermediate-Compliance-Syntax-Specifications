@@ -1,0 +1,104 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:def:50
+DEF
+    CRI AND
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logFormat"
+            OBJECT_END
+            STATE "result must equal W3C"
+                result equals "W3C"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include date."
+                result "pattern match" "(?i)Date"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include time."
+                result "pattern match" "(?i)Time"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include ClientIP."
+                result "pattern match" "(?i)ClientIP"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include UserName."
+                result "pattern match" "(?i)UserName"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include Method."
+                result "pattern match" "(?i)Method"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include UriQuery."
+                result "pattern match" "(?i)UriQuery"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include HttpStatus."
+                result "pattern match" "(?i)HttpStatus"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include Referer."
+                result "pattern match" "(?i)Referer"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

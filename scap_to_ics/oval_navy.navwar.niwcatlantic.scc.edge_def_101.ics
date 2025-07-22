@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.edge:def:101
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive "HKEY_LOCAL_MACHINE"
+                key "SOFTWARE\\Policies\\Microsoft\\Edge"
+                name "ProxySettings"
+            OBJECT_END
+            STATE "'ProxyMode' must be defined and set to one of the following: 'direct', 'system', 'auto_detect', 'fixed_servers', or 'pac_script'."
+                name ProxySettings
+                value "pattern match" "\"ProxyMode\":(\\s+)?(\"direct\"|\"system\"|\"auto_detect\"|\"fixed_servers\"|\"pac_script\")"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,60 @@
+# oval:mil.disa.fso.windows:def:4725
+DEF
+    SET obj_472100 union
+        OBJECT
+            security_principle string equals "Domain Admins"
+        OBJECT_END
+        OBJECT
+            security_principle string "pattern match" "^.*\\\\Domain Admins$"
+        OBJECT_END
+    SET_END
+    SET obj_472101 union
+        OBJECT
+            security_principle string "pattern match" "^.*\\\\Enterprise Admins$"
+        OBJECT_END
+        OBJECT
+            security_principle string equals "Enterprise Admins"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "System\\CurrentControlSet\\Services\\TCPIP\\Parameters"
+                name string "Domain"
+            OBJECT_END
+            STATE "Reg_Sz type and value is not null"
+                type reg_sz
+                value string "pattern match" "^.+$"
+            STATE_END
+        CTN_END
+        CTN accesstoken
+            TEST at_least_one_exists all
+            OBJECT
+                security_principle string equals "Guests"
+            OBJECT_END
+            STATE "Deny log on locally"
+                sedenyinteractivelogonright boolean equals "1"
+            STATE_END
+        CTN_END
+        CTN accesstoken
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                SET_REF obj_472100
+            OBJECT_END
+            STATE "Deny log on locally"
+                sedenyinteractivelogonright boolean equals "1"
+            STATE_END
+        CTN_END
+        CTN accesstoken
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                SET_REF obj_472101
+            OBJECT_END
+            STATE "Deny log on locally"
+                sedenyinteractivelogonright boolean equals "1"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,29 @@
+# oval:mil.disa.fso.ie:def:513
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Internet Explorer\\Control Panel"
+                name string equals "History"
+            OBJECT_END
+            STATE "Computer Configuration\Administrative Templates\Windows Components\Internet Explorer\Delete Browsing History\Disable Configuring History must be Enabled"
+                type string equals "reg_dword"
+                value int equals "1"
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Url History"
+                name string equals "DaysToKeep"
+            OBJECT_END
+            STATE "Computer Configuration\Administrative Templates\Windows Components\Internet Explorer\Delete Browsing History\40 entered in Days to keep pages in History"
+                type string equals "reg_dword"
+                value int equals "40"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

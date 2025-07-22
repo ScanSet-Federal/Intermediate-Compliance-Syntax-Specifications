@@ -1,0 +1,29 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:240
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "machineKey"
+                parameter "validation"
+            OBJECT_END
+            STATE "result must equal HMACSHA256 or stronger enctyption"
+                result "pattern match" "^HMACSHA(256|384|512)$"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "machineKey"
+                parameter "decryption"
+            OBJECT_END
+            STATE "result must equal Auto"
+                result Auto
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

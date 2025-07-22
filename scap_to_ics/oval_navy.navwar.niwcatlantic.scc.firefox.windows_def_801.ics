@@ -1,0 +1,14 @@
+# oval:navy.navwar.niwcatlantic.scc.firefox.windows:def:801
+DEF
+    CRI AND
+        CTN variable
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.firefox.windows:var:801"
+            OBJECT_END
+            STATE "Verify extensions.htmlaboutaddons.recommendations.enabled is set to false and locked"
+                value "pattern match" "\"extensions.htmlaboutaddons.recommendations.enabled\": \\{    \"Value\": false,    \"Status\": \"locked\"  }"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

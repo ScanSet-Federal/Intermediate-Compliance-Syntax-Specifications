@@ -1,0 +1,25 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:3901
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST only_one_exists all
+            OBJECT
+                shell "bash"
+                command "grep include /etc/sudoers"
+            OBJECT_END
+            STATE "Confirm includes in /etc/sudoers."
+                stdout_line "pattern match" "^\\s*#includedir\\s+\\/etc\\/sudoers.d\\s*$"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST only_one_exists all
+            OBJECT
+                shell "bash"
+                command "grep -r include /etc/sudoers.d"
+            OBJECT_END
+            STATE "Confirm no 'includes' in /etc/sudoers.d directory."
+                # State content will be evaluated at runtime
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

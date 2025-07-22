@@ -1,0 +1,26 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:301
+DEF
+    RUN var_302 CONCAT
+        object_component "obj_302" "value"
+        literal "\\Microsoft.NET\\Framework64\\v4.0.30319"
+    RUN_END
+    RUN var_301 CONCAT
+        VAR var_302
+        literal "\\caspol.exe -m -lg"
+    RUN_END
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                shell "cmd"
+                command string "case insensitive equals" VAR var_301
+                pattern "StrongName - (.*?):"
+            OBJECT_END
+            STATE "Collect caspol -m -lg, looking for matching default keys"
+                shell cmd
+                command string "case insensitive equals" VAR var_301
+                subexpression VAR var_303
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

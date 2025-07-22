@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:430
+DEF
+    CRI AND
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Apppool"
+                identifier "pattern match" ".*"
+                parameter "failure.rapidFailProtection"
+            OBJECT_END
+            STATE "Equals True."
+                result equals "true"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

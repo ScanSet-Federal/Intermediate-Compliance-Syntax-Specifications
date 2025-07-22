@@ -1,0 +1,26 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:1501
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "grep -i opensslcnf.config /etc/pki/tls/openssl.cnf"
+                pattern "pattern match" "\\.include\\s+\\/etc\\/crypto-policies\\/back-ends\\/opensslcnf\\.config"
+            OBJECT_END
+            STATE "Confirm the desired stdout_line exists."
+                stdout_line "pattern match" ".*"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "update-crypto-policies --show"
+            OBJECT_END
+            STATE "Confirm the desired stdout_line exists."
+                stdout_line "pattern match" "FIPS"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

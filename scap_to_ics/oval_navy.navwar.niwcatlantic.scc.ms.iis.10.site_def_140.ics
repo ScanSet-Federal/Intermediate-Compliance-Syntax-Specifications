@@ -1,0 +1,30 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:140
+DEF
+    CRI AND
+        CTN appcmd
+            TEST any_exist all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "bindings"
+                FILTER exclude "result matches regex below"
+                    result "pattern match" ":443"
+                FILTER_END
+            OBJECT_END
+            STATE "result matches regex below"
+                result "pattern match" "http\\/[\\.0-9]+:80:\\w+"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "bindings"
+            OBJECT_END
+            STATE "result matches regex below"
+                result "pattern match" "https\\/[\\.0-9]+:443:\\w+"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

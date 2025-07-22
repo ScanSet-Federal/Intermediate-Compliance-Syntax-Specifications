@@ -1,0 +1,41 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2204os:def:1401
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "gsettings get org.gnome.desktop.screensaver lock-enabled"
+                pattern "pattern match" "true"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures."
+                exit_status int 0
+                stdout_line "pattern match" "true"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "gsettings get org.gnome.desktop.screensaver lock-delay "
+                pattern "pattern match" "uint32\\s+(\\d+)"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must initiate a graphical session lock after 15 minutes of inactivity."
+                exit_status int 0
+                subexpression int equals "0"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "gsettings get org.gnome.desktop.screensaver lock-delay "
+                pattern "pattern match" "uint32\\s+(\\d+)"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must initiate a graphical session lock after 15 minutes of inactivity."
+                exit_status int 0
+                subexpression int equals "0"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

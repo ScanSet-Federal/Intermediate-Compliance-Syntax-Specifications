@@ -1,0 +1,24 @@
+# oval:mil.disa.fso.windows:def:4542
+DEF
+    VAR var_453900 string ""
+    CRI OR
+        CTN user
+            TEST at_least_one_exists "none satisfy"
+            OBJECT
+                user string VAR var_453900
+            OBJECT_END
+            STATE "Account name is Guest"
+                user string "pattern match" "^.*\\\\[Gg]uest$|^[Gg]uest$"
+            STATE_END
+        CTN_END
+        CTN sid
+            TEST none_exist all
+            OBJECT
+                trustee_name string "pattern match" ".*"
+                FILTER include "Built-in Guest SID"
+                    trustee_sid "pattern match" "^S-1-5-[0-9-]+-501$"
+                FILTER_END
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

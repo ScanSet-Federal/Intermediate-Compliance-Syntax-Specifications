@@ -1,0 +1,27 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:101
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/os-release"
+                pattern "pattern match" "^\\s*VERSION_ID=\"([\\d.]+)\""
+                instance int "1"
+            OBJECT_END
+            STATE "Used by platform spec check.  State equals version (8\.[4-9]|\d\d)"
+                subexpression "pattern match" "^8\\.([4-9]|\\d\\d)$"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/proc/sys/crypto/fips_enabled"
+                pattern "pattern match" ".*"
+                instance int "1"
+            OBJECT_END
+            STATE "Used by platform spec check.  State equals '1'. Kernel FIPS mode is enabled."
+                text 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

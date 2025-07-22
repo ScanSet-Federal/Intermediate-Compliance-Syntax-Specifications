@@ -1,0 +1,37 @@
+# oval:mil.disa.fso.windows:def:4583
+DEF
+    CRI OR
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "System\\CurrentControlSet\\Control\\SecurePipeServers\\Winreg\\AllowedPaths"
+                name string "Machine"
+            OBJECT_END
+            STATE "Value matches ^((Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows)|(System\\CurrentControlSet\\Control\\Print\\Printers)|(System\\CurrentControlSet\\Services\\Eventlog)|(Software\\Microsoft\\OLAP Server)|(Software\\Microsoft\\Windows NT\\CurrentVersion\\Print)|(System\\CurrentControlSet\\Control\\ContentIndex)|(System\\CurrentControlSet\\Control\\Terminal Server)|(System\\CurrentControlSet\\Control\\Terminal Server\\UserConfig)|(System\\CurrentControlSet\\Control\\Terminal Server\\DefaultUserConfiguration)|(Software\\Microsoft\\Windows NT\\CurrentVersion\\Perflib)|(System\\CurrentControlSet\\Services\\SysmonLog))$"
+                type reg_multi_sz
+                value "pattern match" "^((Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Windows)|(System\\\\CurrentControlSet\\\\Control\\\\Print\\\\Printers)|(System\\\\CurrentControlSet\\\\Services\\\\Eventlog)|(Software\\\\Microsoft\\\\OLAP Server)|(Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Print)|(System\\\\CurrentControlSet\\\\Control\\\\ContentIndex)|(System\\\\CurrentControlSet\\\\Control\\\\Terminal Server)|(System\\\\CurrentControlSet\\\\Control\\\\Terminal Server\\\\UserConfig)|(System\\\\CurrentControlSet\\\\Control\\\\Terminal Server\\\\DefaultUserConfiguration)|(Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Perflib)|(System\\\\CurrentControlSet\\\\Services\\\\Sysmon[Ll]og)|())$"
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST none_exist all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "System\\CurrentControlSet\\Control\\SecurePipeServers\\Winreg\\AllowedPaths"
+                name string "Machine"
+            OBJECT_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "System\\CurrentControlSet\\Control\\SecurePipeServers\\Winreg\\AllowedPaths"
+                name string "Machine"
+            OBJECT_END
+            STATE "Reg_Multi_Sz type and blank value"
+                type reg_multi_sz
+                value string "pattern match" ".+"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

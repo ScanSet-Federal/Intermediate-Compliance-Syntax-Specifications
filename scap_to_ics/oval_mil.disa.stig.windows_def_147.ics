@@ -1,0 +1,23 @@
+# oval:mil.disa.stig.windows:def:147
+DEF
+    CRI OR
+        CTN auditeventpolicysubcategories
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "'Account Lockout' is set to 'Failure'"
+                account_lockout string "AUDIT_FAILURE"
+            STATE_END
+        CTN_END
+        CTN auditeventpolicysubcategories
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "'Account Lockout' is set to 'Success' and 'Failure'"
+                account_lockout string "AUDIT_SUCCESS_FAILURE"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

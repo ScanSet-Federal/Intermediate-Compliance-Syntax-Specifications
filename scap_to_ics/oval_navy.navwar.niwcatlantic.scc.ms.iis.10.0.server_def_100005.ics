@@ -1,0 +1,11 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:100005
+DEF
+    CRI AND
+        CTN service
+            TEST at_least_one_exists all
+            OBJECT
+                service_name equals "MSExchangeServiceHost"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

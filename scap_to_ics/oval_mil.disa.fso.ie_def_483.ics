@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:483
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\4"
+                name string "1809"
+            OBJECT_END
+            STATE "Computer Configuration\Network\Internet Explorer\Internet Control Panel\Security Page\Restricted Sites Zone\Use Pop-up Blocker"
+                type reg_dword
+                value int VAR var_48300
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:459
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Policies\\Microsoft\\Internet Explorer\\Download"
+                name string "RunInvalidSignatures"
+            OBJECT_END
+            STATE "Computer Configuration\Network\Internet Explorer\Internet Control Panel\Advanced Page \Allow Software to Run or Install Even if the Signature is Invalid"
+                type reg_dword
+                value int VAR var_45900
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

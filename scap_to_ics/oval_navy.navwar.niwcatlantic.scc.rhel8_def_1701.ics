@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:1701
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "grep certificate_verification /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf"
+                pattern "pattern match" "^[^#]+"
+            OBJECT_END
+            STATE "Generic Placeholder Comment."
+                stdout_line "pattern match" "^([^#]+:)*certificate_verification\\s+=\\s+ocsp_dgst=sha1"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

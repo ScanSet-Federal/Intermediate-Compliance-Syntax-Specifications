@@ -1,0 +1,53 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2501
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "\\n*\\s*auth\\s+required\\s+pam_faillock.so\\s+preauth\\s+.*?(dir=\\S+)\\s*.*?\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "\\n*\\s*auth\\s+required\\s+pam_faillock.so\\s+authfail\\s+.*?(dir=\\S+)\\s*.*?\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "\\n*\\s*account\\s+required\\s+pam_faillock.so\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/system-auth"
+                pattern "pattern match" "\\n*\\s*auth\\s+required\\s+pam_faillock.so\\s+preauth\\s+.*?(dir=\\S+)\\s*.*?\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/system-auth"
+                pattern "pattern match" "\\n*\\s*auth\\s+required\\s+pam_faillock.so\\s+authfail\\s+.*?(dir=\\S+)\\s*.*?\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/pam.d/system-auth"
+                pattern "pattern match" "\\n*\\s*account\\s+required\\s+pam_faillock.so\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

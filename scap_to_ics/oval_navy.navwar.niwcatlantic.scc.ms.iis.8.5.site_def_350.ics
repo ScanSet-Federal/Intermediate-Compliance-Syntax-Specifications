@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:def:350
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                section "system.webServer/asp"
+                parameter "session.keepSessionIdSecure"
+            OBJECT_END
+            STATE "Configuration must be enabled"
+                result equals "true"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

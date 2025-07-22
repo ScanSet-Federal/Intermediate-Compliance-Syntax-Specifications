@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:460
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists "only one"
+            OBJECT
+                hive "HKEY_LOCAL_MACHINE"
+                key "System\\CurrentControlSet\\Services\\HTTP\\Parameters"
+                name "DisableServerHeader"
+            OBJECT_END
+            STATE "Value Equal To Two"
+                type reg_dword
+                value equals "2"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

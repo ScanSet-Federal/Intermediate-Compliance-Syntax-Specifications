@@ -1,0 +1,17 @@
+# oval:mil.disa.stig.rhel7:def:86707
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR ignore_case multiline
+                filepath "/etc/audisp/audisp-remote.conf"
+                pattern "pattern match" "^[ ]*remote_server[ ]+=[ ]+(.*)"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "remote_server is not empty"
+                subexpression string "pattern match" "^.+$"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

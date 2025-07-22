@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:429
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\3"
+                name string "1804"
+            OBJECT_END
+            STATE "Computer Configuration\Network\Internet Explorer\Internet Control Panel\Security Page\Internet Zone\Launching applications and files in an IFRAME"
+                type reg_dword
+                value int VAR var_42900
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

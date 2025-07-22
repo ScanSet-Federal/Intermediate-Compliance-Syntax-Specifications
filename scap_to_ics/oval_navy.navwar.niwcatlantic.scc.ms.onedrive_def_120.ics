@@ -1,0 +1,18 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.onedrive:def:120
+DEF
+    CRI AND
+        CTN ntuser
+            TEST at_least_one_exists all
+            OBJECT
+                key "Software\\Policies\\Microsoft\\OneDrive"
+                name "DisablePersonalSync"
+                FILTER exclude "Exclude Disabled Accounts"
+                    enabled boolean false
+                FILTER_END
+            OBJECT_END
+            STATE "Registry key type equals reg_dword and value equals 1"
+                value 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2301
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST any_exist all
+            OBJECT
+                shell "bash"
+                command "getent passwd | awk -F: '$3>=1000 && $7 !=\"/bin/nologin\" && $1 != \"nobody\" { print $1 \":\" $6 \":\" $4 }' | while IFS=':' read -r user homedir usergroup; do filegroup=$(stat -c '%g' \"$homedir\"); [ \"$usergroup\" != \"$filegroup\" ] && echo \"User home directory for $user is not group owned by the user's group. User: $user. HomeDir: $homedir. User Group: $usergroup. HomeDir Group: $filegroup.\"; done"
+                pattern "pattern match" nil
+            OBJECT_END
+            STATE "Confirm that no home directories are reported with file group owner different from the user's main group."
+                stdout_line "pattern match" ".*"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,25 @@
+# oval:mil.disa.fso.windows:def:4968
+DEF
+    CRI AND
+        CTN family
+            TEST at_least_one_exists "only one"
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "Microsoft Windows family"
+                family equals "windows"
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion"
+                name string "ProductName"
+            OBJECT_END
+            STATE "The registry key matches with Windows Server 2012 R2"
+                value "pattern match" "^[a-zA-Z0-9\\(\\)\\s]*2012 [rR]2[a-zA-Z0-9\\(\\)\\s]*$"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

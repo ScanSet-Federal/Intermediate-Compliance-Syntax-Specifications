@@ -1,0 +1,23 @@
+# oval:mil.disa.stig.win:def:100013
+DEF
+    SET obj_10001300 union
+        OBJECT
+            hive string "HKEY_LOCAL_MACHINE"
+            key string "SOFTWARE\\WOW6432Node\\Microsoft\\Office\\16.0\\Visio\\InstallRoot"
+            name string "Path"
+        OBJECT_END
+        OBJECT
+            hive string "HKEY_LOCAL_MACHINE"
+            key string "SOFTWARE\\Microsoft\\Office\\16.0\\Visio\\InstallRoot"
+            name string "Path"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                SET_REF obj_10001300
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

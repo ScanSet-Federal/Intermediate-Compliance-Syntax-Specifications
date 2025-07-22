@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:524
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\4"
+                name string "1206"
+            OBJECT_END
+            STATE "Computer Configuration\Network\Internet Explorer\Internet Control Panel\Security Page\Restricted Sites Zone\Allow scripting of Internet Explorer web browser control"
+                type reg_dword
+                value int VAR var_52400
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

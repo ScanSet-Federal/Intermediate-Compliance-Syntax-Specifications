@@ -1,0 +1,100 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:310
+DEF
+    SET obj_310 union
+        OBJECT
+            path string VAR var_310 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+        OBJECT_END
+        OBJECT
+            path string VAR var_311 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    SET obj_312 union
+        OBJECT
+            path string VAR var_310 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+            FILTER include "ALL APPLICATION PACKAGES rights only"
+                trustee_sid S-1-15-2-1
+            FILTER_END
+        OBJECT_END
+        OBJECT
+            path string VAR var_311 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+            FILTER include "ALL APPLICATION PACKAGES rights only"
+                trustee_sid S-1-15-2-1
+            FILTER_END
+        OBJECT_END
+    SET_END
+    SET obj_311 union
+        OBJECT
+            path string VAR var_310 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+            FILTER include "Users group rights only"
+                trustee_sid S-1-5-32-545
+            FILTER_END
+        OBJECT_END
+        OBJECT
+            path string VAR var_311 at least one
+            filename nil
+            trustee_sid "pattern match" ".*"
+            FILTER include "Users group rights only"
+                trustee_sid S-1-5-32-545
+            FILTER_END
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                SET_REF obj_310
+            OBJECT_END
+            STATE "update"
+                trustee_sid "pattern match" "^(S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464|S-1-5-18|S-1-5-32-544|S-1-3-0|S-1-5-32-545|S-1-15-2-1)$"
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST any_exist all
+            OBJECT
+                SET_REF obj_311
+            OBJECT_END
+            STATE "Users Group must only have Read, Execute and List"
+                standard_delete boolean 0
+                standard_write_dac boolean 0
+                standard_write_owner boolean 0
+                access_system_security boolean 0
+                generic_write boolean 0
+                generic_all boolean 0
+                file_write_data boolean 0
+                file_append_data boolean 0
+                file_write_ea boolean 0
+                file_delete_child boolean 0
+                file_write_attributes boolean 0
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST any_exist all
+            OBJECT
+                SET_REF obj_312
+            OBJECT_END
+            STATE "Users Group must only have Read, Execute and List"
+                standard_delete boolean 0
+                standard_write_dac boolean 0
+                standard_write_owner boolean 0
+                access_system_security boolean 0
+                generic_write boolean 0
+                generic_all boolean 0
+                file_write_data boolean 0
+                file_append_data boolean 0
+                file_write_ea boolean 0
+                file_delete_child boolean 0
+                file_write_attributes boolean 0
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

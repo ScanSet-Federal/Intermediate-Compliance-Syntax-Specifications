@@ -1,0 +1,14 @@
+# oval:navy.navwar.niwcatlantic.scc.firefox.windows:def:201
+DEF
+    CRI AND
+        CTN variable
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.firefox.windows:var:201"
+            OBJECT_END
+            STATE "Verify that browser.search.update is set to false and locked"
+                value "pattern match" "\"browser.search.update\": \\{    \"Value\": false,    \"Status\": \"locked\"  }"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

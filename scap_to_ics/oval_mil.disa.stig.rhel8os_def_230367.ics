@@ -1,0 +1,34 @@
+# oval:mil.disa.stig.rhel8os:def:230367
+DEF
+    CRI AND
+        CRI AND
+            CTN shadow
+                TEST any_exist all
+                OBJECT
+                    username string "pattern match" ".+"
+                    FILTER include "Lines starting with usernames of system users"
+                        username string "pattern match" VAR var_23036700
+                    FILTER_END
+                OBJECT_END
+                STATE "greater than zero"
+                    chg_req int "greater than" "0"
+                STATE_END
+                STATE "less than or equal to sixty"
+                    chg_req int "less than or equal" "60"
+                STATE_END
+            CTN_END
+            CTN shadow
+                TEST all_exist all
+                OBJECT
+                    username string "root"
+                OBJECT_END
+                STATE "greater than zero"
+                    chg_req int "greater than" "0"
+                STATE_END
+                STATE "less than or equal to sixty"
+                    chg_req int "less than or equal" "60"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

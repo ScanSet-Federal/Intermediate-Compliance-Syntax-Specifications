@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:573
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\2"
+                name string equals "1201"
+            OBJECT_END
+            STATE "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2\1201 is a REG_DWORD equal to 3"
+                type string equals "reg_dword"
+                value int equals "3"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,271 @@
+# oval:mil.disa.stig.defs:def:254391
+DEF
+    VAR var_25439100 string ""
+    VAR var_25439102 string ""
+    RUN var_25439101 REGEX_CAPTURE "^(.+)\\"
+        object_component "obj_25439101" "value"
+    RUN_END
+    CRI AND
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439100 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-18"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439100 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-32-544"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST none_exist all
+            OBJECT
+                path string VAR var_25439100 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid string "pattern match" ".*"
+                FILTER include "Administrators Rights"
+                    trustee_sid S-1-5-32-544
+                FILTER_END
+                FILTER include "Local System Rights"
+                    trustee_sid S-1-5-18
+                FILTER_END
+                FILTER include "No Rights"
+                    standard_delete boolean false
+                    standard_read_control boolean false
+                    standard_write_dac boolean false
+                    standard_write_owner boolean false
+                    standard_synchronize boolean false
+                    generic_read boolean false
+                    generic_write boolean false
+                    generic_execute boolean false
+                    file_read_data boolean false
+                    file_write_data boolean false
+                    file_append_data boolean false
+                    file_read_ea boolean false
+                    file_write_ea boolean false
+                    file_execute boolean false
+                    file_delete_child boolean false
+                    file_read_attributes boolean false
+                    file_write_attributes boolean false
+                FILTER_END
+            OBJECT_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439101 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-18"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439101 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-32-544"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST none_exist all
+            OBJECT
+                path string VAR var_25439101 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid string "pattern match" ".*"
+                FILTER include "Administrators Rights"
+                    trustee_sid S-1-5-32-544
+                FILTER_END
+                FILTER include "Local System Rights"
+                    trustee_sid S-1-5-18
+                FILTER_END
+                FILTER include "No Rights"
+                    standard_delete boolean false
+                    standard_read_control boolean false
+                    standard_write_dac boolean false
+                    standard_write_owner boolean false
+                    standard_synchronize boolean false
+                    generic_read boolean false
+                    generic_write boolean false
+                    generic_execute boolean false
+                    file_read_data boolean false
+                    file_write_data boolean false
+                    file_append_data boolean false
+                    file_read_ea boolean false
+                    file_write_ea boolean false
+                    file_execute boolean false
+                    file_delete_child boolean false
+                    file_read_attributes boolean false
+                    file_write_attributes boolean false
+                FILTER_END
+            OBJECT_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439102 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-18"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST at_least_one_exists all
+            OBJECT
+                path string VAR var_25439102 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid "S-1-5-32-544"
+            OBJECT_END
+            STATE "Full Rights"
+                standard_delete boolean true
+                standard_read_control boolean true
+                standard_write_dac boolean true
+                standard_write_owner boolean true
+                standard_synchronize boolean true
+                generic_read boolean true
+                generic_write boolean true
+                generic_execute boolean true
+                file_read_data boolean true
+                file_write_data boolean true
+                file_append_data boolean true
+                file_read_ea boolean true
+                file_write_ea boolean true
+                file_execute boolean true
+                file_delete_child boolean true
+                file_read_attributes boolean true
+                file_write_attributes boolean true
+            STATE_END
+        CTN_END
+        CTN fileeffectiverights53
+            TEST none_exist all
+            OBJECT
+                path string VAR var_25439102 all
+                filename string "pattern match" "^(.*)$"
+                trustee_sid string "pattern match" ".*"
+                FILTER include "Administrators Rights"
+                    trustee_sid S-1-5-32-544
+                FILTER_END
+                FILTER include "Local System Rights"
+                    trustee_sid S-1-5-18
+                FILTER_END
+                FILTER include "No Rights"
+                    standard_delete boolean false
+                    standard_read_control boolean false
+                    standard_write_dac boolean false
+                    standard_write_owner boolean false
+                    standard_synchronize boolean false
+                    generic_read boolean false
+                    generic_write boolean false
+                    generic_execute boolean false
+                    file_read_data boolean false
+                    file_write_data boolean false
+                    file_append_data boolean false
+                    file_read_ea boolean false
+                    file_write_ea boolean false
+                    file_execute boolean false
+                    file_delete_child boolean false
+                    file_read_attributes boolean false
+                    file_write_attributes boolean false
+                FILTER_END
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

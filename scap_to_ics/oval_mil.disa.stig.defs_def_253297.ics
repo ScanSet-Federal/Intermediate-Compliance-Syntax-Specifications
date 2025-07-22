@@ -1,0 +1,37 @@
+# oval:mil.disa.stig.defs:def:253297
+DEF
+    CRI AND
+        CTN lockoutpolicy
+            TEST at_least_one_exists all
+            OBJECT
+                # Empty object - no content elements
+            OBJECT_END
+            STATE "Lockout Threshold is greater than 0"
+                lockout_threshold int "greater than" "0"
+            STATE_END
+        CTN_END
+        CRI OR
+            CTN lockoutpolicy
+                TEST at_least_one_exists all OR
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "Lockout Duration equals -1"
+                    lockout_duration int "less than or equal" "0"
+                STATE_END
+                STATE "Lockout Duration equals 4294967295"
+                    lockout_duration int equals "4294967295"
+                STATE_END
+            CTN_END
+            CTN lockoutpolicy
+                TEST at_least_one_exists all
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "Lockout Duration greater than or equals 900"
+                    lockout_duration int "greater than or equal" "900"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

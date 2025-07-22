@@ -1,0 +1,43 @@
+# oval:mil.disa.stig.ol7:def:95719
+DEF
+    CRI OR
+        CTN textfilecontent54
+            TEST all_exist all OR
+            OBJECT
+                filepath "/etc/oracle-release"
+                pattern "pattern match" "^Oracle Linux.*release\\s+(\\S+)\\s+"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "OL 7.0"
+                subexpression "7.0"
+            STATE_END
+            STATE "OL 7.1"
+                subexpression "7.1"
+            STATE_END
+        CTN_END
+        CTN file
+            TEST none_exist all
+            OBJECT
+                filepath equals "/boot/efi/EFI/redhat/grub.cfg"
+            OBJECT_END
+        CTN_END
+        CRI AND
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath equals "/boot/efi/EFI/redhat/user.cfg"
+                    pattern "pattern match" "^[\\s]*GRUB2_PASSWORD=grub\\.pbkdf2\\.sha512\\.\\S+$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath equals "/boot/efi/EFI/redhat/grub.cfg"
+                    pattern "pattern match" "^[\\s]*set[\\s]+superusers=\\\"\\S+\\\"$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

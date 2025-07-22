@@ -1,0 +1,30 @@
+# oval:mil.disa.stig.rhel9os:def:258122
+DEF
+    SET obj_25812202 union
+        OBJECT
+            filepath string "/etc/sssd/sssd.conf"
+            pattern "pattern match" "^\\s*pam_cert_auth\\s*=\\s*(.*)\\s*$"
+            instance int "greater than or equal" "1"
+        OBJECT_END
+        OBJECT
+            BEHAVIOR recurse_down_local_d -1
+            path string "/etc/sssd/conf.d"
+            filename string "pattern match" ".+"
+            pattern "pattern match" "^\\s*pam_cert_auth\\s*=\\s*(.*)\\s*$"
+            instance int "greater than or equal" "1"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    SET_REF obj_25812202
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression string "case insensitive equals" "true"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

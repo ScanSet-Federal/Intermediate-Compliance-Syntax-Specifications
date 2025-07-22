@@ -1,0 +1,29 @@
+# oval:mil.disa.fso.windows:def:5166
+DEF
+    CRI AND
+        CTN registry
+            TEST all_exist all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SYSTEM\\CurrentControlSet\\Services\\mrxsmb10"
+                name string "Start"
+            OBJECT_END
+            STATE "REG_DWORD type and value equals 4"
+                type reg_dword
+                value int equals "4"
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation"
+                name string "DependOnService"
+            OBJECT_END
+            STATE "REG_MULTI_SZ type and value does not equal 'MRxSmb10'"
+                type reg_multi_sz
+                value string "pattern match" "^[Mm][Rr][Xx][Ss][Mm][Bb]10$"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

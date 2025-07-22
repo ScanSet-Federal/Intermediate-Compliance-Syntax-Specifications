@@ -1,0 +1,31 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2204os:def:501
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "dmesg | grep -i \"execute disable\""
+                pattern "pattern match" "NX"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must implement nonexecutable data to protect its memory from unauthorized code execution."
+                command dmesg | grep -i "execute disable"
+                exit_status int 0
+                stdout_line "pattern match" "NX\\s+\\(Execute Disable\\)\\s+protection:\\s+active"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "grep flags /proc/cpuinfo | grep -o nx | sort -u"
+                pattern "pattern match" "nx"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must implement nonexecutable data to protect its memory from unauthorized code execution."
+                command grep flags /proc/cpuinfo | grep -o nx | sort -u
+                exit_status int 0
+                stdout_line "pattern match" "nx"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

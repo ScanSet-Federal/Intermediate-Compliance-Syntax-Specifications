@@ -1,0 +1,52 @@
+# oval:mil.disa.stig.defs:def:257961
+DEF
+    VAR var_20000017 string ["/run/sysctl.d","/lib/sysctl.d","/usr/lib/sysctl.d","/usr/local/lib/sysctl.d"]
+    CRI AND
+        CTN sysctl
+            TEST all_exist all
+            OBJECT
+                name "net.ipv4.conf.default.log_martians"
+            OBJECT_END
+            STATE "Compliance check condition"
+                value int equals "1"
+            STATE_END
+        CTN_END
+        CRI OR
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    path "/etc/sysctl.d"
+                    filename "pattern match" "^.*\\.conf$"
+                    pattern "pattern match" "^\\s*net\\.ipv4\\.conf\\.default\\.log_martians\\s*=\\s*(\\d+)\\s*$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression int equals "1"
+                STATE_END
+            CTN_END
+            CRI AND
+                CTN textfilecontent54
+                    TEST none_exist all
+                    OBJECT
+                        path "/etc/sysctl.d"
+                        filename "pattern match" "^.*\\.conf$"
+                        pattern "pattern match" "^\\s*net\\.ipv4\\.conf\\.default\\.log_martians\\s*=\\s*(\\d+)\\s*$"
+                        instance int "greater than or equal" "1"
+                    OBJECT_END
+                CTN_END
+                CTN textfilecontent54
+                    TEST at_least_one_exists all
+                    OBJECT
+                        path VAR var_20000017 at least one
+                        filename "pattern match" "^.*\\.conf$"
+                        pattern "pattern match" "^\\s*net\\.ipv4\\.conf\\.default\\.log_martians\\s*=\\s*(\\d+)\\s*$"
+                        instance int "greater than or equal" "1"
+                    OBJECT_END
+                    STATE "Compliance check condition"
+                        subexpression int equals "1"
+                    STATE_END
+                CTN_END
+            CRI_END
+        CRI_END
+    CRI_END
+DEF_END

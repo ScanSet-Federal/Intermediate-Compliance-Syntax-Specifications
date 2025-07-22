@@ -1,0 +1,17 @@
+# oval:mil.disa.stig.windows:def:65
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+                name string "DisableAutomaticRestartSignOn"
+            OBJECT_END
+            STATE "DisableAutomaticRestartSignOn = 1 (reg_dword)"
+                type reg_dword
+                value int 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

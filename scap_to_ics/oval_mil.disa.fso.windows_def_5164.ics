@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:5164
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters"
+                name string "SMB1"
+            OBJECT_END
+            STATE "REG_DWORD type and value equals 0"
+                type reg_dword
+                value int equals "0"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

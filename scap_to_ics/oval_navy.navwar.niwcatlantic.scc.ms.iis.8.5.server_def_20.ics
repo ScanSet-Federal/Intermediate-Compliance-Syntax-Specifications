@@ -1,0 +1,113 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:20
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include date."
+                result "pattern match" "Date"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include time."
+                result "pattern match" "Time"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include ClientIP."
+                result "pattern match" "ClientIP"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include UserName."
+                result "pattern match" "UserName"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include Method."
+                result "pattern match" "Method"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include UriQuery."
+                result "pattern match" "UriQuery"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include HttpStatus."
+                result "pattern match" "HttpStatus"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/log"
+                parameter "centralW3CLogFile.logExtFileFlags"
+            OBJECT_END
+            STATE "result must include Referer."
+                result "pattern match" "Referer"
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/sites"
+                parameter "siteDefaults.logFile.logFormat"
+            OBJECT_END
+            STATE "result must equal W3C"
+                result W3C
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:4572
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "System\\CurrentControlSet\\Services\\Tcpip\\Parameters"
+                name string "PerformRouterDiscovery"
+            OBJECT_END
+            STATE "Reg_Dword type and value equals variable"
+                type reg_dword
+                value int VAR var_457200
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

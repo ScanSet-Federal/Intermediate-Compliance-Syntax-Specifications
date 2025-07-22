@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:4483
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Microsoft\\Windows NT\\Rpc"
+                name string "RestrictRemoteClients"
+            OBJECT_END
+            STATE "Reg_Dword type and value is greater than or equal to variable"
+                type reg_dword
+                value int "greater than or equal" VAR var_448300
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

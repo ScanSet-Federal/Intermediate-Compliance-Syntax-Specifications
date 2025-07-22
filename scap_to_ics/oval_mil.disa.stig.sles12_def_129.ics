@@ -1,0 +1,31 @@
+# oval:mil.disa.stig.sles12:def:129
+DEF
+    CRI OR
+        CRI AND
+            CTN rpminfo
+                TEST all_exist all
+                OBJECT
+                    name "gdm"
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    filepath "/etc/sysconfig/displaymanager"
+                    pattern "pattern match" "^[ ]*DISPLAYMANAGER_PASSWORD_LESS_LOGIN[ ]?=[ ]?([^\\W]*)[ ]*\"([Nn][Oo])\"$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN textfilecontent54
+                TEST none_exist all
+                OBJECT
+                    filepath "/etc/sysconfig/displaymanager"
+                    pattern "pattern match" "^[ ]*DISPLAYMANAGER_AUTOLOGIN[ ]?=[ ]?([^\\W]*)[ ]*\"([^\\W]+)\"$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

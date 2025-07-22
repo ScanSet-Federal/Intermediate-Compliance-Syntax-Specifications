@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:430
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.applicationHost/sites"
+                parameter "siteDefaults.limits.maxConnections"
+            OBJECT_END
+            STATE "result must not equal zero"
+                result int "not equal" "0"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

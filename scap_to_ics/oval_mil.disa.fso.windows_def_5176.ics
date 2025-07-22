@@ -1,0 +1,90 @@
+# oval:mil.disa.fso.windows:def:5176
+DEF
+    SET obj_498003 union
+        OBJECT
+            hive string "HKEY_LOCAL_MACHINE"
+            key string "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+            trustee_sid string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    SET obj_517600 union
+        OBJECT
+            hive string "HKEY_LOCAL_MACHINE"
+            key string "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+            trustee_sid string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+                name string nil
+            OBJECT_END
+        CTN_END
+        CRI OR
+            CTN regkeyeffectiverights53
+                TEST any_exist all
+                OBJECT
+                    SET_REF obj_517600
+                OBJECT_END
+                STATE "No registry rights"
+                    standard_delete boolean equals "0"
+                    standard_read_control boolean equals "0"
+                    standard_write_dac boolean equals "0"
+                    standard_write_owner boolean equals "0"
+                    access_system_security boolean equals "0"
+                    generic_read boolean equals "0"
+                    generic_write boolean equals "0"
+                    generic_execute boolean equals "0"
+                    generic_all boolean equals "0"
+                    key_query_value boolean equals "0"
+                    key_set_value boolean equals "0"
+                    key_create_sub_key boolean equals "0"
+                    key_enumerate_sub_keys boolean equals "0"
+                    key_notify boolean equals "0"
+                    key_create_link boolean equals "0"
+                    key_wow64_64key boolean equals "0"
+                    key_wow64_32key boolean equals "0"
+                    key_wow64_res boolean equals "0"
+                STATE_END
+            CTN_END
+            CTN regkeyeffectiverights53
+                TEST none_exist all
+                OBJECT
+                    SET_REF obj_517600
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CRI OR
+            CTN regkeyeffectiverights53
+                TEST any_exist all
+                OBJECT
+                    SET_REF obj_498003
+                OBJECT_END
+                STATE "QENR registry rights"
+                    standard_delete boolean equals "0"
+                    standard_write_dac boolean equals "0"
+                    standard_write_owner boolean equals "0"
+                    access_system_security boolean equals "0"
+                    generic_write boolean equals "0"
+                    generic_execute boolean equals "0"
+                    generic_all boolean equals "0"
+                    key_set_value boolean equals "0"
+                    key_create_sub_key boolean equals "0"
+                    key_create_link boolean equals "0"
+                    key_wow64_64key boolean equals "0"
+                    key_wow64_32key boolean equals "0"
+                    key_wow64_res boolean equals "0"
+                STATE_END
+            CTN_END
+            CTN regkeyeffectiverights53
+                TEST none_exist all
+                OBJECT
+                    SET_REF obj_498003
+                OBJECT_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

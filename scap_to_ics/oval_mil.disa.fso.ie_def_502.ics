@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:502
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_MIME_HANDLING"
+                name string equals "explorer.exe"
+            OBJECT_END
+            STATE "Computer Configuration\Administrative Templates\Windows Components\Internet Explorer\Security Features\Consistent Mime Handling\Internet Explorer Processes"
+                type string equals "reg_sz"
+                value string equals "1"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

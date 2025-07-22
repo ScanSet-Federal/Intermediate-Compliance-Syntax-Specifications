@@ -1,0 +1,8 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.sql.server.2016.inst:def:881
+DEF
+    CRI AND
+        CTN unknown
+            TEST at_least_one_exists "at least one"
+        CTN_END
+    CRI_END
+DEF_END

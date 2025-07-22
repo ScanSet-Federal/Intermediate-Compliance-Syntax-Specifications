@@ -1,0 +1,23 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2701
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST only_one_exists all
+            OBJECT
+                BEHAVIOR multiline
+                filepath "/etc/sssd/sssd.conf"
+                pattern "pattern match" "\\s*\\[certmap.*\\]([\\n\\r ]+.*)+"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm relevant lines exist in certmap section."
+                text "pattern match" "\\n+\\s*matchrule\\s*=\\s*[^#]+\\n*"
+            STATE_END
+            STATE "Confirm relevant lines exist in certmap section."
+                text "pattern match" "\\n+\\s*maprule\\s*=\\s*[^#]+\\n*"
+            STATE_END
+            STATE "Confirm relevant lines exist in certmap section."
+                text "pattern match" "\\n+\\s*domains\\s*=\\s*[^#]+\\n*"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

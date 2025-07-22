@@ -1,0 +1,11 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:100007
+DEF
+    CRI AND
+        CTN service
+            TEST none_exist all
+            OBJECT
+                service_name "pattern match" "(?i)^wmsvc$"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

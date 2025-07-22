@@ -1,0 +1,25 @@
+# oval:mil.disa.fso.windows:def:4697
+DEF
+    CRI AND
+        CTN wmi
+            TEST at_least_one_exists all
+            OBJECT
+                namespace string "root\\rsop\\computer"
+                wql string "SELECT setting FROM RSOP_SecuritySettingNumeric WHERE KeyName='MaxServiceAge'"
+            OBJECT_END
+            STATE "Maximum lifetime for service ticket policy ne 0, returns -1 in policy auditor"
+                result int "not equal" "-1"
+            STATE_END
+        CTN_END
+        CTN wmi
+            TEST at_least_one_exists all
+            OBJECT
+                namespace string "root\\rsop\\computer"
+                wql string "SELECT setting FROM RSOP_SecuritySettingNumeric WHERE KeyName='MaxServiceAge'"
+            OBJECT_END
+            STATE "Maximum lifetime for service ticket lte 600"
+                result int "less than or equal" "600"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,14 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:280
+DEF
+    CRI AND
+        CTN variable
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:280"
+            OBJECT_END
+            STATE "The Idle Timeout monitor shall not equal 0 minutes."
+                value int "not equal" "000000"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

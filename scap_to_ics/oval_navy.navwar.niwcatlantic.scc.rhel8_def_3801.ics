@@ -1,0 +1,20 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:3801
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all OR
+            OBJECT
+                BEHAVIOR singleline
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "^.+$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Confirm correct configuration."
+                text "pattern match" "auth\\s+required\\s+pam_faillock.so preauth"
+            STATE_END
+            STATE "Confirm correct configuration."
+                text "pattern match" "auth\\s+required\\s+pam_faillock.so\\s+preauth.*\\n.*account\\s+required\\s+pam_unix.so"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

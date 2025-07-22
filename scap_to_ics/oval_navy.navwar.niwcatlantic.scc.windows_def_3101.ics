@@ -1,0 +1,23 @@
+# oval:navy.navwar.niwcatlantic.scc.windows:def:3101
+DEF
+    CRI AND
+        CTN registry
+            TEST none_exist "only one"
+            OBJECT
+                hive "HKEY_LOCAL_MACHINE"
+                key "pattern match" "SYSTEM\\\\CurrentControlSet\\\\Services\\\\PortProxy\\\\v.tov.\\\\.*"
+                name "pattern match" ".*"
+            OBJECT_END
+        CTN_END
+        CRI AND
+            CTN registry
+                TEST none_exist "only one"
+                OBJECT
+                    hive "HKEY_LOCAL_MACHINE"
+                    key "SYSTEM\\CurrentControlSet\\Services\\PortProxy\\v4tov4\\tcp"
+                    name nil
+                OBJECT_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

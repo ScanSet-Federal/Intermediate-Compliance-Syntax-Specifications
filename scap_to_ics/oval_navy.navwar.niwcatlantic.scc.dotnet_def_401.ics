@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:401
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST any_exist all
+            OBJECT
+                filepath "pattern match" ".*\\.exe\\.config$|v4\\.0\\.30319\\\\Config\\\\machine.config"
+                pattern "<channel.*ref=\"http server\"(.*)"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Test to ensure that any 'channel ref='http server' contains port='443'"
+                subexpression "pattern match" "port=\"443\""
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

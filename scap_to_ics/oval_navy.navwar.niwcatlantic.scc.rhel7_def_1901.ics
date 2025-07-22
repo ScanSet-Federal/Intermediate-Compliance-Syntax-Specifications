@@ -1,0 +1,11 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel7:def:1901
+DEF
+    CRI AND
+        CTN rpminfo
+            TEST at_least_one_exists all
+            OBJECT
+                name "mailx"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

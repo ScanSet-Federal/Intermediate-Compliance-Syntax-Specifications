@@ -1,0 +1,13 @@
+# oval:mil.disa.stig.defs:def:230486
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/chrony.conf"
+                pattern "pattern match" "^[ \\t]*cmdport[ \\t]+0[ \\t]*$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

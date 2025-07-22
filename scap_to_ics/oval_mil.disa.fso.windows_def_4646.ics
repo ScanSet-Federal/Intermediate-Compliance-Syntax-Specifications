@@ -1,0 +1,45 @@
+# oval:mil.disa.fso.windows:def:4646
+DEF
+    SET obj_463300 union
+        OBJECT
+            security_principle string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    SET obj_464602 union
+        OBJECT
+            security_principle string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    CRI OR
+        CTN accesstoken
+            TEST at_least_one_exists all
+            OBJECT
+                SET_REF obj_463300
+            OBJECT_END
+            STATE "Create symbolic links"
+                secreatesymboliclinkprivilege boolean equals "0"
+            STATE_END
+        CTN_END
+        CRI AND
+            CTN wmi
+                TEST at_least_one_exists all
+                OBJECT
+                    namespace string equals "root\\cimv2"
+                    wql string equals "SELECT name FROM Win32_ServerFeature WHERE ID = 20"
+                OBJECT_END
+                STATE "verify hyper-v role installed"
+                    result string equals "Hyper-V"
+                STATE_END
+            CTN_END
+            CTN accesstoken
+                TEST at_least_one_exists all
+                OBJECT
+                    SET_REF obj_464602
+                OBJECT_END
+                STATE "Create symbolic links"
+                    secreatesymboliclinkprivilege boolean equals "0"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

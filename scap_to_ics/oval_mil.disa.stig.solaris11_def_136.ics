@@ -1,0 +1,30 @@
+# oval:mil.disa.stig.solaris11:def:136
+DEF
+    SET obj_1901 union
+        OBJECT
+            username string "pattern match" "^[^-+].*$"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN password
+            TEST any_exist all
+            OBJECT
+                SET_REF obj_1901
+            OBJECT_END
+            STATE "The root account must be the only account with GID of 0."
+                username string equals "root"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST any_exist all
+            OBJECT
+                filepath string equals "/etc/group"
+                pattern string "pattern match" "^[^:]+:[^:]*:0:(\\S+)"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "root string."
+                subexpression string equals "root"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

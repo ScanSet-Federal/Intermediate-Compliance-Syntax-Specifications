@@ -1,0 +1,16 @@
+# oval:mil.disa.fso.ie:def:18343
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\Internet Explorer"
+                name string "svcVersion"
+            OBJECT_END
+            STATE "State matches if Microsoft Internet Explorer 11 is installed"
+                value "pattern match" "^11\\..*$"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

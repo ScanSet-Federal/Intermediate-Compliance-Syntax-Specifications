@@ -1,0 +1,29 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:270
+DEF
+    CRI OR
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/httpErrors"
+                parameter "errorMode"
+            OBJECT_END
+            STATE "result must equal DetailedLocalOnly"
+                result DetailedLocalOnly
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/httpErrors"
+                parameter "errorMode"
+            OBJECT_END
+            STATE "result must equal CustomErrorPages"
+                result Custom
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

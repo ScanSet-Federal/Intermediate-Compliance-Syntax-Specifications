@@ -1,0 +1,44 @@
+# oval:mil.disa.stig.windows2016:def:225023
+DEF
+    SET obj_25343001 union
+        OBJECT
+            hive string equals "HKEY_LOCAL_MACHINE"
+            key string equals "SOFTWARE\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\9B74964506C7ED9138070D08D5F8B969866560C8"
+            name string "pattern match" "^.+$"
+        OBJECT_END
+        OBJECT
+            hive string equals "HKEY_LOCAL_MACHINE"
+            key string equals "SOFTWARE\\Microsoft\\EnterpriseCertificates\\Disallowed\\Certificates\\9B74964506C7ED9138070D08D5F8B969866560C8"
+            name string "pattern match" "^.+$"
+        OBJECT_END
+    SET_END
+    SET obj_25343000 union
+        SET obj_25343001 union
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "SOFTWARE\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\9B74964506C7ED9138070D08D5F8B969866560C8"
+                name string "pattern match" "^.+$"
+            OBJECT_END
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "SOFTWARE\\Microsoft\\EnterpriseCertificates\\Disallowed\\Certificates\\9B74964506C7ED9138070D08D5F8B969866560C8"
+                name string "pattern match" "^.+$"
+            OBJECT_END
+        SET_END
+        OBJECT
+            hive string equals "HKEY_LOCAL_MACHINE"
+            key string equals "SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\9B74964506C7ED9138070D08D5F8B969866560C8"
+            name string "pattern match" "^.+$"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CRI AND
+            CTN registry
+                TEST at_least_one_exists "at least one"
+                OBJECT
+                    SET_REF obj_25343000
+                OBJECT_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

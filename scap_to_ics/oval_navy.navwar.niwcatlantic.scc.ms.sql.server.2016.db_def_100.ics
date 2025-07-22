@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.sql.server.2016.db:def:100
+DEF
+    CRI AND
+        CTN sqlext
+            TEST at_least_one_exists all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                engine "sqlserver"
+                version "2016|2017|2019|2022"
+                instance "pattern match" ".*"
+                database nil
+                sql nil
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

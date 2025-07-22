@@ -1,0 +1,27 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:801
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "blkid"
+                pattern "TYPE=\"(.*?)\""
+                FILTER include "Filter out /boot, /proc, and ./sys."
+                    shell bash
+                    command equals "blkid"
+                    pattern equals "TYPE=\"(.*?)\""
+                    exit_status int 0
+                    stdout_line "pattern match" "(/boot|/proc|/sys)"
+                FILTER_END
+            OBJECT_END
+            STATE "Confirm TYPE is crypto-LUKS."
+                shell bash
+                command equals "blkid"
+                pattern equals "TYPE=\"(.*?)\""
+                exit_status int 0
+                subexpression "crypto_LUKS"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

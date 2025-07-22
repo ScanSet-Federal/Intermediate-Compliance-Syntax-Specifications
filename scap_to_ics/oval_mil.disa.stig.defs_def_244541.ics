@@ -1,0 +1,13 @@
+# oval:mil.disa.stig.defs:def:244541
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST none_exist all
+            OBJECT
+                filepath "/etc/pam.d/password-auth"
+                pattern "pattern match" "\\bnullok\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

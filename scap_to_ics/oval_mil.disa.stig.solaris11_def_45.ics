@@ -1,0 +1,46 @@
+# oval:mil.disa.stig.solaris11:def:45
+DEF
+    VAR var_29700 string ""
+    CRI OR
+        CRI OR
+            CTN smf
+                TEST at_least_one_exists all
+                OBJECT
+                    fmri string equals "svc://localhost/application/graphical-login/gdm:default"
+                OBJECT_END
+                STATE "gdm graphical-login is online."
+                    service_state string equals "ONLINE"
+                STATE_END
+            CTN_END
+            CTN smf
+                TEST at_least_one_exists all
+                OBJECT
+                    fmri string equals "svc://localhost/application/graphical-login/xdm:default"
+                OBJECT_END
+                STATE "gdm graphical-login is online."
+                    service_state string equals "ONLINE"
+                STATE_END
+            CTN_END
+        CRI_END
+        CRI AND
+            CTN file
+                TEST any_exist all
+                OBJECT
+                    path string equals VAR var_29700 at least one
+                    filename string equals ".Xauthority"
+                OBJECT_END
+                STATE "Permission 0600"
+                    suid boolean equals "false"
+                    sgid boolean equals "false"
+                    uexec boolean equals "false"
+                    gread boolean equals "false"
+                    gwrite boolean equals "false"
+                    gexec boolean equals "false"
+                    oread boolean equals "false"
+                    owrite boolean equals "false"
+                    oexec boolean equals "false"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

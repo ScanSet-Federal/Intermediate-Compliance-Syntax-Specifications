@@ -1,0 +1,29 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:220
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.web/sessionState"
+                parameter "cookieless"
+            OBJECT_END
+            STATE "result must equal UseCookies"
+                result UseCookies
+            STATE_END
+        CTN_END
+        CTN appcmdlistconfig
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.web/sessionState"
+                parameter "timeout"
+            OBJECT_END
+            STATE "result must be less than or equal to 15"
+                result int "less than or equal" "15"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

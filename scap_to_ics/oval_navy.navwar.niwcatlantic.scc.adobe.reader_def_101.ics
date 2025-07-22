@@ -1,0 +1,18 @@
+# oval:navy.navwar.niwcatlantic.scc.adobe.reader:def:101
+DEF
+    CRI AND
+        CTN ntuser
+            TEST at_least_one_exists all
+            OBJECT
+                key "Software\\Adobe\\Acrobat Reader\\DC\\Security\\cDigSig\\cEUTLDownload"
+                name "bLoadSettingsFromURL"
+                FILTER exclude "Exclude Disabled Accounts"
+                    enabled boolean false
+                FILTER_END
+            OBJECT_END
+            STATE "NTUSER Registry key type equals reg_dword and value equals 0"
+                value 0
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

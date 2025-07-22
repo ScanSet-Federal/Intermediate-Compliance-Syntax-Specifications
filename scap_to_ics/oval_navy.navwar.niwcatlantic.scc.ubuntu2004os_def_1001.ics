@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2004os:def:1001
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST at_least_one_exists all OR
+            OBJECT
+                filepath "/etc/crypttab"
+                pattern "pattern match" "^\\s*^([^_]+)_.*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "buntu 22.04 LTS must implement cryptographic mechanisms to prevent unauthorized disclosure and modification of all information that requires protection at rest. (check partitions in /etc/crypttab.)"
+                subexpression string equals VAR var_1022
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

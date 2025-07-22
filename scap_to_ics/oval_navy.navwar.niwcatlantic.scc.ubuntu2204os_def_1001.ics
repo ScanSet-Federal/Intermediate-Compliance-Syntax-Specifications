@@ -1,0 +1,38 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2204os:def:1001
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                path "/etc/chrony"
+                filename "pattern match" ".*\\.conf"
+                pattern "pattern match" "^\\s*makestep\\s+1\\s+-1\\s*"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "timedatectl | grep -Ei 'synchronized' "
+                pattern "pattern match" ".*"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must synchronize internal information system clocks to the authoritative time source. Check System clock is synchronized."
+                exit_status int 0
+                stdout_line "pattern match" "\\s*System\\s+clock\\s+synchronized:\\s+yes"
+            STATE_END
+        CTN_END
+        CTN shellcommand
+            TEST at_least_one_exists all
+            OBJECT
+                shell "bash"
+                command "timedatectl | grep -Ei 'service' "
+                pattern "pattern match" ".*"
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS must synchronize internal information system clocks to the authoritative time source. Check NTP is active"
+                exit_status int 0
+                stdout_line "pattern match" "\\s*NTP\\s+service:\\s+active"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

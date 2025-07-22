@@ -1,0 +1,21 @@
+# oval:navy.navwar.niwcatlantic.scc.win:def:701
+DEF
+    CRI AND
+        CTN file
+            TEST none_exist all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                path "pattern match" ".*"
+                filename "pattern match" ".[Pp]12$"
+            OBJECT_END
+        CTN_END
+        CTN file
+            TEST none_exist all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                path "pattern match" ".*"
+                filename "pattern match" ".[Pp][Ff][Xx]$"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

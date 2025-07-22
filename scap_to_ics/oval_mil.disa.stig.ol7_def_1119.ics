@@ -1,0 +1,34 @@
+# oval:mil.disa.stig.ol7:def:1119
+DEF
+    CRI OR
+        CRI AND
+            CTN rpminfo
+                TEST all_exist all
+                OBJECT
+                    name "gdm"
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    filepath "/etc/gdm/custom.conf"
+                    pattern "pattern match" "^\\[daemon]\\n(?!([^\\n]*\\n+)*\\[[^\\n\\]]*]([^\\n]*\\n+)*AutomaticLoginEnable[ ]?=[ ]?)([^\\n]*\\n+)*AutomaticLoginEnable[ ]?=[ ]?"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    filepath "/etc/gdm/custom.conf"
+                    pattern "pattern match" "^[ ]*AutomaticLoginEnable[ ]?=[ ]?([^\\W]*)[ ]*$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "GDM AutomaticLoginEnable = false"
+                    subexpression "pattern match" "^[Ff][Aa][Ll][Ss][Ee]$"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

@@ -1,0 +1,85 @@
+# oval:mil.disa.stig.defs:def:204497
+DEF
+    VAR var_20449700 string ["/boot/grub2/grub.cfg","/boot/efi/EFI/redhat/grub.cfg"]
+    CRI AND
+        CRI OR
+            CTN rpminfo
+                TEST none_exist all
+                OBJECT
+                    name "prelink"
+                OBJECT_END
+            CTN_END
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath "/etc/sysconfig/prelink"
+                    pattern "pattern match" "^[\\s]*PRELINKING=no[\\s]*"
+                    instance int "1"
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CTN rpminfo
+            TEST all_exist all
+            OBJECT
+                name "dracut-fips"
+            OBJECT_END
+        CTN_END
+        CRI OR
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath "/etc/default/grub"
+                    pattern "pattern match" "^\\s*GRUB_CMDLINE_LINUX=\"(.*)\"$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression string "pattern match" "^(.* )?fips=1( .*)?$"
+                STATE_END
+            CTN_END
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath "/etc/default/grub"
+                    pattern "pattern match" "^\\s*GRUB_CMDLINE_LINUX_DEFAULT=\"(.*)\"$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression string "pattern match" "^(.* )?fips=1( .*)?$"
+                STATE_END
+            CTN_END
+        CRI_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath VAR var_20449700 at least one
+                pattern "pattern match" "^\\s*linux(?:[^#\\n]*)/vmlinuz([^#\\n]*)"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "Compliance check condition"
+                subexpression string "pattern match" "^(.* )?fips=1( .*)?$"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST all_exist all
+            OBJECT
+                filepath string "/proc/sys/crypto/fips_enabled"
+                pattern "pattern match" "^1$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST none_exist all
+            OBJECT
+                filepath "/etc/default/grub"
+                pattern "pattern match" "^[^#]*fips=0"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN file
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/system-fips"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

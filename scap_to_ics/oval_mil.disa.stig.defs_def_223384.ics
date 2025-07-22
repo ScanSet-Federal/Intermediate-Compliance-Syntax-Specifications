@@ -1,0 +1,22 @@
+# oval:mil.disa.stig.defs:def:223384
+DEF
+    CRI AND
+        CTN ntuser
+            TEST at_least_one_exists all
+            OBJECT
+                key string "case insensitive equals" "software\\policies\\Microsoft\\office\\16.0\\powerpoint\\security"
+                name string equals "notbpromptunsignedaddin"
+                FILTER include
+                    enabled boolean false
+                FILTER_END
+                FILTER include
+                    days_since_modified int "greater than" "35"
+                FILTER_END
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

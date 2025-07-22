@@ -1,0 +1,113 @@
+# oval:mil.disa.stig.firefox.windows:def:116
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "Cache"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "Cookies"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "Downloads"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "FormData"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "History"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "Sessions"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "SiteSettings"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "OfflineApps"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Mozilla\\Firefox\\SanitizeOnShutdown"
+                name string "Locked"
+            OBJECT_END
+            STATE "Compliance check condition"
+                type reg_dword
+                value int 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

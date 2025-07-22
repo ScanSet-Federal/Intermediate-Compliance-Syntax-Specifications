@@ -1,0 +1,15 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.sql.server.2016.inst:def:1941
+DEF
+    CRI AND
+        CTN service
+            TEST any_exist all
+            OBJECT
+                service_name equals "SQLBrowser"
+            OBJECT_END
+            STATE "SQL query result field 'name' = 'external scripts enabled' and config_value = 0"
+                start_type SERVICE_DISABLED
+                current_state SERVICE_STOPPED
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

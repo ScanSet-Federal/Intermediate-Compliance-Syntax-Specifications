@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:270
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                section "compilation"
+                parameter "debug"
+            OBJECT_END
+            STATE "appcmdlistconfig result must equal False."
+                result equals "false"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

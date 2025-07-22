@@ -1,0 +1,43 @@
+# oval:mil.disa.fso.ie:def:589
+DEF
+    CRI OR
+        CRI AND
+            CTN registry
+                TEST at_least_one_exists all
+                OBJECT
+                    hive string equals "HKEY_LOCAL_MACHINE"
+                    key string equals "Software\\Microsoft\\Windows NT\\CurrentVersion"
+                    name string equals "CurrentVersion"
+                OBJECT_END
+                STATE "Reg_Sz type and value is greater than or equal to 6.3"
+                    type reg_sz
+                    value version "greater than or equal" "6.3"
+                STATE_END
+            CTN_END
+            CTN registry
+                TEST at_least_one_exists all
+                OBJECT
+                    hive string equals "HKEY_LOCAL_MACHINE"
+                    key string equals "Software\\Microsoft\\Windows NT\\CurrentVersion"
+                    name string equals "CurrentBuildNumber"
+                OBJECT_END
+                STATE "Reg_Sz type and value is greater than or equal to 15063"
+                    type reg_sz
+                    value version "greater than or equal" "15063"
+                STATE_END
+            CTN_END
+        CRI_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\4"
+                name string equals "140C"
+            OBJECT_END
+            STATE "Registry value corresponding with selection of 'Enabled' and then 'Disable' from the drop-down box in the group policy setting."
+                type string equals "reg_dword"
+                value int equals "3"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

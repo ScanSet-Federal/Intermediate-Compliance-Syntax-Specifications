@@ -1,0 +1,43 @@
+# oval:mil.disa.stig.solaris11:def:124
+DEF
+    SET obj_12403 union
+        OBJECT
+            path string equals "/lib/svc/method"
+            filename string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    SET obj_12402 union
+        OBJECT
+            path string VAR var_12400 at least one
+            filename string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN file
+            TEST at_least_one_exists all
+            OBJECT
+                SET_REF obj_12402
+            OBJECT_END
+            STATE "0755 permissions or less permissive."
+                suid boolean equals "false"
+                sgid boolean equals "false"
+                sticky boolean equals "false"
+                gwrite boolean equals "false"
+                owrite boolean equals "false"
+            STATE_END
+        CTN_END
+        CTN file
+            TEST at_least_one_exists all
+            OBJECT
+                SET_REF obj_12403
+            OBJECT_END
+            STATE "0755 permissions or less permissive."
+                suid boolean equals "false"
+                sgid boolean equals "false"
+                sticky boolean equals "false"
+                gwrite boolean equals "false"
+                owrite boolean equals "false"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

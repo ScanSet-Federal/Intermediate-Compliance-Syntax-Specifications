@@ -1,0 +1,29 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:601
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\.NETFramework"
+                name string "AllowStrongNameBypass"
+            OBJECT_END
+            STATE "Registry value must be of type reg_dword be equal to 0"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Wow6432Node\\Microsoft\\.NETFramework"
+                name string "AllowStrongNameBypass"
+            OBJECT_END
+            STATE "Registry value must be of type reg_dword be equal to 0"
+                type reg_dword
+                value int 0
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

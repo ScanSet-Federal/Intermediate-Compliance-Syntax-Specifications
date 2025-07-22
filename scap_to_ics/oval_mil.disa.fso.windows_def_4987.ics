@@ -1,0 +1,16 @@
+# oval:mil.disa.fso.windows:def:4987
+DEF
+    CRI AND
+        CRI AND
+            CTN accesstoken
+                TEST at_least_one_exists all
+                OBJECT
+                    security_principle string "pattern match" ".*"
+                OBJECT_END
+                STATE "Access Credential Manager as a trusted caller"
+                    setrustedcredmanaccessnameright boolean equals "0"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

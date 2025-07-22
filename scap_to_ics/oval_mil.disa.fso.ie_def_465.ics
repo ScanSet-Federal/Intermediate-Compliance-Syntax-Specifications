@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.ie:def:465
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\4"
+                name string "2102"
+            OBJECT_END
+            STATE "Computer Configuration\Network\Internet Explorer\Internet Control Panel\Security Page\Restricted Sites Zone\Allow script-initiated windows without size or position constraints"
+                type reg_dword
+                value int VAR var_46500
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

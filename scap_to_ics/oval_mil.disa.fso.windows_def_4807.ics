@@ -1,0 +1,77 @@
+# oval:mil.disa.fso.windows:def:4807
+DEF
+    CRI AND
+        CRI OR
+            CTN registry
+                TEST at_least_one_exists all
+                OBJECT
+                    hive string "HKEY_LOCAL_MACHINE"
+                    key string "SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Logging"
+                    name string "LogDroppedPackets"
+                OBJECT_END
+                STATE "Value equals variable"
+                    type equals "reg_dword"
+                    value int equals VAR var_480700
+                STATE_END
+            CTN_END
+            CRI AND
+                CTN registry
+                    TEST at_least_one_exists all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\DomainProfile\\Logging"
+                        name string "LogDroppedPackets"
+                    OBJECT_END
+                    STATE "Value equals variable"
+                        type equals "reg_dword"
+                        value int equals VAR var_480700
+                    STATE_END
+                CTN_END
+                CTN registry
+                    TEST none_exist all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Logging"
+                        name string "LogDroppedPackets"
+                    OBJECT_END
+                CTN_END
+            CRI_END
+        CRI_END
+        CRI OR
+            CTN registry
+                TEST at_least_one_exists all
+                OBJECT
+                    hive string "HKEY_LOCAL_MACHINE"
+                    key string "SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile"
+                    name string "EnableFirewall"
+                OBJECT_END
+                STATE "Value equals variable"
+                    type equals "reg_dword"
+                    value int equals VAR var_479800
+                STATE_END
+            CTN_END
+            CRI AND
+                CTN registry
+                    TEST none_exist all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile"
+                        name string "EnableFirewall"
+                    OBJECT_END
+                CTN_END
+                CTN registry
+                    TEST at_least_one_exists all
+                    OBJECT
+                        hive string "HKEY_LOCAL_MACHINE"
+                        key string "SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\DomainProfile"
+                        name string "EnableFirewall"
+                    OBJECT_END
+                    STATE "Value equals variable"
+                        type equals "reg_dword"
+                        value int equals VAR var_479800
+                    STATE_END
+                CTN_END
+            CRI_END
+        CRI_END
+    CRI_END
+DEF_END

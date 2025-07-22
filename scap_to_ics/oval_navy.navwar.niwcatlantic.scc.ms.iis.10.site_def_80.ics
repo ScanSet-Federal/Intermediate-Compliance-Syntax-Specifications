@@ -1,0 +1,34 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:80
+DEF
+    CRI AND
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                identifier_type "Site"
+                identifier "pattern match" ".*"
+                parameter "logfile.logFormat"
+            OBJECT_END
+            STATE "result must equal W3C"
+                result equals "W3C"
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:80"
+            OBJECT_END
+            STATE "Request Header >> Connection"
+                value "pattern match" "sourceName:\"Connection\"\\s+sourceType:\"RequestHeader\""
+            STATE_END
+        CTN_END
+        CTN appcmd
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:80"
+            OBJECT_END
+            STATE "Request Header >> Warning"
+                value "pattern match" "sourceName:\"Warning\"\\s+sourceType:\"RequestHeader\""
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

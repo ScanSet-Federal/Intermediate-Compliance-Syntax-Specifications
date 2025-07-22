@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:470
+DEF
+    CRI AND
+        CTN appcmdlistconfig true
+            TEST only_one_exists all
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/httpProtocol"
+                parameter "all"
+            OBJECT_END
+            STATE "result include X-Powered-By"
+                result "pattern match" "X-Powered-By"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

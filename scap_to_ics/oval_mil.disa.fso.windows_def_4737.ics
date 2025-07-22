@@ -1,0 +1,19 @@
+# oval:mil.disa.fso.windows:def:4737
+DEF
+    SET obj_463300 union
+        OBJECT
+            security_principle string "pattern match" ".*"
+        OBJECT_END
+    SET_END
+    CRI AND
+        CTN accesstoken
+            TEST any_exist all
+            OBJECT
+                SET_REF obj_463300
+            OBJECT_END
+            STATE "Manage auditing and security log"
+                sesecurityprivilege boolean equals "0"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

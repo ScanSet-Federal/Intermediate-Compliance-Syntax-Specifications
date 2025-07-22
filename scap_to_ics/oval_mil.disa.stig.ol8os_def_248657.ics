@@ -1,0 +1,18 @@
+# oval:mil.disa.stig.ol8os:def:248657
+DEF
+    CRI AND
+        CRI AND
+            CTN textfilecontent54
+                TEST all_exist all
+                OBJECT
+                    filepath string "/etc/security/faillock.conf"
+                    pattern string "pattern match" "^\\s*unlock_time\\s*=\\s*([\\d]+)\\s*$"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    subexpression int equals "0"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

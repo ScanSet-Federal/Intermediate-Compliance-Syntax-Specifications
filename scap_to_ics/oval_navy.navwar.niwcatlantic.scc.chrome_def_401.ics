@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.chrome:def:401
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists "only one"
+            OBJECT
+                hive "HKEY_LOCAL_MACHINE"
+                key "SOFTWARE\\Policies\\Google\\Chrome"
+                name "DefaultWebBluetoothGuardSetting"
+            OBJECT_END
+            STATE "DefaultWebBluetoothGuardSetting must be set to 2"
+                value 2
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

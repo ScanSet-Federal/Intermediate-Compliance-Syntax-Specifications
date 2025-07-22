@@ -1,0 +1,14 @@
+# oval:mil.disa.fso.dotnet:def:2
+DEF
+    CRI AND
+        CTN registry
+            TEST none_exist all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Microsoft\\StrongName\\Verification"
+                name string "pattern match" ".*"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,92 @@
+# oval:mil.disa.fso.solaris11:def:111
+DEF
+    VAR var_11101 string ["rc.config.d","rc0.d","rc1.d","rc2.d","rc3.d","rc5.d","rc6.d","rcS.d"]
+    VAR var_11103 string ["/etc","/sbin"]
+    VAR var_11100 string ["/etc/"]
+    RUN var_11102 CONCAT
+        VAR var_11100
+        VAR var_11101
+    RUN_END
+    CRI AND
+        CRI OR
+            CTN textfilecontent54 true
+                TEST at_least_one_exists all
+                OBJECT
+                    path string equals VAR var_11102 at least one
+                    filename string "pattern match" ".*"
+                    pattern string "pattern match" "^[\\s]*PATH=([^ \\s]*)"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN variable
+                TEST any_exist all
+                OBJECT
+                    var_ref string equals "oval:mil.disa.fso.solaris11:var:11104"
+                OBJECT_END
+                STATE "paths must start with ${PATH}, $PATH or /"
+                    value string "pattern match" "^(\\$\\{PATH\\}|\\$PATH|^/)"
+                STATE_END
+            CTN_END
+        CRI_END
+        CRI OR
+            CTN textfilecontent54 true
+                TEST at_least_one_exists all
+                OBJECT
+                    path string equals "/etc/init.d"
+                    filename string "pattern match" ".*"
+                    pattern string "pattern match" "^[\\s]*PATH=([^ \\s]*)"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN variable
+                TEST any_exist all
+                OBJECT
+                    var_ref string equals "oval:mil.disa.fso.solaris11:var:11105"
+                OBJECT_END
+                STATE "paths must start with ${PATH}, $PATH or /"
+                    value string "pattern match" "^(\\$\\{PATH\\}|\\$PATH|^/)"
+                STATE_END
+            CTN_END
+        CRI_END
+        CRI OR
+            CTN textfilecontent54 true
+                TEST at_least_one_exists all
+                OBJECT
+                    path string equals "/lib/svc/method"
+                    filename string "pattern match" ".*"
+                    pattern string "pattern match" "^[\\s]*PATH=([^ \\s]*)"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN variable
+                TEST any_exist all
+                OBJECT
+                    var_ref string equals "oval:mil.disa.fso.solaris11:var:11106"
+                OBJECT_END
+                STATE "paths must start with ${PATH}, $PATH or /"
+                    value string "pattern match" "^(\\$\\{PATH\\}|\\$PATH|^/)"
+                STATE_END
+            CTN_END
+        CRI_END
+        CRI OR
+            CTN textfilecontent54 true
+                TEST at_least_one_exists all
+                OBJECT
+                    path string equals VAR var_11103 at least one
+                    filename string "pattern match" "^rc[012356S]"
+                    pattern string "pattern match" "^[\\s]*PATH=([^ \\s]*)"
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+            CTN_END
+            CTN variable
+                TEST any_exist all
+                OBJECT
+                    var_ref string equals "oval:mil.disa.fso.solaris11:var:11107"
+                OBJECT_END
+                STATE "paths must start with ${PATH}, $PATH or /"
+                    value string "pattern match" "^(\\$\\{PATH\\}|\\$PATH|^/)"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

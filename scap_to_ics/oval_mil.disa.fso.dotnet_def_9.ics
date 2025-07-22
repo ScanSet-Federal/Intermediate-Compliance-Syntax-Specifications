@@ -1,0 +1,33 @@
+# oval:mil.disa.fso.dotnet:def:9
+DEF
+    VAR var_901 string ["\Microsoft.NET\Framework\v4.0.30319\Config","\Microsoft.NET\Framework64\v4.0.30319\Config"]
+    VAR var_903 string ""
+    RUN var_900 CONCAT
+        object_component "obj_388601" "value"
+        VAR var_901
+    RUN_END
+    CRI AND
+        CTN xmlfilecontent
+            TEST any_exist all
+            OBJECT
+                filepath string equals VAR var_903 at least one
+                xpath string equals "count(/configuration/runtime/enforceFIPSPolicy/@enabled) = 0 or /configuration/runtime/enforceFIPSPolicy/@enabled = \"true\""
+            OBJECT_END
+            STATE "enforceFIPSPolicy/@enabled = false"
+                value_of boolean equals "true"
+            STATE_END
+        CTN_END
+        CTN xmlfilecontent
+            TEST any_exist all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                path string equals VAR var_900 at least one
+                filename string "case insensitive equals" "machine.config"
+                xpath string equals "count(/configuration/runtime/enforceFIPSPolicy/@enabled) = 0 or /configuration/runtime/enforceFIPSPolicy/@enabled = \"true\""
+            OBJECT_END
+            STATE "enforceFIPSPolicy/@enabled = false"
+                value_of boolean equals "true"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

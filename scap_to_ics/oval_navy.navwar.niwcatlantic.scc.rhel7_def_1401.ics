@@ -1,0 +1,14 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel7:def:1401
+DEF
+    CRI AND
+        CTN shadow
+            TEST none_exist all
+            OBJECT
+                username "pattern match" ".*"
+                FILTER exclude "Used to filter out any shadow entries that have passwords only leaving any that lack passwords."
+                    password "pattern match" "\\S"
+                FILTER_END
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

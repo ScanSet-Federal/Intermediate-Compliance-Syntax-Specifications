@@ -1,0 +1,22 @@
+# oval:navy.navwar.niwcatlantic.scc.windows:def:3001
+DEF
+    CRI OR
+        CTN ntuser
+            TEST any_exist all
+            OBJECT
+                key "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments"
+                name "SaveZoneInformation"
+                FILTER exclude "Exclude Disabled Accounts"
+                    enabled boolean false
+                FILTER_END
+                FILTER exclude "This state filters out all items where the type and value were not collected"
+                    type string equals VAR var_3002
+                FILTER_END
+            OBJECT_END
+            STATE "Type Equal To reg_dword and Value Equal To 2"
+                type equals "reg_dword"
+                value equals "2"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ubuntu2204os:def:201
+DEF
+    CRI AND
+        CTN interface
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                name "pattern match" ".*"
+                FILTER exclude "Ubuntu 22.04 LTS find ethernet interfaces."
+                    type ARPHRD_LOOPBACK
+                FILTER_END
+            OBJECT_END
+            STATE "Ubuntu 22.04 LTS Networking Enabled - look for interfaces that are 'UP'"
+                flag "pattern match" "RUNNING|MULTICAST|BROADCAST|UP"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

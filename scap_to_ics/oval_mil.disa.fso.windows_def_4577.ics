@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:4577
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security"
+                name string "WarningLevel"
+            OBJECT_END
+            STATE "Reg_Dword type and value is less than or equal to variable"
+                type reg_dword
+                value int "less than or equal" VAR var_457700
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

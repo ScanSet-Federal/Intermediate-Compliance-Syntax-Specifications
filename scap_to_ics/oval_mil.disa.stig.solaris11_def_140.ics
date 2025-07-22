@@ -1,0 +1,59 @@
+# oval:mil.disa.stig.solaris11:def:140
+DEF
+    CRI AND
+        CRI OR
+            CTN uname true
+                TEST all_exist all
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "11.3 or less."
+                    os_version string "pattern match" "^11($|\\.[0-3]\\b)"
+                STATE_END
+            CTN_END
+            CRI OR
+                CTN file
+                    TEST none_exist all
+                    OBJECT
+                        filepath "/etc/zones/index"
+                    OBJECT_END
+                CTN_END
+                CTN textfilecontent54
+                    TEST at_least_one_exists all
+                    OBJECT
+                        filepath "/etc/zones/index"
+                        pattern "pattern match" "^global:"
+                        instance int "greater than or equal" "1"
+                    OBJECT_END
+                CTN_END
+            CRI_END
+        CRI_END
+        CRI OR
+            CTN uname
+                TEST all_exist all
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "11.3 or less."
+                    os_version string "pattern match" "^11($|\\.[0-3]\\b)"
+                STATE_END
+            CTN_END
+            CRI OR
+                CTN file
+                    TEST none_exist all
+                    OBJECT
+                        filepath "/var/share/zones/index.json"
+                    OBJECT_END
+                CTN_END
+                CTN textfilecontent54
+                    TEST none_exist all
+                    OBJECT
+                        filepath "/var/share/zones/index.json"
+                        pattern "pattern match" "\"path\":\\s+\"/\""
+                        instance int "greater than or equal" "1"
+                    OBJECT_END
+                CTN_END
+            CRI_END
+        CRI_END
+    CRI_END
+DEF_END

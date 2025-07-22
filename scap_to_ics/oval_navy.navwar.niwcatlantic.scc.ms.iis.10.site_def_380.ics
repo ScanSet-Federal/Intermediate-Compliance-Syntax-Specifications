@@ -1,0 +1,14 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:380
+DEF
+    CRI AND
+        CTN variable
+            TEST at_least_one_exists all
+            OBJECT
+                var_ref "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:381"
+            OBJECT_END
+            STATE "This state captures all application pool names assigned to a website (including repeats)"
+                value equals VAR var_380
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

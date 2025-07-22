@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel7:def:1301
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/ssh/sshd_config"
+                pattern "pattern match" "^\\n*([\\s#]*X11UseLocalhost\\s+yes.*)"
+                instance int "greater than or equal" "1"
+                FILTER include "The Red Hat Enterprise Linux operating system SSH daemon must prevent remote hosts from connecting to the proxy display."
+                    subexpression "pattern match" "#.*X11UseLocalhost"
+                FILTER_END
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

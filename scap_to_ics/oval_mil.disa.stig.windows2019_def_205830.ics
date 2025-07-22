@@ -1,0 +1,19 @@
+# oval:mil.disa.stig.windows2019:def:205830
+DEF
+    CRI AND
+        CRI AND
+            CTN registry
+                TEST any_exist all
+                OBJECT
+                    hive string "HKEY_LOCAL_MACHINE"
+                    key string "Software\\Policies\\Microsoft\\Windows\\Explorer"
+                    name string "NoDataExecutionPrevention"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    type reg_dword
+                    value int 0
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

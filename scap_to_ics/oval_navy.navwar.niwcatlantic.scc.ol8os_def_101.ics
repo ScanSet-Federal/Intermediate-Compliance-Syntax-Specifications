@@ -1,0 +1,28 @@
+# oval:navy.navwar.niwcatlantic.scc.ol8os:def:101
+DEF
+    CRI AND
+        CTN rpminfo
+            TEST at_least_one_exists all
+            OBJECT
+                name "gnome-session"
+            OBJECT_END
+        CTN_END
+        CTN systemdunitproperty
+            TEST only_one_exists all
+            OBJECT
+                unit "graphical.target"
+                property "LoadState"
+            OBJECT_END
+            STATE "Compliance check condition"
+                value loaded
+            STATE_END
+        CTN_END
+        CTN process58
+            TEST at_least_one_exists all
+            OBJECT
+                command_line "pattern match" "gnome-session"
+                pid int "greater than" "0"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

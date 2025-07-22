@@ -1,0 +1,61 @@
+# oval:navy.navwar.niwcatlantic.scc.ol8os:def:1401
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/auditctl\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/auditd\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/ausearch\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/aureport\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/autrace\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/rsyslogd\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath "/etc/aide.conf"
+                pattern "pattern match" "^\\s*\\/usr\\/sbin\\/augenrules\\b"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

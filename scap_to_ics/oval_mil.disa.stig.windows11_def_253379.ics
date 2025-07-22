@@ -1,0 +1,19 @@
+# oval:mil.disa.stig.windows11:def:253379
+DEF
+    CRI AND
+        CRI AND
+            CTN registry
+                TEST at_least_one_exists all
+                OBJECT
+                    hive string equals "HKEY_LOCAL_MACHINE"
+                    key string equals "Software\\Policies\\Microsoft\\Windows\\System"
+                    name string equals "EnumerateLocalUsers"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    type reg_dword
+                    value int 0
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

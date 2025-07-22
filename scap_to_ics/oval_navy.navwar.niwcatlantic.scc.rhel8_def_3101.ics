@@ -1,0 +1,65 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:3101
+DEF
+    RUN var_3102 CONCAT
+        literal "^\\s*-w\\s+"
+        object_component "obj_3105" "subexpression"
+        literal "\\s+-p\\s+wa\\s+-k\\s+logins$"
+    RUN_END
+    RUN var_3101 CONCAT
+        literal "^\\s*-w\\s+"
+        object_component "obj_3102" "subexpression"
+        literal "\\s+-p\\s+wa\\s+-k\\s+logins$"
+    RUN_END
+    CRI OR
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    BEHAVIOR recurse_down_local_d -1
+                    filepath "/etc/audit/audit.rules"
+                    pattern string "pattern match" VAR var_3101 all
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Confirm appropriate config line found."
+                    text "pattern match" "^\\s*-w\\s+/var/log/faillock\\s+-p\\s+wa\\s+-k\\s+logins"
+                STATE_END
+            CTN_END
+            CTN textfilecontent54
+                TEST only_one_exists all
+                OBJECT
+                    filepath "/etc/os-release"
+                    pattern "pattern match" "^\\s*VERSION_ID=\"([\\d.]+)\""
+                    instance int "1"
+                OBJECT_END
+                STATE "OS version is 8.0 or 8.1."
+                    subexpression "pattern match" "^8\\.[01](\\.\\d+)*"
+                STATE_END
+            CTN_END
+        CRI_END
+        CRI AND
+            CTN textfilecontent54
+                TEST at_least_one_exists all
+                OBJECT
+                    BEHAVIOR recurse_down_local_d -1
+                    filepath "/etc/audit/audit.rules"
+                    pattern string "pattern match" VAR var_3102 all
+                    instance int "greater than or equal" "1"
+                OBJECT_END
+                STATE "Confirm appropriate config line found."
+                    text "pattern match" "^\\s*-w\\s+/var/log/faillock\\s+-p\\s+wa\\s+-k\\s+logins"
+                STATE_END
+            CTN_END
+            CTN textfilecontent54
+                TEST only_one_exists all
+                OBJECT
+                    filepath "/etc/os-release"
+                    pattern "pattern match" "^\\s*VERSION_ID=\"([\\d.]+)\""
+                    instance int "1"
+                OBJECT_END
+                STATE "OS version is 8.2 or later."
+                    subexpression "pattern match" "^8\\.([2-9]|1\\d)"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

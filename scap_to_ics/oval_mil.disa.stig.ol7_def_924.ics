@@ -1,0 +1,21 @@
+# oval:mil.disa.stig.ol7:def:924
+DEF
+    CRI OR
+        CRI AND
+            CTN rpminfo
+                TEST all_exist all
+                OBJECT
+                    name "dconf"
+                OBJECT_END
+            CTN_END
+        CRI_END
+        CTN textfilecontent54
+            TEST all_exist all
+            OBJECT
+                filepath "/etc/dconf/profile/user"
+                pattern "pattern match" "^user-db:user\\nsystem-db:local$"
+                instance int "1"
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,25 @@
+# oval:mil.disa.fso.ie:def:580
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
+                name string equals "SecureProtocols"
+            OBJECT_END
+        CTN_END
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string equals "HKEY_LOCAL_MACHINE"
+                key string equals "Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
+                name string equals "SecureProtocols"
+            OBJECT_END
+            STATE "Registry value corresponding with selection of TLS 1.2."
+                type string equals "reg_dword"
+                value int equals "2048"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

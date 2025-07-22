@@ -1,0 +1,38 @@
+# oval:mil.disa.stig.solaris11:def:137
+DEF
+    CRI AND
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath string equals "/etc/security/policy.conf"
+                pattern string "pattern match" "^\\s*LOCK_AFTER_RETRIES=(\\S+)\\s*$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "LOCK_AFTER_RETRIES == YES in /etc/security/policy.conf"
+                subexpression string equals "YES"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST at_least_one_exists all
+            OBJECT
+                filepath string equals "/etc/default/login"
+                pattern string "pattern match" "^\\s*RETRIES=(\\d+)\\s*$"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "RETRIES <= 3 in /etc/default/login"
+                subexpression int "less than or equal" "3"
+            STATE_END
+        CTN_END
+        CTN textfilecontent54
+            TEST any_exist "none satisfy"
+            OBJECT
+                filepath string equals "/etc/user_attr"
+                pattern string "pattern match" "^[^:#]+:[^:#]*:[^:#]*:[^:#]*:[^:#]*(?:[^:#]*;)?lock_after_retries=([^;\\s]+)(?:;|\\s|$)"
+                instance int "greater than or equal" "1"
+            OBJECT_END
+            STATE "lock_after_retries == no"
+                subexpression string equals "no"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

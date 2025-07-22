@@ -1,0 +1,19 @@
+# oval:navy.navwar.niwcatlantic.scc.dotnet:def:101
+DEF
+    CRI AND
+        CTN ntuser
+            TEST at_least_one_exists all
+            OBJECT
+                key "Software\\Microsoft\\Windows\\CurrentVersion\\WinTrust\\Trust Providers\\Software Publishing"
+                name "State"
+                FILTER exclude "Exclude Disabled Accounts"
+                    enabled boolean false
+                FILTER_END
+            OBJECT_END
+            STATE "Verify autoconfigurl is properly configured"
+                type reg_dword
+                value int equals "146432"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

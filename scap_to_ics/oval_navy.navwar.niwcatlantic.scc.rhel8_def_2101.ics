@@ -1,0 +1,19 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2101
+DEF
+    CRI AND
+        CTN file
+            TEST any_exist all
+            OBJECT
+                BEHAVIOR recurse_down_local_d -1
+                path "/"
+                filename nil
+                FILTER include "Used as filter to exclude owrite of '0'."
+                    owrite boolean 0
+                FILTER_END
+            OBJECT_END
+            STATE "Confirm user_id is less than or equal to 1000."
+                user_id int "less than" "1000"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

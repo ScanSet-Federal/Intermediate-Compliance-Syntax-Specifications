@@ -1,0 +1,28 @@
+# oval:mil.disa.stig.windows2022:def:254503
+DEF
+    CRI AND
+        CRI AND
+            CTN userright
+                TEST at_least_one_exists all OR
+                OBJECT
+                    userright "SE_IMPERSONATE_NAME"
+                OBJECT_END
+                STATE "Compliance check condition"
+                    # State content will be evaluated at runtime
+                STATE_END
+                STATE "Compliance check condition"
+                    trustee_name "case insensitive equals" "Administrators"
+                STATE_END
+                STATE "Compliance check condition"
+                    trustee_name "case insensitive equals" "LOCAL SERVICE"
+                STATE_END
+                STATE "Compliance check condition"
+                    trustee_name "case insensitive equals" "NETWORK SERVICE"
+                STATE_END
+                STATE "Compliance check condition"
+                    trustee_name "case insensitive equals" "SERVICE"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

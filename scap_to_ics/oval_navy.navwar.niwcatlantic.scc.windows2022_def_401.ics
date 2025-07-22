@@ -1,0 +1,39 @@
+# oval:navy.navwar.niwcatlantic.scc.windows2022:def:401
+DEF
+    CRI AND
+        CTN cmdlet
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                module_name "TrustedPlatformModule"
+                module_id nil
+                module_version version nil
+                verb "Get"
+                noun "Tpm"
+                parameters nil
+                select record
+                    field "property" "tpmpresent,tpmready,tpmenabled"
+            OBJECT_END
+            STATE "TPM values must be equal to True"
+                value record nil
+            STATE_END
+        CTN_END
+        CTN cmdlet
+            TEST at_least_one_exists "at least one"
+            OBJECT
+                module_name equals "CimCmdlets"
+                module_id nil
+                module_version version nil
+                verb "Get"
+                noun "CimInstance"
+                parameters record
+                    field "classname" "Win32_TPM"
+                    field "namespace" "root\\cimv2\\security\\microsofttpm"
+                select record
+                    field "property" "specversion"
+            OBJECT_END
+            STATE "Specific Version must be 2.0 or 1.2"
+                value record nil
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

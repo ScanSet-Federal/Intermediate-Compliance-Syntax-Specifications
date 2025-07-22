@@ -1,0 +1,25 @@
+# oval:mil.disa.fso.windows:def:4696
+DEF
+    CRI OR
+        CTN wmi
+            TEST at_least_one_exists all
+            OBJECT
+                namespace string "root\\rsop\\computer"
+                wql string "SELECT setting FROM RSOP_SecuritySettingBoolean WHERE KeyName='TicketValidateClient'"
+            OBJECT_END
+            STATE "Kerberos Policy - Enforce user logon restrictions - Enabled, PA test = -1"
+                result int -1
+            STATE_END
+        CTN_END
+        CTN wmi
+            TEST at_least_one_exists all
+            OBJECT
+                namespace string "root\\rsop\\computer"
+                wql string "SELECT setting FROM RSOP_SecuritySettingBoolean WHERE KeyName='TicketValidateClient'"
+            OBJECT_END
+            STATE "Kerberos Policy - Enforce user logon restrictions - Enabled, Other tools test = 1"
+                result boolean 1
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

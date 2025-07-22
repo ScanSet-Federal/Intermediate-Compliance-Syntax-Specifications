@@ -1,0 +1,17 @@
+# oval:mil.disa.fso.windows:def:4502
+DEF
+    CRI AND
+        CTN registry
+            TEST at_least_one_exists all
+            OBJECT
+                hive string "HKEY_LOCAL_MACHINE"
+                key string "SOFTWARE\\Policies\\Microsoft\\Windows\\EventLog\\Application"
+                name string "MaxSize"
+            OBJECT_END
+            STATE "Reg_Dword type and value equals or is greater than variable"
+                type reg_dword
+                value int "greater than or equal" VAR var_450200
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

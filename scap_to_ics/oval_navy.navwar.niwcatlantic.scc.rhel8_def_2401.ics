@@ -1,0 +1,16 @@
+# oval:navy.navwar.niwcatlantic.scc.rhel8:def:2401
+DEF
+    CRI AND
+        CTN shellcommand
+            TEST any_exist all
+            OBJECT
+                shell "bash"
+                command "ls -d $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd)"
+                pattern "pattern match" nil
+            OBJECT_END
+            STATE "Check that no directories produce 'cannot access' errors."
+                stderr_line "pattern match" ".*"
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

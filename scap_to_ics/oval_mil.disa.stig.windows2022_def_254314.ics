@@ -1,0 +1,25 @@
+# oval:mil.disa.stig.windows2022:def:254314
+DEF
+    CRI AND
+        CRI OR
+            CTN auditeventpolicysubcategories
+                TEST at_least_one_exists all
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "Audit - Special Logon - Success only"
+                    special_logon string equals "AUDIT_SUCCESS"
+                STATE_END
+            CTN_END
+            CTN auditeventpolicysubcategories
+                TEST at_least_one_exists all
+                OBJECT
+                    # Empty object - no content elements
+                OBJECT_END
+                STATE "Audit - Special Logon - Success and Failure"
+                    special_logon string equals "AUDIT_SUCCESS_FAILURE"
+                STATE_END
+            CTN_END
+        CRI_END
+    CRI_END
+DEF_END

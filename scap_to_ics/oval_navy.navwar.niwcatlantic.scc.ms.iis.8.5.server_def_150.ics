@@ -1,0 +1,17 @@
+# oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:def:150
+DEF
+    CRI AND
+        CTN appcmdlistconfig
+            TEST only_one_exists "none satisfy"
+            OBJECT
+                identifier_type "Webserver"
+                identifier nil
+                section "system.webServer/staticContent"
+                parameter "all"
+            OBJECT_END
+            STATE "remove MIME types for OS shell program extensions"
+                result "pattern match" "\\[mimeMap\\]\\s+fileExtension:\"\\.(exe|dll|com|bat|csh)\""
+            STATE_END
+        CTN_END
+    CRI_END
+DEF_END

@@ -1,0 +1,38 @@
+# oval:mil.disa.stig.defs:def:238348
+DEF
+    VAR var_2 string ["/lib","/lib64","/usr/lib","/usr/lib64"]
+    CRI AND
+        CTN file
+            TEST none_exist all
+            OBJECT
+                path string VAR var_2 only one
+                filename string "pattern match" ".*"
+                FILTER exclude "Mode 755 or less permissive (gwrite should be = false.)"
+                    gwrite boolean false
+                FILTER_END
+                FILTER exclude "symbolic links"
+                    type symbolic link
+                FILTER_END
+                FILTER exclude
+                    type directory
+                FILTER_END
+            OBJECT_END
+        CTN_END
+        CTN file
+            TEST none_exist all
+            OBJECT
+                path string VAR var_2 only one
+                filename string "pattern match" ".*"
+                FILTER exclude "Mode 755 or less permissive (owrite should be = false.)"
+                    owrite boolean false
+                FILTER_END
+                FILTER exclude "symbolic links"
+                    type symbolic link
+                FILTER_END
+                FILTER exclude
+                    type directory
+                FILTER_END
+            OBJECT_END
+        CTN_END
+    CRI_END
+DEF_END
