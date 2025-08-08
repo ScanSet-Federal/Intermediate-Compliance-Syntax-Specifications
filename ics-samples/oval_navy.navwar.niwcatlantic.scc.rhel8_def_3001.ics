@@ -1,0 +1,25 @@
+DEF
+STATE ste_3001
+    stdout_line string equals `.*`
+STATE_END
+CRI OR
+CTN shellcommand
+    TEST `only one exists` all
+    STATE_REF ste_3001
+    OBJECT obj_3001
+        shell `bash`
+        command `grep -s cron /etc/rsyslog.conf /etc/rsyslog.d/*.conf`
+        pattern `^\s*[^#\s]+:cron\.\*\s+[^#\s]+`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `only one exists` all
+    STATE_REF ste_3001
+    OBJECT obj_3002
+        shell `bash`
+        command `grep -s /var/log/messages /etc/rsyslog.conf /etc/rsyslog.d/*.conf`
+        pattern `^\s*[^#\s]+:.*cron\.\*\S*\s[^#]*\s+[^#\s]+`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

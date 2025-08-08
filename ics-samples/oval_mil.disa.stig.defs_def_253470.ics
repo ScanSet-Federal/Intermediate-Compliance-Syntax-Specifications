@@ -1,0 +1,20 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_25347000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers\\\S+`
+        name ``
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_25347001
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards\\\S+`
+        name ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

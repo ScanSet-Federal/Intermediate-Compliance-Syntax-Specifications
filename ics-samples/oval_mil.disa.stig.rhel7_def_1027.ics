@@ -1,0 +1,15 @@
+DEF
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_102700
+        subexpression string equals `1`
+    STATE_END
+    OBJECT obj_2796
+        filepath `/etc/yum.conf`
+        pattern `^\s*gpgcheck\s*=\s*(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

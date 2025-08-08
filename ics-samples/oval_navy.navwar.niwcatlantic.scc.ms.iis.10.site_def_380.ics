@@ -1,0 +1,26 @@
+DEF
+VAR var_381 string ``
+VAR var_380 string ``
+RUN var_381 COUNT
+    OBJ obj_381 result
+RUN_END
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_380
+        value string equals `VAR var_380`
+    STATE_END
+    OBJECT obj_380
+        var_ref VAR var_381
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `any exist` all
+    OBJECT obj_381
+        identifier_type `Site`
+        identifier `.*`
+        parameter `[@start].applicationPool`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

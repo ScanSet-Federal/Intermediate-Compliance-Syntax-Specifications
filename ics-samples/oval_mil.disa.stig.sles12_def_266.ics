@@ -1,0 +1,25 @@
+DEF
+VAR var_26500 string `/lib`
+STATE ste_27001
+    type string equals `regular`
+STATE_END
+STATE ste_27200
+    user_id int equals `0`
+STATE_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_26600
+        path VAR var_26500
+        filename `.*`
+        behavior recurse_direction down
+        FILTER include
+            STATE_REF ste_27001
+        FILTER_END
+        FILTER include
+            STATE_REF ste_27200
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

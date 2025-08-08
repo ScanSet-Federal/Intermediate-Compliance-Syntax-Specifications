@@ -1,0 +1,60 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3201
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/auditctl\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3202
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/auditd\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3203
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/ausearch\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3204
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/aureport\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3205
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/autrace\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3206
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/rsyslogd\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_3207
+        filepath `/etc/aide.conf`
+        pattern `^\s*\/usr\/sbin\/augenrules\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

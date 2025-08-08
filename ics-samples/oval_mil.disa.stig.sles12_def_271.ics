@@ -1,0 +1,26 @@
+DEF
+VAR var_27000 string `/bin`
+STATE ste_27100
+    type string equals `directory`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_27000
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        gwrite boolean equals `false`
+        owrite boolean equals `false`
+    STATE_END
+    OBJECT obj_27100
+        path VAR var_27000
+        filename ``
+        behavior recurse_direction down
+        FILTER include
+            STATE_REF ste_27100
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

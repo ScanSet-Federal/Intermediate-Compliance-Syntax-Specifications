@@ -1,0 +1,19 @@
+DEF
+CRI OR
+CTN global
+    TEST `at least one exists` all
+    STATE ste_17300
+        global_command string equals `ip msdp peer \S+ connect-source Loopback\d+(?:| remote-as \d+)`
+    STATE_END
+    OBJECT obj_17300
+        global_command `ip msdp peer \S+ connect-source \S+\d+(?:| remote-as \d+)`
+    OBJECT_END
+CTN_END
+CTN global
+    TEST `none exist` all
+    OBJECT obj_17301
+        global_command `ip msdp peer \S+ remote-as \d+`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

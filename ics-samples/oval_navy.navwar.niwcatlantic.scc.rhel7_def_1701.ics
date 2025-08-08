@@ -1,0 +1,16 @@
+DEF
+CRI OR
+CTN rpminfo
+    TEST `at least one exists` all
+    OBJECT obj_1701
+        name `screen`
+    OBJECT_END
+CTN_END
+CTN rpminfo
+    TEST `at least one exists` all
+    OBJECT obj_1702
+        name `tmux`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

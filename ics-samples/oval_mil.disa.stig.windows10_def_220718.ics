@@ -1,0 +1,24 @@
+DEF
+STATE ste_25327500
+    result record equals `
+    `
+STATE_END
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE_REF ste_25327500
+    OBJECT obj_25327500
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'IIS-WebServerRole'`
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `all exist` all
+    STATE_REF ste_25327500
+    OBJECT obj_25327501
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'IIS-HostableWebCore'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

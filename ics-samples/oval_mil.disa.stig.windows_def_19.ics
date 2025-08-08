@@ -1,0 +1,17 @@
+DEF
+CRI AND
+CTN wmi
+    TEST `at least one exists` all OR
+    STATE ste_8200
+        result int equals `0`
+    STATE_END
+    STATE ste_8201
+        result int equals `2`
+    STATE_END
+    OBJECT obj_8200
+        namespace `root\cimv2`
+        wql `SELECT DomainRole FROM Win32_ComputerSystem`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

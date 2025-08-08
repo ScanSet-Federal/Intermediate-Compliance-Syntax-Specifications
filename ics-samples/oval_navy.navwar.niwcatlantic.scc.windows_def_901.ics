@@ -1,0 +1,25 @@
+DEF
+VAR var_901 string ``
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_901
+        value int equals `0`
+    STATE_END
+    OBJECT obj_901
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\Lsa`
+        name `everyoneincludesanonymous`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` `only one`
+    STATE ste_902
+        value string equals `^(?i).* NT AUTHORITY\\SYSTEM:\(OI\)\(CI\)\(F\)\s+BUILTIN\\Administrators:\(OI\)\(CI\)\(F\)\s+BUILTIN\\Users:\(OI\)\(CI\)\(RX\)\s+BUILTIN\\Users:\(CI\)\(AD\)\s+BUILTIN\\Users:\(CI\)\(IO\)\(WD\)\s+CREATOR OWNER:\(OI\)\(CI\)\(IO\)\(F\).*`
+    STATE_END
+    OBJECT obj_903
+        var_ref VAR var_901
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

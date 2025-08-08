@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_401
+        value string equals `2`
+    STATE_END
+    OBJECT obj_401
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Google\Chrome`
+        name `DefaultWebBluetoothGuardSetting`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

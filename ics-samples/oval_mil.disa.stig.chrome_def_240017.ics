@@ -1,0 +1,18 @@
+DEF
+VAR var_10 string `reg_dword`
+VAR var_1 string `0`
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_240017
+        type string equals `VAR var_10`
+        value string equals `VAR var_1`
+    STATE_END
+    OBJECT obj_240017
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Google\Chrome`
+        name `BackgroundModeEnabled`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

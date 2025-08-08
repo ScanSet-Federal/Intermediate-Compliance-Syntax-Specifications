@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_20000002
+        type string equals `reg_dword`
+        value int equals `2`
+    STATE_END
+    OBJECT obj_25447900
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Cryptography`
+        name `ForceKeyProtection`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

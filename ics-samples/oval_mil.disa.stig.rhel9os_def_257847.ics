@@ -1,0 +1,37 @@
+DEF
+VAR var_23029401 string ``
+VAR var_23029400 string ``
+RUN var_23029401 CONCAT
+    literal `^[^# \t]+\s+`
+    OBJ obj_23029402 subexpression
+    literal `\s+`
+RUN_END
+RUN var_23029400 EXTRACT
+    OBJ obj_23029402 subexpression
+RUN_END
+CRI AND
+CTN partition
+    TEST `all exist` all
+    OBJECT obj_23029400
+        mount_point VAR var_23029400
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_23029401
+        filepath `/etc/fstab`
+        pattern VAR var_23029401
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23029402
+        filepath `/etc/audit/auditd.conf`
+        pattern `^\s*log_file\s*=\s*(\S+)/\S+\s*$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

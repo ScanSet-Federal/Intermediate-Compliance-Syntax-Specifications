@@ -1,0 +1,18 @@
+DEF
+VAR var_25806100 int 0
+VAR var_25806101 int 0
+RUN var_25806100 COUNT
+    OBJ obj_25806100 subexpression
+RUN_END
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_25806100
+        value string equals `VAR var_25806101`
+    STATE_END
+    OBJECT obj_25806101
+        var_ref VAR var_25806100
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

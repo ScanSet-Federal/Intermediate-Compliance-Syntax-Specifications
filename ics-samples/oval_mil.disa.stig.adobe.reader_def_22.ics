@@ -1,0 +1,46 @@
+DEF
+STATE ste_2200
+    type string equals `reg_dword`
+    value int equals `1`
+STATE_END
+CRI OR
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    OBJECT obj_101
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Adobe\Acrobat Reader\DC\Installer`
+        name `ENU_GUID`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2200
+    OBJECT obj_2200
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Adobe\Acrobat Reader\DC\Installer`
+        name `DisableMaintenance`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    OBJECT obj_102
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Adobe\Acrobat Reader\DC\Installer`
+        name `ENU_GUID`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2200
+    OBJECT obj_2201
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer`
+        name `DisableMaintenance`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

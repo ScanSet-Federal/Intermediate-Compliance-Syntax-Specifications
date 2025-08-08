@@ -1,0 +1,47 @@
+DEF
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_11500
+        group_id int equals `0` `all`
+        user_id int equals `0` `all`
+        suid boolean equals `false` `all`
+        sgid boolean equals `false` `all`
+        uread boolean equals `true` `all`
+        uwrite boolean equals `true` `all`
+        uexec boolean equals `false` `all`
+        gread boolean equals `true` `all`
+        gwrite boolean equals `false` `all`
+        gexec boolean equals `false` `all`
+        oread boolean equals `false` `all`
+        owrite boolean equals `false` `all`
+        oexec boolean equals `false` `all`
+    STATE_END
+    OBJECT obj_11500
+        filepath `/var/adm/messages`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `at least one exists` all
+    STATE ste_11501
+        group_id int equals `3` `all`
+        user_id int equals `0` `all`
+        suid boolean equals `false` `all`
+        sgid boolean equals `false` `all`
+        uread boolean equals `true` `all`
+        uwrite boolean equals `true` `all`
+        uexec boolean equals `true` `all`
+        gread boolean equals `true` `all`
+        gwrite boolean equals `false` `all`
+        gexec boolean equals `true` `all`
+        oread boolean equals `false` `all`
+        owrite boolean equals `false` `all`
+        oexec boolean equals `false` `all`
+    STATE_END
+    OBJECT obj_11501
+        path `/var/adm`
+        filename ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

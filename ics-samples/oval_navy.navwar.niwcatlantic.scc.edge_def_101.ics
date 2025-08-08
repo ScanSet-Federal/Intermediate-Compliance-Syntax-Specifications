@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_101
+        name string equals `ProxySettings`
+        value string equals `"ProxyMode":(\s+)?("direct"|"system"|"auto_detect"|"fixed_servers"|"pac_script")`
+    STATE_END
+    OBJECT obj_101
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `ProxySettings`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

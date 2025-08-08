@@ -1,0 +1,24 @@
+DEF
+STATE ste_25328500
+    result record equals `
+    `
+STATE_END
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE_REF ste_25328500
+    OBJECT obj_25328500
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'MicrosoftWindowsPowerShellV2Root'`
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `all exist` all
+    STATE_REF ste_25328500
+    OBJECT obj_25328501
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'MicrosoftWindowsPowerShellV2'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

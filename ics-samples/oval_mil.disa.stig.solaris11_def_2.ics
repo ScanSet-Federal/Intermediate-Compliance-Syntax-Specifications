@@ -1,0 +1,40 @@
+DEF
+CRI AND
+CTN uname
+    TEST `at least one exists` all
+    STATE ste_204
+        processor_type string equals `sparc` `all`
+    STATE_END
+    OBJECT obj_201
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN uname
+    TEST `at least one exists` all
+    STATE ste_203
+        os_release string equals `5.11` `all`
+    STATE_END
+    OBJECT obj_201
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN family
+    TEST `at least one exists` all
+    STATE ste_202
+        family string equals `unix` `all`
+    STATE_END
+    OBJECT obj_202
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN uname
+    TEST `all exist` all
+    STATE ste_201
+        os_name string equals `SunOS` `all`
+    STATE_END
+    OBJECT obj_201
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

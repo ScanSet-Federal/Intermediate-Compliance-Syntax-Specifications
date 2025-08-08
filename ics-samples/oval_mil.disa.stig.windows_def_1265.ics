@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_126500
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_126500
+        namespace `root\cimv2`
+        wql `SELECT id FROM win32_serverfeature`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

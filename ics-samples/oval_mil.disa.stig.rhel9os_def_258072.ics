@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_20000025
+        subexpression string equals `077`
+    STATE_END
+    OBJECT obj_25807200
+        filepath `/etc/bashrc`
+        pattern `^[^#]*\s*(?i)umask\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN partition
+    TEST `at least one exists` all
+    OBJECT obj_8668900
+        mount_point `/tmp`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

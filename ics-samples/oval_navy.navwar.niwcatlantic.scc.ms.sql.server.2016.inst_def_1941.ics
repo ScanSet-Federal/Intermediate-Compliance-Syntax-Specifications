@@ -1,0 +1,14 @@
+DEF
+CRI AND
+CTN service
+    TEST `any exist` all
+    STATE ste_1941
+        start_type string equals `SERVICE_DISABLED`
+        current_state string equals `SERVICE_STOPPED`
+    STATE_END
+    OBJECT obj_1941
+        service_name `SQLBrowser`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

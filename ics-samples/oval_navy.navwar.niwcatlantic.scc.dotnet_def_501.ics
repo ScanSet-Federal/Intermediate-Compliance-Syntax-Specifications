@@ -1,0 +1,44 @@
+DEF
+VAR var_502 string ``
+VAR var_501 string ``
+RUN var_502 CONCAT
+    OBJ obj_502 value
+    literal `\Microsoft.NET\Framework64`
+RUN_END
+RUN var_501 CONCAT
+    OBJ obj_502 value
+    literal `\Microsoft.NET\Framework`
+RUN_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_501
+        version version `greater than or equal` `4.6.2`
+    STATE_END
+    OBJECT obj_501
+        path VAR var_501
+        filename `Mscorlib.dll`
+        behavior max_depth 2 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `at least one exists` all
+    STATE ste_502
+        version version `greater than or equal` `4.6.2`
+    STATE_END
+    OBJECT obj_503
+        path VAR var_502
+        filename `Mscorlib.dll`
+        behavior max_depth 2 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_502
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `SystemRoot`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

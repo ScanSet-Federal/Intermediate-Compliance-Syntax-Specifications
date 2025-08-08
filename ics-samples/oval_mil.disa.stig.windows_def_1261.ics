@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_16800
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_16800
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'SMB1Protocol'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

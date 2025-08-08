@@ -1,0 +1,36 @@
+DEF
+VAR var_9252100 string `/etc/sysctl.d`
+SET obj_9252103 union
+    OBJECT obj_9252101
+        path `VAR var_9252100`
+        filename `\.conf$`
+        pattern `^\s*kernel\.randomize_va_space\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_9252102
+        filepath `/etc/sysctl.conf`
+        pattern `^\s*kernel\.randomize_va_space\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_9252101
+        value int equals `2`
+    STATE_END
+    OBJECT obj_9252100
+        name `kernel.randomize_va_space`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_9252100
+        subexpression string equals `2`
+    STATE_END
+    OBJECT obj_9252103
+        SET_REF obj_9252103
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

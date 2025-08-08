@@ -1,0 +1,32 @@
+DEF
+STATE ste_20000005
+    user_id int equals `0`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_20000005
+    OBJECT obj_25799900
+        filepath `/etc/ssh/sshd_config`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_20000005
+    OBJECT obj_25799901
+        path `/etc/ssh/sshd_config.d`
+        filename ``
+        behavior recurse directories recurse_direction down
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_20000005
+    OBJECT obj_25799902
+        path `/etc/ssh/sshd_config.d`
+        filename `.*`
+        behavior recurse directories recurse_direction down
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,21 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    OBJECT obj_201
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name AS 'Audit Name', 
+status_desc AS 'Audit Status', 
+audit_file_path AS 'Current Audit File' 
+FROM sys.dm_server_audit_status 
+WHERE status_desc = 'STARTED'`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

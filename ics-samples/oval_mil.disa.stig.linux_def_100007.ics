@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_10000602
+        path `/sys/firmware/efi`
+        filename ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

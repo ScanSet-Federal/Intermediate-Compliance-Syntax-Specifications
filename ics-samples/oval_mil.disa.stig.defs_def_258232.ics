@@ -1,0 +1,39 @@
+DEF
+STATE ste_25823200
+    subexpression string equals `/etc/crypto-policies/back-ends/libreswan.config`
+STATE_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_25823200
+    OBJECT obj_25823200
+        filepath `/etc/ipsec.conf`
+        pattern `^\s*include\s+(.*)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_25823201
+        subexpression string equals `/etc/ipsec.d/*.conf`
+    STATE_END
+    OBJECT obj_25823200
+        filepath `/etc/ipsec.conf`
+        pattern `^\s*include\s+(.*)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_25823200
+    OBJECT obj_25823201
+        path `/etc/ipsec.d`
+        filename `^.*\.conf$`
+        pattern `^\s*include\s+(.*)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

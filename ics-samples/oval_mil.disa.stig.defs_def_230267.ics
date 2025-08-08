@@ -1,0 +1,36 @@
+DEF
+VAR var_20000005 string `/etc/sysctl.d`
+SET obj_23026703 union
+    OBJECT obj_23026701
+        path `VAR var_20000005`
+        filename `\.conf$`
+        pattern `(?:^|\.*\n)\s*fs\.protected_symlinks\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23026702
+        filepath `/etc/sysctl.conf`
+        pattern `(?:^|\.*\n)\s*fs\.protected_symlinks\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_20000010
+        value int equals `1`
+    STATE_END
+    OBJECT obj_23026700
+        name `fs.protected_symlinks`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_20000003
+        subexpression int equals `1`
+    STATE_END
+    OBJECT obj_23026703
+        SET_REF obj_23026703
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

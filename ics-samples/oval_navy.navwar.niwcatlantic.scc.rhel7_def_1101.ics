@@ -1,0 +1,21 @@
+DEF
+STATE ste_1102
+    text string equals `^\s*#`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_1101
+        subexpression string equals `sec\s*=\s*krb5:krb5i:krb5p$`
+    STATE_END
+    OBJECT obj_1101
+        filepath `/etc/fstab`
+        pattern `^\n*[^\S#]*\S+\s+\S+\s+nfs.{0,1}(.*)`
+        instance `1`
+        FILTER include
+            STATE_REF ste_1102
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,29 @@
+DEF
+SET obj_25800202 union
+    OBJECT obj_25800200
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)Compression(?-i)[ \t]+([\w\"]+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25800201
+        path `/etc/ssh/sshd_config.d`
+        filename `.+`
+        pattern `^\s*(?i)Compression(?-i)[ \t]+([\w\"]+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_20000017
+        subexpression string equals `^(no|"no")$`
+    STATE_END
+    STATE ste_25294300
+        subexpression string equals `^(delayed|"delayed")$`
+    STATE_END
+    OBJECT obj_25800202
+        SET_REF obj_25800202
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,25 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_501
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `
+DECLARE @xplist AS TABLE
+(
+       xp_name sysname,
+       source_dll nvarchar(255)
+)
+INSERT INTO @xplist
+EXEC sp_helpextendedproc
+SELECT X.xp_name, X.source_dll, O.is_ms_shipped FROM @xplist X JOIN sys.all_objects O ON X.xp_name = O.name WHERE O.is_ms_shipped = 0 ORDER BY X.xp_name`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

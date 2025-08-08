@@ -1,0 +1,43 @@
+DEF
+VAR var_29700 string ``
+RUN var_29700 EXTRACT
+    OBJ obj_29700 home_dir
+RUN_END
+STATE ste_13800
+    service_state string equals `ONLINE`
+STATE_END
+CRI OR
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_13800
+    OBJECT obj_13800
+        fmri `svc://localhost/application/graphical-login/gdm:default`
+    OBJECT_END
+CTN_END
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_13800
+    OBJECT obj_13801
+        fmri `svc://localhost/application/graphical-login/xdm:default`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    STATE ste_29700
+        suid boolean equals `false` `all`
+        sgid boolean equals `false` `all`
+        uexec boolean equals `false` `all`
+        gread boolean equals `false` `all`
+        gwrite boolean equals `false` `all`
+        gexec boolean equals `false` `all`
+        oread boolean equals `false` `all`
+        owrite boolean equals `false` `all`
+        oexec boolean equals `false` `all`
+    STATE_END
+    OBJECT obj_29701
+        path VAR var_29700
+        filename `.Xauthority`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

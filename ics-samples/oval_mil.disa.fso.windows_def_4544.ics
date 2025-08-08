@@ -1,0 +1,17 @@
+DEF
+VAR var_454400 binary ``
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_454400
+        type string equals `reg_binary`
+        value string equals `VAR var_454400`
+    STATE_END
+    OBJECT obj_454400
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\Currentcontrolset\Control\Lsa`
+        name `FullPrivilegeAuditing`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

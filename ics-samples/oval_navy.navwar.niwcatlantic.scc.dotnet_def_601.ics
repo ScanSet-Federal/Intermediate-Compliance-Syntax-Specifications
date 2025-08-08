@@ -1,0 +1,26 @@
+DEF
+STATE ste_601
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_601
+    OBJECT obj_601
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\.NETFramework`
+        name `AllowStrongNameBypass`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_601
+    OBJECT obj_602
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Wow6432Node\Microsoft\.NETFramework`
+        name `AllowStrongNameBypass`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,51 @@
+DEF
+SET obj_20000002 union
+    OBJECT obj_20000003
+        filepath `/etc/rsyslog.conf`
+        pattern `^\*\.\*\s+action\((\s*(?:[^#\)]*(?:#.*$)?\n)*[^#\)]*)\)`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_20000004
+        path `/etc/rsyslog.d`
+        filename `^.*\.conf$`
+        pattern `^\*\.\*\s+action\((\s*(?:[^#\)]*(?:#.*$)?\n)*[^#\)]*)\)`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_25814900 union
+    OBJECT obj_25814901
+        filepath `/etc/rsyslog.conf`
+        pattern `^\*\.\*\s+@@(\S+)`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25814902
+        path `/etc/rsyslog.d`
+        filename `^.*\.conf$`
+        pattern `^\*\.\*\s+@@(\S+)`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_25814900
+        subexpression string equals `^.+$`
+    STATE_END
+    OBJECT obj_25814900
+        SET_REF obj_25814900
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_20000027
+        subexpression string equals `(?i)(?:^|\n)[^#]*\btype\s*=\s*"omfwd"`
+    STATE_END
+    STATE ste_25814902
+        subexpression string equals `(?i)(?:^|\n)[^#]*\bprotocol\s*=\s*"tcp"`
+    STATE_END
+    OBJECT obj_20000002
+        SET_REF obj_20000002
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_122700
+        type string equals `reg_dword`
+        value int equals `2`
+    STATE_END
+    OBJECT obj_460400
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `ConsentPromptBehaviorAdmin`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_122701
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_460400
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `ConsentPromptBehaviorAdmin`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

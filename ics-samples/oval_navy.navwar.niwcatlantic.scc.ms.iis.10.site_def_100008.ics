@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_100007
+        value record equals `
+    ` `all`
+    STATE_END
+    OBJECT obj_100008
+        module_name `ServerManager`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `windowsfeature`
+        parameters record
+            field `Web-CGI`
+        select record
+            field `installstate`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

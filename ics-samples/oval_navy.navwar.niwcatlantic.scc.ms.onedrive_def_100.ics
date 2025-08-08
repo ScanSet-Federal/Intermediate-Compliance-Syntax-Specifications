@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_10
+        value string equals `1`
+    STATE_END
+    OBJECT obj_100
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL`
+        name `groove.exe`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

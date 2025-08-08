@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_100006
+        service_name `splunkd`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

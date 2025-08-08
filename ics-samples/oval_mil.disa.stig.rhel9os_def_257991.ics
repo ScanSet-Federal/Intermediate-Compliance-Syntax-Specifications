@@ -1,0 +1,18 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_25799100
+        subexpression string equals `hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512`
+    STATE_END
+    STATE ste_25799101
+        subexpression string equals `"hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512"`
+    STATE_END
+    OBJECT obj_25799100
+        filepath `/etc/crypto-policies/back-ends/opensshserver.config`
+        pattern `^\s*MACs\s+(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

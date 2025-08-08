@@ -1,0 +1,35 @@
+DEF
+SET obj_25795800 union
+    OBJECT obj_24455301
+        filepath `/etc/sysctl.conf`
+        pattern `^\s*net\.ipv4\.conf\.all\.accept_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25795801
+        path `/etc/sysctl.d`
+        filename `\.conf$`
+        pattern `^\s*net\.ipv4\.conf\.all\.accept_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `any exist` all
+    STATE ste_20000009
+        value int equals `0`
+    STATE_END
+    OBJECT obj_24455300
+        name `net.ipv4.conf.all.accept_redirects`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_20000002
+        subexpression int equals `0`
+    STATE_END
+    OBJECT obj_25795800
+        SET_REF obj_25795800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

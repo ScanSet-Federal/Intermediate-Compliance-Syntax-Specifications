@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `any exist` all
+    STATE ste_25427100
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25427100
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='PNRPSvc'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

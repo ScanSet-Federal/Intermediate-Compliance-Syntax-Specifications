@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_23048800
+        name `^abrt`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

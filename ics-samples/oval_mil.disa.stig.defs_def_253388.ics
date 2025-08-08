@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `all exist` all
+    STATE ste_25338800
+        type string equals `reg_dword`
+        value int equals `255`
+    STATE_END
+    OBJECT obj_25338800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer`
+        name `NoDriveTypeAutoRun`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

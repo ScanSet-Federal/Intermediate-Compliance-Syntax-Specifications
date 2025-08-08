@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN line
+    TEST `any exist` all
+    STATE ste_10100
+        config_line string equals `\narchive\n log config\n(  \S+[^\n]*\n)*  logging enable\n`
+    STATE_END
+    OBJECT obj_10100
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

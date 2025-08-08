@@ -1,0 +1,17 @@
+DEF
+VAR var_109500 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_109500
+        type string equals `reg_dword`
+        value string equals `VAR var_109500`
+    STATE_END
+    OBJECT obj_109500
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51`
+        name `ACSettingIndex`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

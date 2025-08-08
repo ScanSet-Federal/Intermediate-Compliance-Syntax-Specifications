@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_516100
+        type string equals `reg_sz`
+        value string equals `6.3`
+    STATE_END
+    OBJECT obj_516100
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `CurrentVersion`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

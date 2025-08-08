@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_24700
+        subexpression int equals `2`
+    STATE_END
+    OBJECT obj_24700
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)Protocol(?-i)\s+"?(\d+)"?\s*(?:#.*|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

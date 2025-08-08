@@ -1,0 +1,40 @@
+DEF
+STATE ste_13403
+    filepath string equals `/var/log/lastlog`
+STATE_END
+STATE ste_13401
+    filepath string equals `/var/log/btmp`
+STATE_END
+STATE ste_13402
+    filepath string equals `/var/log/wtmp`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_13400
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        uexec boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_13400
+        path `/var/log`
+        filename `.*`
+        FILTER exclude
+            STATE_REF ste_13401
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_13402
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_13403
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

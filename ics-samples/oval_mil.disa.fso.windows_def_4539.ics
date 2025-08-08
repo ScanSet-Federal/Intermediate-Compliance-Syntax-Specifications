@@ -1,0 +1,30 @@
+DEF
+VAR var_453900 string ``
+VAR var_453901 boolean false
+RUN var_453900 EXTRACT
+    OBJ obj_453901 trustee_name
+RUN_END
+STATE ste_453900
+    trustee_sid string equals `^S-1-5-[0-9-]+-501$`
+STATE_END
+CRI OR
+CTN user
+    TEST `at least one exists` all
+    STATE ste_453901
+        enabled string equals `VAR var_453901`
+    STATE_END
+    OBJECT obj_453900
+        user VAR var_453900
+    OBJECT_END
+CTN_END
+CTN sid
+    TEST `none exist` all
+    OBJECT obj_453901
+        trustee_name `.*`
+        FILTER include
+            STATE_REF ste_453900
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

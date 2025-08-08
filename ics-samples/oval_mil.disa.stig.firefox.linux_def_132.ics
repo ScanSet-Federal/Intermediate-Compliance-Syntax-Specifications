@@ -1,0 +1,17 @@
+DEF
+VAR var_1 string ``
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_2
+        subexpression string equals `false` `all`
+    STATE_END
+    OBJECT obj_13200
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="DNSOverHTTPS")"DNSOverHTTPS":\s*\{\s*[^}]+?(?=[^"])Enabled":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

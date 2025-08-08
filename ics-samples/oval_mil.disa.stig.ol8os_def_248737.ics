@@ -1,0 +1,35 @@
+DEF
+VAR var_23029400 string ``
+RUN var_23029400 EXTRACT
+    OBJ obj_23029402 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `all exist` all
+    STATE ste_23040100
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        gread boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_23040100
+        path VAR var_23029400
+        filename ``
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23029402
+        filepath `/etc/audit/auditd.conf`
+        pattern `^\s*log_file\s*=\s*(\S+)/\S+\s*$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

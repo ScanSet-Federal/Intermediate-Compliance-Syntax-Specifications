@@ -1,0 +1,47 @@
+DEF
+STATE ste_401
+    subexpression string equals `[^#]*\seven_deny_root\s`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_401
+    OBJECT obj_401
+        filepath `/etc/pam.d/password-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so[ \t](.*)`
+        instance `1`
+        behavior multiline false
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_401
+    OBJECT obj_402
+        filepath `/etc/pam.d/password-auth`
+        pattern `\n*\s*auth\s+\[default=die\]\s+pam_faillock.so[ \t](.*)`
+        instance `1`
+        behavior multiline false
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_401
+    OBJECT obj_403
+        filepath `/etc/pam.d/system-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so[ \t](.*)`
+        instance `1`
+        behavior multiline false
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_401
+    OBJECT obj_404
+        filepath `/etc/pam.d/system-auth`
+        pattern `\n*\s*auth\s+\[default=die\]\s+pam_faillock.so[ \t](.*)`
+        instance `1`
+        behavior multiline false
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

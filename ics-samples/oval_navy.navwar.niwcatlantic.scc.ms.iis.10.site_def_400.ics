@@ -1,0 +1,26 @@
+DEF
+CRI AND
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_400
+        result string equals `Time` `all`
+    STATE_END
+    OBJECT obj_400
+        identifier_type `Apppool`
+        identifier `.*`
+        parameter `recycling.logEventOnRecycle`
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_401
+        result string equals `Schedule` `all`
+    STATE_END
+    OBJECT obj_400
+        identifier_type `Apppool`
+        identifier `.*`
+        parameter `recycling.logEventOnRecycle`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

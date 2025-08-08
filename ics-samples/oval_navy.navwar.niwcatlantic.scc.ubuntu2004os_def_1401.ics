@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1401
+        command string equals `dmesg | grep -i "execute disable"`
+        subexpression string equals `active`
+    STATE_END
+    OBJECT obj_1401
+        shell `bash`
+        command `dmesg | grep -i "execute disable"`
+        pattern `NX\s+\(Execute Disable\)\s+protection\:\s+(active)`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1402
+        command string equals `grep flags /proc/cpuinfo | grep -o nx | sort -u`
+        stdout_line string equals `nx`
+    STATE_END
+    OBJECT obj_1402
+        shell `bash`
+        command `grep flags /proc/cpuinfo | grep -o nx | sort -u`
+        pattern `nx`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

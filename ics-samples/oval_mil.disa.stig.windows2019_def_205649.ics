@@ -1,0 +1,32 @@
+DEF
+SET obj_25342901 union
+    OBJECT obj_25342902
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\SystemCertificates\Disallowed\Certificates\49CBE933151872E17C8EAE7F0ABA97FB610F6477`
+        name `^.+$`
+    OBJECT_END
+    OBJECT obj_25342903
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\EnterpriseCertificates\Disallowed\Certificates\49CBE933151872E17C8EAE7F0ABA97FB610F6477`
+        name `^.+$`
+    OBJECT_END
+SET_END
+SET obj_25342900 union
+    OBJECT obj_25342901
+        SET_REF `obj_25342901`
+    OBJECT_END
+    OBJECT obj_25342904
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\49CBE933151872E17C8EAE7F0ABA97FB610F6477`
+        name `^.+$`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_25342900
+        SET_REF obj_25342900
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

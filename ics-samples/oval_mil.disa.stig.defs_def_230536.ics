@@ -1,0 +1,50 @@
+DEF
+VAR var_23053600 string `/run/sysctl.d`
+STATE ste_23053600
+    subexpression int equals `0`
+STATE_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_23053600
+        value int equals `0`
+    STATE_END
+    OBJECT obj_23053600
+        name `net.ipv4.conf.all.send_redirects`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_23053600
+    OBJECT obj_23053600
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^\s*net\.ipv4\.conf\.all\.send_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_23053600
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^\s*net\.ipv4\.conf\.all\.send_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_23053600
+    OBJECT obj_23053601
+        path VAR var_23053600
+        filename `^.*\.conf$`
+        pattern `^\s*net\.ipv4\.conf\.all\.send_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI_END
+DEF_END

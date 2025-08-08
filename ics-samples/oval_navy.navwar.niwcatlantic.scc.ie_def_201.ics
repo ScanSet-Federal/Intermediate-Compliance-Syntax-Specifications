@@ -1,0 +1,21 @@
+DEF
+STATE ste_202
+    enabled boolean equals `false`
+STATE_END
+CRI AND
+CTN ntuser
+    TEST `at least one exists` all
+    STATE ste_201
+        type string equals `reg_sz`
+        value string equals `no`
+    STATE_END
+    OBJECT obj_201
+        key `Software\Policies\Microsoft\Internet Explorer\Main`
+        name `Use FormSuggest`
+        FILTER exclude
+            STATE_REF ste_202
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

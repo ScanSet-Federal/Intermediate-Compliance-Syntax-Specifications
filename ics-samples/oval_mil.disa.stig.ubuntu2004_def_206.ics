@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `none exist` all
+    OBJECT obj_20600
+        name `rsh-server`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

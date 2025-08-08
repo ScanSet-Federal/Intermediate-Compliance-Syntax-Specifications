@@ -1,0 +1,44 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_1781
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_1781
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name, value, value_in_use 
+FROM sys.configurations 
+WHERE name = 'filestream access level'`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_1782
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_1782
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT CASE 
+WHEN EXISTS (SELECT * 
+FROM sys.configurations 
+WHERE Name = 'filestream access level' 
+	AND Cast(value AS INT) = 0) THEN 'No' 
+ELSE 'Yes'
+END AS tsql_file_stream_access;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,21 @@
+DEF
+CRI OR
+CTN wmi
+    TEST `at least one exists` all
+    STATE ste_473100
+        result string equals `Disabled`
+    STATE_END
+    OBJECT obj_473300
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='p2pimsvc'`
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `none exist` all
+    OBJECT obj_473300
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='p2pimsvc'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

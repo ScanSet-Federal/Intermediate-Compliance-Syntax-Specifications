@@ -1,0 +1,20 @@
+DEF
+STATE ste_3202
+    enabled boolean equals `false`
+STATE_END
+CRI AND
+CTN ntuser
+    TEST `at least one exists` all
+    STATE ste_3201
+        value string equals `1`
+    STATE_END
+    OBJECT obj_3201
+        key `SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot`
+        name `TurnOffWindowsCopilot`
+        FILTER exclude
+            STATE_REF ste_3202
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

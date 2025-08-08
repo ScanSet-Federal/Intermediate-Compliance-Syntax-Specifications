@@ -1,0 +1,27 @@
+DEF
+VAR var_23029400 string ``
+RUN var_23029400 EXTRACT
+    OBJ obj_23029402 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `all exist` all
+    STATE ste_20000006
+        group_id int equals `0`
+    STATE_END
+    OBJECT obj_23040100
+        path VAR var_23029400
+        filename ``
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23029402
+        filepath `/etc/audit/auditd.conf`
+        pattern `^\s*log_file\s*=\s*(\S+)/\S+\s*$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

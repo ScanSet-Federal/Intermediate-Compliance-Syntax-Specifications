@@ -1,0 +1,98 @@
+DEF
+STATE ste_1600
+    type string equals `reg_dword`
+    value int equals `1`
+STATE_END
+CRI OR
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_1602
+        type string equals `reg_dword`
+        value int `greater than or equal` `393295`
+    STATE_END
+    OBJECT obj_1605
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full`
+        name `Release`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_1600
+    OBJECT obj_1600
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\.NETFramework\v4.0.30319`
+        name `SchUseStrongCrypto`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN wmi57
+    TEST `at least one exists` all
+    STATE ste_1601
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_1601
+        namespace `root\cimv2`
+        wql `SELECT OSArchitecture from win32_operatingsystem`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_1600
+    OBJECT obj_1602
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319`
+        name `SchUseStrongCrypto`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_1602
+        type string equals `reg_dword`
+        value int `greater than or equal` `393295`
+    STATE_END
+    OBJECT obj_1605
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full`
+        name `Release`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_1600
+    OBJECT obj_1603
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\.NETFramework\v4.0.30319`
+        name `SystemDefaultTlsVersions`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN wmi57
+    TEST `at least one exists` all
+    STATE ste_1601
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_1601
+        namespace `root\cimv2`
+        wql `SELECT OSArchitecture from win32_operatingsystem`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_1600
+    OBJECT obj_1604
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319`
+        name `SystemDefaultTlsVersions`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI_END
+DEF_END

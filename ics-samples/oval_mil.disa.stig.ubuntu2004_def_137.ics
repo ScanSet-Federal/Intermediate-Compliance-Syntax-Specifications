@@ -1,0 +1,21 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all OR
+    STATE ste_13700
+        subexpression string equals `(?i)^syslog$`
+    STATE_END
+    STATE ste_13701
+        subexpression string equals `(?i)^single$`
+    STATE_END
+    STATE ste_13702
+        subexpression string equals `(?i)^halt$`
+    STATE_END
+    OBJECT obj_13700
+        filepath `/etc/audit/auditd.conf`
+        pattern `(?i)^\s*disk_full_action\s*=\s*(\w+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

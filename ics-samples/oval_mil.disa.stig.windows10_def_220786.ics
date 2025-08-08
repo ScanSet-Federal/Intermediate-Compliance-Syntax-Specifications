@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN auditeventpolicysubcategories
+    TEST `any exist` all OR
+    STATE ste_25334400
+        other_policy_change_events string equals `AUDIT_FAILURE`
+    STATE_END
+    STATE ste_25334401
+        other_policy_change_events string equals `AUDIT_SUCCESS_FAILURE`
+    STATE_END
+    OBJECT obj_20000000
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

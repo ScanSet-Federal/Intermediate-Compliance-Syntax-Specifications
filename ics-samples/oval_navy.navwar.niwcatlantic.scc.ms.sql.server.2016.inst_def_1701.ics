@@ -1,0 +1,39 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1701 string ``
+CRI OR
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_1701
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `Select [name] as stored_proc
+From sys.procedures
+Where OBJECTPROPERTY(OBJECT_ID, 'ExecIsStartup') = 1
+					`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_1702
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_1701
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `Select [name] as stored_proc
+From sys.procedures
+Where OBJECTPROPERTY(OBJECT_ID, 'ExecIsStartup') = 1
+					`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

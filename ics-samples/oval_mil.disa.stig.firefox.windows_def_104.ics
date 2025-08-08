@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_2
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_10400
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox`
+        name `ExtensionUpdate`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

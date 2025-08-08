@@ -1,0 +1,28 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_119700
+        type string equals `reg_sz`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_119700
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows NT\CurrentVersion\Winlogon`
+        name `scremoveoption`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_119701
+        type string equals `reg_sz`
+        value int equals `2`
+    STATE_END
+    OBJECT obj_119700
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows NT\CurrentVersion\Winlogon`
+        name `scremoveoption`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

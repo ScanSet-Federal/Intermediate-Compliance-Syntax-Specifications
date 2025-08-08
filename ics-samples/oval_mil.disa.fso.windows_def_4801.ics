@@ -1,0 +1,38 @@
+DEF
+VAR var_479800 int 0
+VAR var_480100 int 0
+STATE ste_479800
+    type string equals `reg_dword`
+    value int equals VAR oval:mil.disa.fso.windows:var:479800
+STATE_END
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_479800
+    OBJECT obj_479800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile`
+        name `EnableFirewall`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_479800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile`
+        name `EnableFirewall`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_479800
+    OBJECT obj_479801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile`
+        name `EnableFirewall`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

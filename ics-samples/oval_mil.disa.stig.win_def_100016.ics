@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_10001600
+        type string equals `reg_sz`
+        value version `greater than or equal` `1709`
+    STATE_END
+    OBJECT obj_10001600
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `ReleaseId`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

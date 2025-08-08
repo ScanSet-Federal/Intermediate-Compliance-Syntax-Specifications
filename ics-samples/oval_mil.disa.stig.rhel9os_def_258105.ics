@@ -1,0 +1,54 @@
+DEF
+VAR var_23036401 int 0
+VAR var_23036400 string ``
+RUN var_23036401 EXTRACT
+    OBJ obj_23036403 subexpression
+RUN_END
+RUN var_23036400 EXTRACT
+    OBJ obj_23036402 subexpression
+RUN_END
+STATE ste_23036401
+    user_id int equals VAR oval:mil.disa.stig.defs:var:23036401
+STATE_END
+STATE ste_23036400
+    user_id int `less than` `1000`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_23036400
+        filepath `/etc/shadow`
+        pattern `^root:[^:]*:[^:]*:0*:`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `none exist` all
+    OBJECT obj_23036401
+        username VAR var_23036400
+        FILTER include
+            STATE_REF ste_23036400
+        FILTER_END
+        FILTER include
+            STATE_REF ste_23036401
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23036403
+        filepath `/etc/passwd`
+        pattern `^nobody:[^:]*:([0-9]+):`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23036402
+        filepath `/etc/shadow`
+        pattern `^([^:]*):[^:]*:[^:]*:0*:`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

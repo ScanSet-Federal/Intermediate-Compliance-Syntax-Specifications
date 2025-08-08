@@ -1,0 +1,50 @@
+DEF
+CRI OR
+CRI AND
+CTN wmi57
+    TEST `at least one exists` all
+    STATE ste_270
+        namespace string equals `root\cimv2`
+        wql string equals `SELECT Name, InstallState  FROM Win32_OptionalFeature where name = 'NetFx4ServerFeatures'`
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_270
+        namespace `root\cimv2`
+        wql `SELECT Name, InstallState  FROM Win32_OptionalFeature where name = 'NetFx4ServerFeatures'`
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `at least one exists` all
+    STATE ste_271
+        namespace string equals `root\cimv2`
+        wql string equals `SELECT Name, InstallState  FROM Win32_OptionalFeature where name = 'NetFx3ServerFeatures'`
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_271
+        namespace `root\cimv2`
+        wql `SELECT Name, InstallState  FROM Win32_OptionalFeature where name = 'NetFx3ServerFeatures'`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_220
+        result string equals `false` `all`
+    STATE_END
+    OBJECT obj_272
+        identifier_type `Site`
+        identifier `.*`
+        section `compilation`
+        parameter `debug`
+    OBJECT_END
+CTN_END
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_152
+        service_name `SPSearchHostController`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

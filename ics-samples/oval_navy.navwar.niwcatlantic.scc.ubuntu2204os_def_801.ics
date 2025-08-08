@@ -1,0 +1,24 @@
+DEF
+VAR var_801 string ``
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` `only one`
+    STATE ste_801
+        subexpression string equals `VAR var_801`
+    STATE_END
+    OBJECT obj_801
+        shell `bash`
+        command `ss -l46utn`
+        pattern `^\S+\s+(?:LISTEN)(?:\s+\S+\s+){2}\[:+\d*\]:(\S+)\s+`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `any exist` all
+    OBJECT obj_802
+        shell `bash`
+        command `ufw status`
+        pattern `^(\d+)(?:\/|\s).*(?:LIMIT|DENY)\s+`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

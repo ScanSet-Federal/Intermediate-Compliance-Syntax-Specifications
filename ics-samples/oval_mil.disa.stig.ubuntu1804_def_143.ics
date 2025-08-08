@@ -1,0 +1,14 @@
+DEF
+VAR var_14100 string `/sbin/auditctl`
+CRI AND
+CTN file
+    TEST `all exist` all
+    STATE ste_14300
+        group_id int equals `0`
+    STATE_END
+    OBJECT obj_14300
+        filepath VAR var_14100
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

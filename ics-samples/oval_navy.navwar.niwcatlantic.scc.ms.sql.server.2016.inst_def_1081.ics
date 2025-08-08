@@ -1,0 +1,22 @@
+DEF
+VAR var_1081 string ``
+SET obj_1081 intersection
+    OBJECT obj_1082
+        user `.*`
+    OBJECT_END
+    OBJECT obj_1083
+        user `.*`
+    OBJECT_END
+SET_END
+CRI AND
+CTN user
+    TEST `any exist` all
+    STATE ste_1081
+        user string equals `VAR var_1081`
+    STATE_END
+    OBJECT obj_1081
+        SET_REF obj_1081
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

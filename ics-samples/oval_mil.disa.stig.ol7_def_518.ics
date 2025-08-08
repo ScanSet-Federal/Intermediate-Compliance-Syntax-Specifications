@@ -1,0 +1,48 @@
+DEF
+VAR var_4211 string ``
+VAR var_4191 int 0
+VAR var_4214 int 0
+VAR var_4213 int 0
+VAR var_4212 int 0
+VAR var_4192 int 0
+VAR var_3814 int 0
+VAR var_4189 int 0
+VAR var_4190 int 0
+RUN var_4191 SUBSTRING
+    start 0
+RUN_END
+RUN var_4214 SUBSTRING
+    start 0
+    VAR var_4211
+RUN_END
+RUN var_4213 SUBSTRING
+    start 0
+    VAR var_4211
+RUN_END
+RUN var_4212 SUBSTRING
+    start 0
+    VAR var_4211
+RUN_END
+RUN var_4192 ARITHMETIC
+    add
+    VAR var_4191
+RUN_END
+RUN var_3814 ARITHMETIC
+    add
+    VAR var_4214
+RUN_END
+RUN var_4189 SUBSTRING
+    start 0
+RUN_END
+RUN var_4190 SUBSTRING
+    start 0
+RUN_END
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    OBJECT obj_3112
+        var_ref VAR var_3814
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

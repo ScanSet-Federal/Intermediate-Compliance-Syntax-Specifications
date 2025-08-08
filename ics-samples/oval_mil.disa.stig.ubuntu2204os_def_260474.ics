@@ -1,0 +1,35 @@
+DEF
+STATE ste_26047400
+    subexpression int equals `2`
+STATE_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_26047400
+        value int equals `2`
+    STATE_END
+    OBJECT obj_26047400
+        name `kernel.randomize_va_space`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_26047400
+    OBJECT obj_26047400
+        filepath `/etc/sysctl.conf`
+        pattern `^\s*kernel\.randomize_va_space\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_26047400
+    OBJECT obj_26047401
+        path `/etc/sysctl.d`
+        filename `.*`
+        pattern `^\s*kernel\.randomize_va_space\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

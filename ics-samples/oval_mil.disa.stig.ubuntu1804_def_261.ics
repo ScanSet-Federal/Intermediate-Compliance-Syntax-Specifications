@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_26100
+        subexpression string equals `077`
+    STATE_END
+    OBJECT obj_26100
+        filepath `/etc/login.defs`
+        pattern `^\s*UMASK\s+(\d*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

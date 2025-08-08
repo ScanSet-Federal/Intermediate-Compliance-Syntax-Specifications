@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `none satisfy`
+    STATE ste_201
+        value string equals `http://`
+    STATE_END
+    OBJECT obj_201
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `ManagedSearchEngines`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

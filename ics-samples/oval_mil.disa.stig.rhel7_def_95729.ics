@@ -1,0 +1,52 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_9572700
+        subexpression string equals `^[Yy][Ee][Ss]$`
+    STATE_END
+    OBJECT obj_9572700
+        filepath `/etc/audisp/plugins.d/au-remote.conf`
+        pattern `^[ ]*active[ ]+=[ ]+([^ ]*)[ ]*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_9572900
+        subexpression string equals `^[Oo][Uu][Tt]$`
+    STATE_END
+    OBJECT obj_9572900
+        filepath `/etc/audisp/plugins.d/au-remote.conf`
+        pattern `^[ ]*direction[ ]+=[ ]+([^ ]*)[ ]*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_9572901
+        subexpression string equals `^\/sbin\/audisp\-remote$`
+    STATE_END
+    OBJECT obj_9572901
+        filepath `/etc/audisp/plugins.d/au-remote.conf`
+        pattern `^[ ]*path[ ]+=[ ]+([^ ]*)[ ]*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_9572902
+        subexpression string equals `^[Aa][Ll][Ww][Aa][Yy][Ss]$`
+    STATE_END
+    OBJECT obj_9572902
+        filepath `/etc/audisp/plugins.d/au-remote.conf`
+        pattern `^[ ]*type[ ]+=[ ]+([^ ]*)[ ]*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

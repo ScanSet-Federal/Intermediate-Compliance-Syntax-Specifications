@@ -1,0 +1,18 @@
+DEF
+CRI AND
+CTN partition
+    TEST `all exist` all
+    OBJECT obj_3021
+        mount_point `/var/log/audit`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_8668700
+        filepath `/etc/fstab`
+        pattern `^\S+\s+/var/log/audit\s+`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

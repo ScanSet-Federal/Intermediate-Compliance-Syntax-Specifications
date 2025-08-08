@@ -1,0 +1,31 @@
+DEF
+VAR var_1 string `/bin`
+STATE ste_7
+    type string equals `directory`
+STATE_END
+STATE ste_9
+    group_id int `less than` `1000`
+STATE_END
+STATE ste_6
+    type string equals `symbolic link`
+STATE_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_3
+        path VAR var_1
+        filename `.*`
+        behavior recurse_direction down
+        FILTER exclude
+            STATE_REF ste_9
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_6
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_7
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

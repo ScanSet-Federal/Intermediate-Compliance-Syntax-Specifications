@@ -1,0 +1,36 @@
+DEF
+VAR var_25815500 string ``
+VAR var_23029400 string ``
+RUN var_25815500 ARITHMETIC
+    add
+RUN_END
+RUN var_23029400 EXTRACT
+    OBJ obj_23029402 subexpression
+RUN_END
+CRI AND
+CTN partition
+    TEST `all exist` all
+    OBJECT obj_23029400
+        mount_point VAR var_23029400
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `all exist` all
+    STATE ste_25815500
+        value int `greater than or equal` `10737418240`
+    STATE_END
+    OBJECT obj_25815500
+        var_ref VAR var_25815500
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23029402
+        filepath `/etc/audit/auditd.conf`
+        pattern `^\s*log_file\s*=\s*(\S+)/\S+\s*$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

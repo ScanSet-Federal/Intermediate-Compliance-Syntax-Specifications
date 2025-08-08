@@ -1,0 +1,25 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1501
+        stdout_line string equals `.*`
+    STATE_END
+    OBJECT obj_1501
+        shell `bash`
+        command `grep -i opensslcnf.config /etc/pki/tls/openssl.cnf`
+        pattern `\.include\s+\/etc\/crypto-policies\/back-ends\/opensslcnf\.config`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1502
+        stdout_line string equals `FIPS`
+    STATE_END
+    OBJECT obj_1502
+        shell `bash`
+        command `update-crypto-policies --show`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

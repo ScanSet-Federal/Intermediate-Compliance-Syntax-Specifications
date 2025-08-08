@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_401
+        filepath `/etc/dconf/db/local.d/01-banner-message`
+        pattern `You\s+are\s+accessing\s+a\s+U.S.\s+Government\s+\(USG\)\s+Information\s+System\s+\(IS\)\s+that\s+is\s+provided\s+for\s+USG-authorized\s+use\s+only.[\n\r \t]+By\s+using\s+this\s+IS\s+\(which\s+includes\s+any\s+device\s+attached\s+to\s+this\s+IS\),\s+you\s+consent\s+to\s+the\s+following\s+conditions:[\n\r \t]+-The\s+USG\s+routinely\s+intercepts\s+and\s+monitors\s+communications\s+on\s+this\s+IS\s+for\s+purposes\s+including,\s+but\s+not\s+limited\s+to,\s+penetration\s+testing,\s+COMSEC\s+monitoring,\s+network\s+operations\s+and\s+defense,\s+personnel\s+misconduct\s+\(PM\),\s+law\s+enforcement\s+\(LE\),\s+and\s+counterintelligence\s+\(CI\)\s+investigations.[\n\r \t]+-At\s+any\s+time,\s+the\s+USG\s+may\s+inspect\s+and\s+seize\s+data\s+stored\s+on\s+this\s+IS.[\n\r \t]+-Communications\s+using,\s+or\s+data\s+stored\s+on,\s+this\s+IS\s+are\s+not\s+private,\s+are\s+subject\s+to\s+routine\s+monitoring,\s+interception,\s+and\s+search,\s+and\s+may\s+be\s+disclosed\s+or\s+used\s+for\s+any\s+USG-authorized\s+purpose.[\n\r \t]+-This\s+IS\s+includes\s+security\s+measures\s+\(e.g.,\s+authentication\s+and\s+access\s+controls\)\s+to\s+protect\s+USG\s+interests-\-not\s+for\s+your\s+personal\s+benefit\s+or\s+privacy.[\n\r \t]+-Notwithstanding\s+the\s+above,\s+using\s+this\s+IS\s+does\s+not\s+constitute\s+consent\s+to\s+PM,\s+LE\s+or\s+CI\s+investigative\s+searching\s+or\s+monitoring\s+of\s+the\s+content\s+of\s+privileged\s+communications,\s+or\s+work\s+product,\s+related\s+to\s+personal\s+representation\s+or\s+services\s+by\s+attorneys,\s+psychotherapists,\s+or\s+clergy,\s+and\s+their\s+assistants.\s+Such\s+communications\s+and\s+work\s+product\s+are\s+private\s+and\s+confidential.\s+See\s+User\s+Agreement\s+for\s+details.[\n\r]*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,61 @@
+DEF
+SET obj_17808 union
+    OBJECT obj_17804
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults \!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_17805
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^\s*Defaults \!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_17807 union
+    OBJECT obj_17802
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults \!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_17803
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^\s*Defaults \!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_17806 union
+    OBJECT obj_17800
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults \!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_17801
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^\s*Defaults \!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_17806
+        SET_REF obj_17806
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_17807
+        SET_REF obj_17807
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_17808
+        SET_REF obj_17808
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

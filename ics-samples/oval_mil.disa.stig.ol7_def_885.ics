@@ -1,0 +1,16 @@
+DEF
+VAR var_3821 string ``
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_2689
+        subexpression string equals `VAR var_3821`
+    STATE_END
+    OBJECT obj_2688
+        filepath `/etc/audit/auditd.conf`
+        pattern `^[ ]*action_mail_acct[ ]+=[ ]+(\S+)[ ]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

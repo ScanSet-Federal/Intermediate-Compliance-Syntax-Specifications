@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN symlink
+    TEST `any exist` all
+    STATE ste_23830800
+        canonical_path string equals `/usr/share/zoneinfo/Etc/UTC`
+    STATE_END
+    OBJECT obj_23830800
+        filepath `/etc/localtime`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

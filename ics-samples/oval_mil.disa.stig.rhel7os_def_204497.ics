@@ -1,0 +1,81 @@
+DEF
+VAR var_20449700 string `/boot/grub2/grub.cfg`
+STATE ste_20449700
+    subexpression string equals `^(.* )?fips=1( .*)?$`
+STATE_END
+CRI AND
+CRI OR
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_20449700
+        name `prelink`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_20449701
+        filepath `/etc/sysconfig/prelink`
+        pattern `^[\s]*PRELINKING=no[\s]*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN rpminfo
+    TEST `all exist` all
+    OBJECT obj_20449702
+        name `dracut-fips`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20449700
+    OBJECT obj_20449703
+        filepath `/etc/default/grub`
+        pattern `^\s*GRUB_CMDLINE_LINUX="(.*)"$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20449700
+    OBJECT obj_20449704
+        filepath `/etc/default/grub`
+        pattern `^\s*GRUB_CMDLINE_LINUX_DEFAULT="(.*)"$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_20449700
+    OBJECT obj_20449705
+        filepath VAR var_20449700
+        pattern `^\s*linux(?:[^#\n]*)/vmlinuz([^#\n]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_20449706
+        filepath `/proc/sys/crypto/fips_enabled`
+        pattern `^1$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_20449707
+        filepath `/etc/default/grub`
+        pattern `^[^#]*fips=0`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    OBJECT obj_20449708
+        filepath `/etc/system-fips`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

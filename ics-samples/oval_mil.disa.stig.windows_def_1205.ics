@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_120500
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_120500
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\Lsa`
+        name `RestrictAnonymousSAM`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

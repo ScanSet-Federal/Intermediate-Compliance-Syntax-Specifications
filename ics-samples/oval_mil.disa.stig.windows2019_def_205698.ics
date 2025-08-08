@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_25327800
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25327800
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'TelnetClient'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

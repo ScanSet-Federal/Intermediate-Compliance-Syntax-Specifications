@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `all exist` all
+    OBJECT obj_23041100
+        name `audit`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

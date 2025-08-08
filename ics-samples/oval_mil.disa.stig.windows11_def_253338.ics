@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_25333800
+        type string equals `reg_dword`
+        value int `greater than or equal` `1024000`
+    STATE_END
+    OBJECT obj_25333800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows\EventLog\Security`
+        name `MaxSize`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_28000
+        type string equals `reg_dword` `all`
+        value int `less than or equal` `7` `all`
+    STATE_END
+    OBJECT obj_28000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows Defender\Signature Updates`
+        name `AVSignatureDue`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_28001
+        type string equals `reg_dword` `all`
+        value int `greater than` `0` `all`
+    STATE_END
+    OBJECT obj_28000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows Defender\Signature Updates`
+        name `AVSignatureDue`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

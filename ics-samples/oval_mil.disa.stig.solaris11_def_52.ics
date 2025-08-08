@@ -1,0 +1,60 @@
+DEF
+VAR var_7500 string ``
+VAR var_7501 string ``
+RUN var_7500 EXTRACT
+    OBJ obj_7502 username
+RUN_END
+RUN var_7501 EXTRACT
+    OBJ obj_7503 home_dir
+RUN_END
+STATE ste_7501
+    password string equals `UP`
+STATE_END
+STATE ste_1803
+    password string equals `NP`
+STATE_END
+STATE ste_1802
+    password string equals `^\*LK\*`
+STATE_END
+STATE ste_7502
+    password string equals `^$`
+STATE_END
+SET obj_7502 union
+    OBJECT obj_7501
+        username `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.solaris11:ste:1802
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.solaris11:ste:1803
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.solaris11:ste:7501
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.solaris11:ste:7502
+    FILTER_END
+SET_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_7500
+        path VAR var_7501
+        filename `.netrc`
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `any exist` all
+    OBJECT obj_7503
+        username VAR var_7500
+    OBJECT_END
+CTN_END
+CTN shadow
+    TEST `any exist` all
+    OBJECT obj_7502
+        SET_REF obj_7502
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

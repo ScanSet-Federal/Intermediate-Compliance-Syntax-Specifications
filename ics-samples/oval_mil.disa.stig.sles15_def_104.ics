@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_10400
+        subexpression string equals `^VERBOSE$|^"VERBOSE"$`
+    STATE_END
+    OBJECT obj_10400
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)LogLevel(?-i)[ \t]+([\w\"]+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

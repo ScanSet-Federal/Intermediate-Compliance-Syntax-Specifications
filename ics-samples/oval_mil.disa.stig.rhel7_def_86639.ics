@@ -1,0 +1,85 @@
+DEF
+VAR var_8663902 string ``
+VAR var_8663903 string ``
+RUN var_8663902 EXTRACT
+    OBJ obj_8663902 home_dir
+RUN_END
+RUN var_8663903 EXTRACT
+    OBJ obj_8663903 home_dir
+RUN_END
+STATE ste_8663500
+    home_dir string equals `.+`
+STATE_END
+STATE ste_8663900
+    home_dir string equals `/`
+STATE_END
+STATE ste_8663501
+    user_id int `less than` `1000` `all`
+STATE_END
+STATE ste_8663502
+    user_id int `greater than` `0` `all`
+STATE_END
+SET obj_8663502 complement
+    OBJECT obj_8663500
+        username `[\w]+`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.rhel7:ste:8663502
+    FILTER_END
+SET_END
+SET obj_8663501 complement
+    OBJECT obj_8663500
+        username `[\w]+`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.rhel7:ste:8663501
+    FILTER_END
+SET_END
+SET obj_8663903 union
+    OBJECT obj_8663502
+        SET_REF `obj_8663502`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.rhel7:ste:8663500
+    FILTER_END
+SET_END
+SET obj_8663902 union
+    OBJECT obj_8663501
+        SET_REF `obj_8663501`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.rhel7:ste:8663500
+    FILTER_END
+    FILTER exclude
+        STATE_REF oval:mil.disa.stig.rhel7:ste:8663900
+    FILTER_END
+SET_END
+CRI AND
+CTN password
+    TEST `all exist` all
+    STATE_REF ste_8663500
+    OBJECT obj_8663501
+        SET_REF obj_8663501
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `all exist` all
+    STATE_REF ste_8663500
+    OBJECT obj_8663502
+        SET_REF obj_8663502
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `any exist` all
+    OBJECT obj_8663902
+        SET_REF obj_8663902
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `any exist` all
+    OBJECT obj_8663903
+        SET_REF obj_8663903
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

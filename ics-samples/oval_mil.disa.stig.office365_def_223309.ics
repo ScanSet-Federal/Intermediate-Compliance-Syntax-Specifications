@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_22330900
+        type string equals `reg_sz`
+        value string equals `Block all Flash activation`
+    STATE_END
+    OBJECT obj_22330900
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Office\Common\COM Compatibility`
+        name `COMMENT`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

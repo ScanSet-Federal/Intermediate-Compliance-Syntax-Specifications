@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_2192
+        value int equals `1`
+    STATE_END
+    OBJECT obj_2191
+        name `net.ipv4.icmp_echo_ignore_broadcasts`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

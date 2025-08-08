@@ -1,0 +1,165 @@
+DEF
+VAR var_361 string ``
+VAR var_366 string ``
+VAR var_363 string ``
+VAR var_372 string ``
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_369 string ``
+RUN var_366 EXTRACT
+    OBJ obj_366 value
+RUN_END
+RUN var_363 EXTRACT
+    OBJ obj_363 value
+RUN_END
+RUN var_372 EXTRACT
+    OBJ obj_372 value
+RUN_END
+RUN var_369 EXTRACT
+    OBJ obj_369 value
+RUN_END
+STATE ste_361
+    subexpression string equals VAR oval:navy.navwar.niwcatlantic.scc.ms.sql.server.2016.inst:var:361
+STATE_END
+CRI OR
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_361
+    OBJECT obj_361
+        path VAR var_363
+        filename `.*\.log$`
+        pattern `LogonUser = (\w+)`
+        instance `1`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_362
+        version string equals `2016`
+    STATE_END
+    OBJECT obj_362
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_361
+    OBJECT obj_364
+        path VAR var_366
+        filename `.*\.log$`
+        pattern `LogonUser = (\w+)`
+        instance `1`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_365
+        version string equals `2017`
+    STATE_END
+    OBJECT obj_365
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_361
+    OBJECT obj_367
+        path VAR var_369
+        filename `.*\.log$`
+        pattern `LogonUser = (\w+)`
+        instance `1`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_368
+        version string equals `2019`
+    STATE_END
+    OBJECT obj_368
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_361
+    OBJECT obj_370
+        path VAR var_372
+        filename `.*\.log$`
+        pattern `LogonUser = (\w+)`
+        instance `1`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_371
+        version string equals `2022`
+    STATE_END
+    OBJECT obj_371
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_366
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\140\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_363
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\130\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_372
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\160\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_369
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\150\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

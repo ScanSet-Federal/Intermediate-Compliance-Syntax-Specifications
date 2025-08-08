@@ -1,0 +1,20 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all OR
+    STATE ste_13600
+        type string equals `reg_sz`
+        value string equals `ntlm,negotiate`
+    STATE_END
+    STATE ste_13601
+        type string equals `reg_sz`
+        value string equals `negotiate,ntlm`
+    STATE_END
+    OBJECT obj_13600
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `AuthSchemes`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

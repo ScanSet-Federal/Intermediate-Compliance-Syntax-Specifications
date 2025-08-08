@@ -1,0 +1,44 @@
+DEF
+VAR var_25802300 string ``
+VAR var_25802301 int 0
+RUN var_25802300 EXTRACT
+    OBJ obj_25802300 path
+RUN_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_25802300
+        text string equals `\nidle-delay=uint32 \d+\s*(\n|$)`
+    STATE_END
+    OBJECT obj_25802300
+        path VAR var_25802300
+        filename `.*`
+        pattern `^\[org/gnome/desktop/session](?:\r?\n(?:[^[\r\n].*)?)*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` `at least one` OR
+    STATE ste_25802301
+        value int equals `0`
+    STATE_END
+    STATE ste_25802302
+        value int `greater than` `900`
+    STATE_END
+    OBJECT obj_25802301
+        var_ref VAR var_25802301
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    OBJECT obj_25802300
+        path `/etc/dconf/db`
+        filename ``
+        behavior max_depth 1 recurse_direction down
+        FILTER include
+            STATE_REF ste_25802300
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_470700
+        seenabledelegationprivilege boolean equals `0`
+    STATE_END
+    OBJECT obj_461700
+        security_principle `.*`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

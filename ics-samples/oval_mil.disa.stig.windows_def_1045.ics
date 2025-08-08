@@ -1,0 +1,22 @@
+DEF
+CRI OR
+CTN wmi57
+    TEST `none exist` `at least one`
+    OBJECT obj_104501
+        namespace `root\cimv2`
+        wql `SELECT InstallState FROM Win32_OptionalFeature WHERE name='telnetclient'`
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `any exist` `none satisfy`
+    STATE ste_104500
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_104501
+        namespace `root\cimv2`
+        wql `SELECT InstallState FROM Win32_OptionalFeature WHERE name='telnetclient'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

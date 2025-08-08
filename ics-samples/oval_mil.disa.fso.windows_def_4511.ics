@@ -1,0 +1,17 @@
+DEF
+VAR var_451100 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_451100
+        type string equals `reg_dword`
+        value string equals `VAR var_451100`
+    STATE_END
+    OBJECT obj_451100
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services`
+        name `DisablePasswordSaving`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

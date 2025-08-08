@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_60
+        result string equals `File, ETW` `all`
+    STATE_END
+    OBJECT obj_60
+        identifier_type `Site`
+        identifier `.*`
+        parameter `logfile.logTargetW3C`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

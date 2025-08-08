@@ -1,0 +1,35 @@
+DEF
+VAR var_23051400 string ``
+RUN var_23051400 SPLIT
+    delimiter `,`
+    OBJ obj_23051402 subexpression
+RUN_END
+CRI AND
+CTN partition
+    TEST `any exist` all
+    STATE ste_20000001
+        mount_options string equals `nodev` `at least one`
+    STATE_END
+    OBJECT obj_23051400
+        mount_point `/var/log`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `any exist` all
+    STATE ste_23051400
+        value string equals `nodev` `at least one`
+    STATE_END
+    OBJECT obj_23051401
+        var_ref VAR var_23051400
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23051402
+        filepath `/etc/fstab`
+        pattern `^\s*[^#\s]+\s+/var/log\s+\S+\s+(\S+)\s+\S+\s+\S+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

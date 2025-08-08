@@ -1,0 +1,27 @@
+DEF
+VAR var_14400 string `/etc/sysctl.d`
+SET obj_22187600 union
+    OBJECT obj_2255
+        filepath `/etc/sysctl.conf`
+        pattern `^\s*net\.ipv4\.conf\.default\.accept_source_route[\s]*=[\s]*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_22187601
+        path `VAR var_14400`
+        filename `^.*\.conf$`
+        pattern `^\s*net\.ipv4\.conf\.default\.accept_source_route[\s]*=[\s]*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_2256
+        subexpression int equals `0`
+    STATE_END
+    OBJECT obj_22187600
+        SET_REF obj_22187600
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

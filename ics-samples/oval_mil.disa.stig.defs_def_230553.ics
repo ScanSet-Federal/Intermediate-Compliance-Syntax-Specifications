@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_23055300
+        name `xorg-x11-server-common`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

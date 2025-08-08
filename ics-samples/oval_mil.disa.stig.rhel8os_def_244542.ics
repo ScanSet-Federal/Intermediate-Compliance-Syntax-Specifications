@@ -1,0 +1,24 @@
+DEF
+CRI AND
+CTN systemdunitproperty
+    TEST `at least one exists` all
+    STATE ste_20000003
+        value string equals `active`
+    STATE_END
+    OBJECT obj_25815200
+        unit `auditd.service`
+        property `ActiveState`
+    OBJECT_END
+CTN_END
+CTN systemdunitproperty
+    TEST `at least one exists` all
+    STATE ste_20000004
+        value string equals `running`
+    STATE_END
+    OBJECT obj_25815201
+        unit `auditd.service`
+        property `SubState`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,43 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `all exist` all
+    OBJECT obj_29200
+        name `libpam-pwquality`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_29200
+        subexpression int equals `1`
+    STATE_END
+    OBJECT obj_29201
+        filepath `/etc/security/pwquality.conf`
+        pattern `^\s*enforcing[\s]*=[\s]*(\d+)(?:[\s]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all AND
+    STATE ste_29201
+        subexpression int `less than or equal` `3`
+    STATE_END
+    STATE ste_29202
+        subexpression int `greater than` `0`
+    STATE_END
+    OBJECT obj_29202
+        filepath `/etc/pam.d/common-password`
+        pattern `^\s*\w+[\s]+requisite[\s]+pam_pwquality\.so[\s]+(?:|.+\s+)retry=([\d]+)(?:[\s]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_29203
+        filepath `/etc/pam.d/common-password`
+        pattern `^\s*\w+[\s]+requisite[\s]+pam_pwquality\.so[\s]+(?:|.+\s+)enforce_for_root(?:[\s]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

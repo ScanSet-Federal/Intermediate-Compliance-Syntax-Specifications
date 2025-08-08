@@ -1,0 +1,61 @@
+DEF
+CRI AND
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17800
+        filepath `/etc/sudoers`
+        pattern `^\s*(?i)Defaults\s+\!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17801
+        path `^/etc/sudoers\.d.*`
+        filename `^.*$`
+        pattern `^\s*(?i)Defaults\s+\!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17802
+        filepath `/etc/sudoers`
+        pattern `^\s*(?i)Defaults\s+\!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17803
+        path `^/etc/sudoers\.d.*`
+        filename `^.*$`
+        pattern `^\s*(?i)Defaults\s+\!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17804
+        filepath `/etc/sudoers`
+        pattern `^\s*(?i)Defaults\s+\!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_17805
+        path `^/etc/sudoers\.d.*`
+        filename `^.*$`
+        pattern `^\s*(?i)Defaults\s+\!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

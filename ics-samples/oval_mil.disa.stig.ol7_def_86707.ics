@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_8670700
+        subexpression string equals `^.+$`
+    STATE_END
+    OBJECT obj_8670700
+        filepath `/etc/audisp/audisp-remote.conf`
+        pattern `^[ ]*remote_server[ ]+=[ ]+(.*)`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

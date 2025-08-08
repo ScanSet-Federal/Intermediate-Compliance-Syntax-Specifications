@@ -1,0 +1,14 @@
+DEF
+VAR var_801 string ``
+CRI AND
+CTN variable
+    TEST `any exist` all
+    STATE ste_801
+        value string equals `"extensions.htmlaboutaddons.recommendations.enabled": \{    "Value": false,    "Status": "locked"  }`
+    STATE_END
+    OBJECT obj_801
+        var_ref VAR var_801
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,36 @@
+DEF
+VAR var_601 string ``
+RUN var_601 EXTRACT
+    OBJ obj_602 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_601
+        gwrite boolean equals `0`
+        oread boolean equals `0`
+        owrite boolean equals `0`
+        oexec boolean equals `0`
+    STATE_END
+    OBJECT obj_601
+        path VAR var_601
+        filename ``
+        behavior recurse_direction none recurse symlinks and directories max_depth 0
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_602
+        filepath `/etc/passwd`
+        pattern `^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:([^:]*?):.*`
+        instance `1`
+        FILTER include
+            STATE_REF ste_602
+        FILTER_END
+        FILTER include
+            STATE_REF ste_603
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,26 @@
+DEF
+VAR var_81 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_81
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_81
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name AS user_name, type_desc AS account_type, is_disabled
+    FROM sys.server_principals
+    WHERE TYPE IN ('S', 'U')
+	and is_disabled = 0
+    ORDER BY name, type_desc`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

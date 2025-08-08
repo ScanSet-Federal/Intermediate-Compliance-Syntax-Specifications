@@ -1,0 +1,36 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_458200
+        type string equals `reg_multi_sz`
+        value string equals `^((System\\CurrentControlSet\\Control\\ProductOptions)|(System\\CurrentControlSet\\Control\\Server Applications)|(Software\\Microsoft\\Windows NT\\CurrentVersion)|())$` `all`
+    STATE_END
+    OBJECT obj_458200
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_462100
+        type string equals `reg_multi_sz`
+        value string equals `.+` `none satisfy`
+    STATE_END
+    OBJECT obj_458200
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_458200
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

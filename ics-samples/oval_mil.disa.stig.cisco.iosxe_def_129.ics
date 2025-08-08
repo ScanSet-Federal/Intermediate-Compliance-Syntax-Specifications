@@ -1,0 +1,17 @@
+DEF
+VAR var_12900 int 0
+RUN var_12900 COUNT
+    OBJ obj_12900 global_command
+RUN_END
+CRI AND
+CTN variable
+    TEST `any exist` all
+    STATE ste_12900
+        value int `greater than or equal` `2`
+    STATE_END
+    OBJECT obj_12901
+        var_ref VAR var_12900
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

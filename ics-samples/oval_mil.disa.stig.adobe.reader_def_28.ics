@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_2800
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_2800
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices`
+        name `bUpdater`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

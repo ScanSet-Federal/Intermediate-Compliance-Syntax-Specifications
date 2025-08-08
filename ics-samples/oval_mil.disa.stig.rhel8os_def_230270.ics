@@ -1,0 +1,36 @@
+DEF
+VAR var_20000005 string `/etc/sysctl.d`
+SET obj_23027003 union
+    OBJECT obj_23027001
+        path `VAR var_20000005`
+        filename `\.conf$`
+        pattern `(?:^|\.*\n)\s*kernel\.perf_event_paranoid\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23027002
+        filepath `/etc/sysctl.conf`
+        pattern `(?:^|\.*\n)\s*kernel\.perf_event_paranoid\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_20000011
+        value int equals `2`
+    STATE_END
+    OBJECT obj_23027000
+        name `kernel.perf_event_paranoid`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_20000004
+        subexpression int equals `2`
+    STATE_END
+    OBJECT obj_23027003
+        SET_REF obj_23027003
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

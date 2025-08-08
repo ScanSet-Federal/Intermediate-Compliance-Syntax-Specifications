@@ -1,0 +1,80 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_761 string ``
+CRI OR
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_762
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_762
+        namespace `root\cimv2\security\microsoftvolumeencryption`
+        wql `SELECT protectionstatus FROM win32_encryptablevolume`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_763
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_761
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `
+SELECT
+db.name AS [database_name], db.is_encrypted, CASE encryption_state 
+WHEN 0 THEN CONCAT(db.name,':','NoDatabaseEncryptionKey' ) 
+WHEN 1 THEN CONCAT(db.name,':','Unencrypted')
+WHEN 2 THEN 'Encryption in progress'  
+WHEN 3 THEN CONCAT(db.name,':','Encrypted' )
+WHEN 4 THEN 'Key change in progress'  
+WHEN 5 THEN 'Decryption in progress'  
+WHEN 6 THEN 'Protection change in progress' 
+ELSE CONCAT(db.name,':','NoDatabaseEncryptionKey' ) 
+END AS [encryption_state]  
+FROM sys.dm_database_encryption_keys e  
+RIGHT JOIN sys.databases db ON DB_NAME(e.database_id) = db.name  
+WHERE db.name NOT IN ('master','model','msdb')  
+ORDER BY [database_name] ;    
+		 `
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_761
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_761
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `
+SELECT
+db.name AS [database_name], db.is_encrypted, CASE encryption_state 
+WHEN 0 THEN CONCAT(db.name,':','NoDatabaseEncryptionKey' ) 
+WHEN 1 THEN CONCAT(db.name,':','Unencrypted')
+WHEN 2 THEN 'Encryption in progress'  
+WHEN 3 THEN CONCAT(db.name,':','Encrypted' )
+WHEN 4 THEN 'Key change in progress'  
+WHEN 5 THEN 'Decryption in progress'  
+WHEN 6 THEN 'Protection change in progress' 
+ELSE CONCAT(db.name,':','NoDatabaseEncryptionKey' ) 
+END AS [encryption_state]  
+FROM sys.dm_database_encryption_keys e  
+RIGHT JOIN sys.databases db ON DB_NAME(e.database_id) = db.name  
+WHERE db.name NOT IN ('master','model','msdb')  
+ORDER BY [database_name] ;    
+		 `
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

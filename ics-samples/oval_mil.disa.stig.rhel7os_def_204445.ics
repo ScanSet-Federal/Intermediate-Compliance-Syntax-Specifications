@@ -1,0 +1,82 @@
+DEF
+STATE ste_20444501
+    subexpression string equals `((?:[0-5]?[0-9]|\*)[ \t]+(?:[01]?[0-9]|2[0-3])[ \t]+\*[ \t]+\*[ \t]+(?:[0-7]|sun|mon|tue|wed|thu|fri|sat|\*))`
+STATE_END
+STATE ste_20444502
+    subexpression string equals `((?:[0-5]?[0-9])[ \t]+(?:[01]?[0-9]|2[0-3]|\*)[ \t]+\*[ \t]+\*[ \t]+(?:[0-7]|sun|mon|tue|wed|thu|fri|sat|\*))`
+STATE_END
+STATE ste_20444500
+    subexpression string equals `((?:[0-5]?[0-9]|\*)[ \t]+(?:[01]?[0-9]|2[0-3]|\*)[ \t]+\*[ \t]+\*[ \t]+(?:[0-7]|sun|mon|tue|wed|thu|fri|sat))`
+STATE_END
+CRI AND
+CTN rpminfo
+    TEST `all exist` all
+    OBJECT obj_20444500
+        name `aide`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN textfilecontent54
+    TEST `all exist` all OR
+    STATE_REF ste_20444500
+    STATE_REF ste_20444501
+    STATE_REF ste_20444502
+    OBJECT obj_20444501
+        filepath `/etc/crontab`
+        pattern `^[ \t]*([\S]+[ \t]+[\S]+[ \t]+\*[ \t]+\*[ \t]+[\S]+)[ \t]+root[ \t]+\/usr\/sbin\/aide[ \t]+\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all OR
+    STATE_REF ste_20444500
+    STATE_REF ste_20444501
+    STATE_REF ste_20444502
+    OBJECT obj_20444502
+        path `/etc/cron.d`
+        filename `^.+$`
+        pattern `^[ \t]*([\S]+[ \t]+[\S]+[ \t]+\*[ \t]+\*[ \t]+[\S]+)[ \t]+root[ \t]+\/usr\/sbin\/aide[ \t]+\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all OR
+    STATE_REF ste_20444500
+    STATE_REF ste_20444501
+    STATE_REF ste_20444502
+    OBJECT obj_20444503
+        filepath `/var/spool/cron/root`
+        pattern `^[ \t]*([\S]+[ \t]+[\S]+[ \t]+\*[ \t]+\*[ \t]+[\S]+)[ \t]+\/usr\/sbin\/aide[ \t]+\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_20444504
+        path `/etc/cron.daily`
+        filename `^.+$`
+        pattern `^[ \t]*/usr/sbin/aide[ \t]*\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_20444505
+        path `/etc/cron.weekly`
+        filename `^.+$`
+        pattern `^[ \t]*/usr/sbin/aide[ \t]*\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_20444506
+        path `/etc/cron.hourly`
+        filename `^.+$`
+        pattern `^[ \t]*/usr/sbin/aide[ \t]*\-\-check(?:[\s]+|[\>\|]|$)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_360
+        result string equals `true` `all`
+    STATE_END
+    OBJECT obj_360
+        identifier_type `Site`
+        identifier `.*`
+        section `system.web/httpCookies`
+        parameter `requireSSL`
+    OBJECT_END
+CTN_END
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_361
+        result string equals `false` `all`
+    STATE_END
+    OBJECT obj_361
+        identifier_type `Site`
+        identifier `.*`
+        section `system.web/sessionState`
+        parameter `compressionEnabled`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

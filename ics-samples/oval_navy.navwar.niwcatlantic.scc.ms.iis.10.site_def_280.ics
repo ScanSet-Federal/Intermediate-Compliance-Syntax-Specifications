@@ -1,0 +1,14 @@
+DEF
+VAR var_280 int 0
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_281
+        value int `not equal` `000000` `all`
+    STATE_END
+    OBJECT obj_280
+        var_ref VAR var_280
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

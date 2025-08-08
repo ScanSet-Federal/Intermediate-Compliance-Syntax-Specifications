@@ -1,0 +1,21 @@
+DEF
+STATE ste_1700
+    service_state string equals `DISABLED`
+STATE_END
+CRI AND
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_1700
+    OBJECT obj_5900
+        fmri `svc://localhost/system/console-login:terma`
+    OBJECT_END
+CTN_END
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_1700
+    OBJECT obj_5901
+        fmri `svc://localhost/system/console-login:termb`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

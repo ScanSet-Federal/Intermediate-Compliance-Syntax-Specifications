@@ -1,0 +1,27 @@
+DEF
+VAR var_3846 string ``
+RUN var_3846 EXTRACT
+    OBJ obj_3747 subexpression
+RUN_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_2880
+        subexpression string equals `VAR var_3846`
+    STATE_END
+    OBJECT obj_2879
+        filepath `/etc/passwd`
+        pattern `^[^#\s\:]+:[^#\s\:]+:[0-9]+:([0-9]+):`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_3747
+        filepath `/etc/group`
+        pattern `^[^#\s\:]+:[^#\s\:]*:([0-9]+):`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

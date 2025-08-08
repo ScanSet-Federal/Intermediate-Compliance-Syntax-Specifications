@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_8671500
+        subexpression string equals `^[Ee][Mm][Aa][Ii][Ll]$`
+    STATE_END
+    OBJECT obj_8671500
+        filepath `/etc/audit/auditd.conf`
+        pattern `^[ ]*space_left_action[ ]+=[ ]+([^ ]*)[ ]*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

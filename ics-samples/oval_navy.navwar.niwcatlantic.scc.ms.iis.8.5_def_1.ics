@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_1
+        value string equals `Version 8.5`
+    STATE_END
+    OBJECT obj_1
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\InetStp`
+        name `VersionString`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

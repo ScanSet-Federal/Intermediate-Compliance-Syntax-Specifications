@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `all exist` all
+    OBJECT obj_25500
+        name `libpam-pkcs11`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

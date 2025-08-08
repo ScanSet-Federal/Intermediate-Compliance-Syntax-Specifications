@@ -1,0 +1,22 @@
+DEF
+SET obj_10000900 union
+    OBJECT obj_10000901
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Outlook\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10000902
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Outlook\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_10000900
+        SET_REF obj_10000900
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

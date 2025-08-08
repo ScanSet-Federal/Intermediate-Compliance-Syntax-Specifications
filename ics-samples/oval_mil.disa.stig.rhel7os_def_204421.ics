@@ -1,0 +1,39 @@
+DEF
+VAR var_23036700 string ``
+VAR var_23036701 int 65534
+RUN var_23036700 CONCAT
+    literal `^`
+    OBJ obj_23036701 username
+    literal `$`
+RUN_END
+STATE ste_23036701
+    chg_req int `less than or equal` `60`
+STATE_END
+STATE ste_23036702
+    username string equals VAR oval:mil.disa.stig.defs:var:23036700
+STATE_END
+STATE ste_23036700
+    chg_req int `greater than` `0`
+STATE_END
+CRI AND
+CTN shadow
+    TEST `any exist` all
+    STATE_REF ste_23036700
+    STATE_REF ste_23036701
+    OBJECT obj_23036700
+        username `.+`
+        FILTER include
+            STATE_REF ste_23036702
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN shadow
+    TEST `all exist` all
+    STATE_REF ste_23036700
+    STATE_REF ste_23036701
+    OBJECT obj_23036702
+        username `root`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `any exist` all
+    STATE ste_25327900
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25327900
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'TFTP'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

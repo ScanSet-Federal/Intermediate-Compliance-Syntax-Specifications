@@ -1,0 +1,22 @@
+DEF
+CRI OR
+CTN wmi57
+    TEST `none exist` `at least one`
+    OBJECT obj_104301
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='pnrpsvc'`
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `any exist` `at least one`
+    STATE ste_104101
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_104301
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='pnrpsvc'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

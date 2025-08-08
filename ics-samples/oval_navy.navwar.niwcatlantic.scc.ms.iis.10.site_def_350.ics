@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_350
+        result string equals `true` `all`
+    STATE_END
+    OBJECT obj_350
+        identifier_type `Site`
+        identifier `.*`
+        section `system.webServer/asp`
+        parameter `session.keepSessionIdSecure`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

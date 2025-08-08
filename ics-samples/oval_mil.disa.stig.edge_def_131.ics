@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_13100
+        type string equals `reg_sz`
+        value string equals `*`
+    STATE_END
+    OBJECT obj_13100
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallBlocklist`
+        name `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

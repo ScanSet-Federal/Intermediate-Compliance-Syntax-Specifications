@@ -1,0 +1,97 @@
+DEF
+VAR var_901 string `\Microsoft.NET\Framework\v4.0.30319\Config`
+VAR var_900 string ``
+VAR var_903 string ``
+VAR var_439700 string ``
+VAR var_904 string ``
+VAR var_902 string ``
+RUN var_900 CONCAT
+    OBJ obj_388601 value
+    VAR var_901
+RUN_END
+RUN var_903 EXTRACT
+    OBJ obj_903 filepath
+RUN_END
+RUN var_439700 END
+    character `\`
+    OBJ obj_439702 result
+RUN_END
+RUN var_904 CONCAT
+    literal `servicing\LCU`
+RUN_END
+RUN var_902 CONCAT
+    literal `WinSxS`
+RUN_END
+STATE ste_900
+    value_of boolean equals `true`
+STATE_END
+SET obj_906 union
+    OBJECT obj_904
+        path `VAR var_902`
+        filename `^.*\.[Ee][Xx][Ee]\.[Cc][Oo][Nn][Ff][Ii][Gg]$`
+    OBJECT_END
+    OBJECT obj_905
+        path `C:\Windows.Old\Windows\WinSxS`
+        filename `^.*\.[Ee][Xx][Ee]\.[Cc][Oo][Nn][Ff][Ii][Gg]$`
+    OBJECT_END
+SET_END
+SET obj_908 union
+    OBJECT obj_906
+        SET_REF `obj_906`
+    OBJECT_END
+    OBJECT obj_907
+        path `VAR var_904`
+        filename `^.*\.[Ee][Xx][Ee]\.[Cc][Oo][Nn][Ff][Ii][Gg]$`
+    OBJECT_END
+SET_END
+SET obj_903 complement
+    OBJECT obj_902
+        path `VAR var_439700`
+        filename `^.*\.[Ee][Xx][Ee]\.[Cc][Oo][Nn][Ff][Ii][Gg]$`
+    OBJECT_END
+    OBJECT obj_908
+        SET_REF `obj_908`
+    OBJECT_END
+SET_END
+CRI AND
+CTN xmlfilecontent
+    TEST `any exist` all
+    STATE_REF ste_900
+    OBJECT obj_900
+        filepath VAR var_903
+        xpath `count(/configuration/runtime/enforceFIPSPolicy/@enabled) = 0 or /configuration/runtime/enforceFIPSPolicy/@enabled = "true"`
+    OBJECT_END
+CTN_END
+CTN xmlfilecontent
+    TEST `any exist` all
+    STATE_REF ste_900
+    OBJECT obj_901
+        path VAR var_900
+        filename `machine.config`
+        xpath `count(/configuration/runtime/enforceFIPSPolicy/@enabled) = 0 or /configuration/runtime/enforceFIPSPolicy/@enabled = "true"`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_439702
+        namespace `root\cimv2`
+        wql `SELECT name FROM win32_logicaldisk WHERE drivetype=3`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    OBJECT obj_903
+        SET_REF obj_903
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_388601
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `SystemRoot`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

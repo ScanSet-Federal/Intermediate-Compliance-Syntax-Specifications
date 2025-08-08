@@ -1,0 +1,24 @@
+DEF
+STATE ste_125701
+    security_principle string equals `Administrators`
+STATE_END
+SET obj_125700 union
+    OBJECT obj_125701
+        security_principle `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.windows:ste:125701
+    FILTER_END
+SET_END
+CRI AND
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_125700
+        setakeownershipprivilege boolean equals `0`
+    STATE_END
+    OBJECT obj_125700
+        SET_REF obj_125700
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

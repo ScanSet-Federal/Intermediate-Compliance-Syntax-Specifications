@@ -1,0 +1,28 @@
+DEF
+STATE ste_662
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_1621
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Microsoft SQL Server`
+        name `CustomerFeedback`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_1622
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Microsoft SQL Server`
+        name `EnableErrorReporting`
+        behavior max_depth -1 recurse_direction down
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,47 @@
+DEF
+STATE ste_24103
+    filepath string equals `/var/log/wtmp`
+STATE_END
+STATE ste_24101
+    type string equals `regular`
+STATE_END
+STATE ste_24102
+    filepath string equals `/var/log/btmp`
+STATE_END
+STATE ste_24104
+    filepath string equals `/var/log/lastlog`
+STATE_END
+CRI AND
+CTN file
+    TEST `all exist` all
+    STATE ste_24100
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        uexec boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_24100
+        path `/var/log`
+        filename `.*`
+        behavior recurse_direction down
+        FILTER include
+            STATE_REF ste_24101
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_24102
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_24103
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_24104
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_459000
+        type string equals `reg_dword`
+        value int equals `2147483640`
+    STATE_END
+    OBJECT obj_459000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters`
+        name `SupportedEncryptionTypes`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

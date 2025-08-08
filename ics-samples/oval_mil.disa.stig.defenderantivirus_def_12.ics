@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_12000
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_12000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection`
+        name `LocalSettingOverrideDisableOnAccessProtection`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

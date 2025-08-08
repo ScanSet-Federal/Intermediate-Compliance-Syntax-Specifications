@@ -1,0 +1,35 @@
+DEF
+CRI AND
+CTN family
+    TEST `at least one exists` `only one`
+    STATE ste_439800
+        family string equals `windows`
+    STATE_END
+    OBJECT obj_439800
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` `at least one`
+    STATE ste_439801
+        value string equals `^[a-zA-Z0-9\(\)\s]*2012[a-zA-Z0-9\(\)\s]*$`
+    STATE_END
+    OBJECT obj_439801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `ProductName`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` `at least one`
+    STATE ste_439802
+        value string equals `^[a-zA-Z0-9\(\)\s]*2012 [rR]2[a-zA-Z0-9\(\)\s]*$`
+    STATE_END
+    OBJECT obj_439801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `ProductName`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

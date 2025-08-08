@@ -1,0 +1,35 @@
+DEF
+SET obj_23833301 union
+    OBJECT obj_23833302
+        filepath `/etc/sysctl.conf`
+        pattern `(?:^|.*\n)\s*net\.ipv4\.tcp_syncookies\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23833303
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `(?:^|.*\n)\s*net\.ipv4\.tcp_syncookies\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_20000010
+        value int equals `1`
+    STATE_END
+    OBJECT obj_23833300
+        name `net.ipv4.tcp_syncookies`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_20000003
+        subexpression int equals `1`
+    STATE_END
+    OBJECT obj_23833301
+        SET_REF obj_23833301
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

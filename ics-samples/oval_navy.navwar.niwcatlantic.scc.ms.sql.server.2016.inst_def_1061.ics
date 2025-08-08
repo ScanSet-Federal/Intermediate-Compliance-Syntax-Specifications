@@ -1,0 +1,49 @@
+DEF
+VAR var_1061 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+STATE ste_1061
+    result string equals `
+    `
+STATE_END
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE_REF ste_1061
+    OBJECT obj_1061
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT p.name AS user_name, 
+p.type_desc AS Type, 
+sp.permission_name AS Permission,  
+sp.state_desc AS State 
+FROM sys.server_principals p 
+INNER JOIN sys.server_permissions sp ON p.principal_id = sp.grantee_principal_id 
+WHERE sp.permission_name = 'CONTROL SERVER' 
+OR sp.state = 'W'`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE_REF ste_1061
+    OBJECT obj_1062
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT m.name AS user_name, 
+m.type_desc AS Type, 
+r.name AS Role 
+FROM sys.server_principals m 
+INNER JOIN sys.server_role_members rm ON m.principal_id = rm.member_principal_id 
+INNER JOIN sys.server_principals r ON rm.role_principal_id = r.principal_id 
+WHERE r.name IN ('sysadmin','securityadmin','serveradmin') 
+ `
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,30 @@
+DEF
+STATE ste_23030102
+    device string equals `^/dev\S*$`
+STATE_END
+CRI AND
+CTN partition
+    TEST `any exist` all
+    STATE ste_20000001
+        mount_options string equals `nodev` `at least one`
+    STATE_END
+    OBJECT obj_23030100
+        mount_point `^/\S+$`
+        FILTER include
+            STATE_REF ste_23030102
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23030100
+        subexpression string equals `(?:^nodev$|^nodev,|,nodev$|,nodev,)`
+    STATE_END
+    OBJECT obj_23030101
+        filepath `/etc/fstab`
+        pattern `^\s*/dev\S*\s+/\S+\s+\S+\s+(\S+)\s+\S+\s+\S+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

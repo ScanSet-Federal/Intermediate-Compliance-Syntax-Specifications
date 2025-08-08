@@ -1,0 +1,85 @@
+DEF
+STATE ste_20000001
+    type string equals `reg_dword`
+    value int equals `1`
+STATE_END
+STATE ste_20000002
+    type string equals `reg_dword`
+    value int equals `2`
+STATE_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000001
+    OBJECT obj_25326001
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `UseAdvancedStartup`
+    OBJECT_END
+CTN_END
+CRI OR
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000001
+    OBJECT obj_25326000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `OSManageNKP`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000001
+    OBJECT obj_25326002
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `UseTPMPIN`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000001
+    OBJECT obj_25326003
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `UseTPMKeyPIN`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000001
+    OBJECT obj_25326000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `OSManageNKP`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_25326002
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `UseTPMPIN`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_25326003
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\FVE`
+        name `UseTPMKeyPIN`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI_END
+CRI_END
+DEF_END

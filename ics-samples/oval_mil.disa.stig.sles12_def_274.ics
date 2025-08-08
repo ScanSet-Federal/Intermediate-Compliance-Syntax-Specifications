@@ -1,0 +1,22 @@
+DEF
+VAR var_27000 string `/bin`
+STATE ste_27001
+    type string equals `regular`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_27401
+        group_id int `less than` `1000`
+    STATE_END
+    OBJECT obj_27000
+        path VAR var_27000
+        filename `.*`
+        behavior recurse_direction down
+        FILTER include
+            STATE_REF ste_27001
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

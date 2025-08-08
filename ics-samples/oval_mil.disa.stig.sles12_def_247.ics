@@ -1,0 +1,36 @@
+DEF
+VAR var_23000 string `/etc/sysctl.d`
+SET obj_24703 union
+    OBJECT obj_24701
+        filepath `/etc/sysctl.conf`
+        pattern `(?:^|.*\n)\s*net.ipv6.conf.default.accept_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_24702
+        path `VAR var_23000`
+        filename `^.*\.conf$`
+        pattern `(?:^|.*\n)\s*net.ipv6.conf.default.accept_redirects\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_24700
+        value int equals `0`
+    STATE_END
+    OBJECT obj_24700
+        name `net.ipv6.conf.default.accept_redirects`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_24701
+        subexpression int equals `0`
+    STATE_END
+    OBJECT obj_24703
+        SET_REF obj_24703
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

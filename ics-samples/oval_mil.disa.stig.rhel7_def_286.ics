@@ -1,0 +1,14 @@
+DEF
+VAR var_3780 int 0
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_2192
+        value string equals `VAR var_3780`
+    STATE_END
+    OBJECT obj_2191
+        name `net.ipv4.icmp_echo_ignore_broadcasts`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,17 @@
+DEF
+VAR var_41900 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_41900
+        type string equals `reg_dword`
+        value string equals `VAR var_41900`
+    STATE_END
+    OBJECT obj_41900
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings`
+        name `Security_zones_map_edit`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

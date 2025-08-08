@@ -1,0 +1,40 @@
+DEF
+VAR var_10001 string ``
+VAR var_10000 string ``
+RUN var_10001 SPLIT
+    delimiter ` `
+    OBJ obj_10002 subexpression
+RUN_END
+RUN var_10000 CONCAT
+    literal `^\s*(password\S*)\s+`
+    VAR var_10001
+    literal `\s+`
+RUN_END
+CRI OR
+CTN file
+    TEST `all exist` all
+    OBJECT obj_10101
+        filepath `/boot/efi/EFI/ubuntu/grub.cfg`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_10000
+        subexpression string equals `password_pbkdf2`
+    STATE_END
+    OBJECT obj_10000
+        filepath `/boot/grub/grub.cfg`
+        pattern VAR var_10000
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_10002
+        filepath `/boot/grub/grub.cfg`
+        pattern `^\s*set\s+superusers="(root)"\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

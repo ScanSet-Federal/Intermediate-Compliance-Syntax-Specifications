@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_56700
+        type string equals `reg_dword` `all`
+        value int equals `0` `all`
+    STATE_END
+    OBJECT obj_56700
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0`
+        name `270C`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

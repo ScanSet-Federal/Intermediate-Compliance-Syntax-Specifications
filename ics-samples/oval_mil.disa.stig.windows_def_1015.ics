@@ -1,0 +1,23 @@
+DEF
+VAR var_101500 int 0
+CRI AND
+CTN passwordpolicy
+    TEST `at least one exists` all
+    STATE ste_101500
+        max_passwd_age string equals `VAR var_101500`
+    STATE_END
+    OBJECT obj_101500
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN passwordpolicy
+    TEST `at least one exists` all
+    STATE ste_101501
+        max_passwd_age int `greater than` `0`
+    STATE_END
+    OBJECT obj_101500
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+DEF
+STATE ste_1401
+    password string equals `\S`
+STATE_END
+CRI AND
+CTN shadow
+    TEST `none exist` all
+    OBJECT obj_1401
+        username `.*`
+        FILTER exclude
+            STATE_REF ste_1401
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

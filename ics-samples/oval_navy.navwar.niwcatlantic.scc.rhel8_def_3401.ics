@@ -1,0 +1,34 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `only one exists` all
+    STATE ste_3401
+        stdout_line string equals `.*`
+        subexpression string equals `gtls`
+    STATE_END
+    STATE ste_3402
+        stdout_line string equals `^[^#]+:\$DefaultNetstreamDriver\b`
+    STATE_END
+    OBJECT obj_3401
+        shell `bash`
+        command `grep -i '$DefaultNetstreamDriver' /etc/rsyslog.conf /etc/rsyslog.d/*.conf`
+        pattern `\S+:\s*\$DefaultNetstreamDriver\s+(\S+)`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `only one exists` all
+    STATE ste_3403
+        stdout_line string equals `.*`
+        subexpression string equals `1`
+    STATE_END
+    STATE ste_3404
+        stdout_line string equals `^[^#]+:\$ActionSendStreamDriverMode\b`
+    STATE_END
+    OBJECT obj_3402
+        shell `bash`
+        command `grep -i '$ActionSendStreamDriverMode' /etc/rsyslog.conf /etc/rsyslog.d/*.conf`
+        pattern `\s*\S+:\s*\$ActionSendStreamDriverMode\s+(1)`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

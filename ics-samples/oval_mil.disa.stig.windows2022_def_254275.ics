@@ -1,0 +1,27 @@
+DEF
+CRI OR
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_25328600
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25328600
+        namespace `root\cimv2`
+        wql `SELECT installstate FROM win32_optionalfeature WHERE name = 'SMB1Protocol'`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_20000004
+        type string equals `reg_dword`
+        value int equals `4`
+    STATE_END
+    OBJECT obj_25328800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\mrxsmb10`
+        name `Start`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

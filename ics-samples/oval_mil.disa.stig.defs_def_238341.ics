@@ -1,0 +1,25 @@
+DEF
+VAR var_23834100 int 0
+RUN var_23834100 EXTRACT
+    OBJ obj_23834100 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_23834100
+        group_id string equals `VAR var_23834100`
+    STATE_END
+    OBJECT obj_20000019
+        filepath `/var/log/syslog`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23834100
+        filepath `/etc/group`
+        pattern `^adm:[^:]*:([0-9]+):`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,64 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    OBJECT obj_261
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT a.name 'audit_name',
+    a.type_desc 'storage_type',
+    f.max_rollover_files
+FROM sys.server_audits a
+LEFT JOIN sys.server_file_audits f ON a.audit_id = f.audit_id
+WHERE a.is_state_enabled = 1`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI OR
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_262
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_261
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT a.name 'audit_name',
+    a.type_desc 'storage_type',
+    f.max_rollover_files
+FROM sys.server_audits a
+LEFT JOIN sys.server_file_audits f ON a.audit_id = f.audit_id
+WHERE a.is_state_enabled = 1`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_263
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_261
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT a.name 'audit_name',
+    a.type_desc 'storage_type',
+    f.max_rollover_files
+FROM sys.server_audits a
+LEFT JOIN sys.server_file_audits f ON a.audit_id = f.audit_id
+WHERE a.is_state_enabled = 1`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

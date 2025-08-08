@@ -1,0 +1,30 @@
+DEF
+STATE ste_463500
+    security_principle string equals `LOCAL SERVICE`
+STATE_END
+STATE ste_463501
+    security_principle string equals `NETWORK SERVICE`
+STATE_END
+SET obj_464800 union
+    OBJECT obj_461700
+        security_principle `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.fso.windows:ste:463500
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.fso.windows:ste:463501
+    FILTER_END
+SET_END
+CRI AND
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_464800
+        seauditprivilege boolean equals `0`
+    STATE_END
+    OBJECT obj_464800
+        SET_REF obj_464800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

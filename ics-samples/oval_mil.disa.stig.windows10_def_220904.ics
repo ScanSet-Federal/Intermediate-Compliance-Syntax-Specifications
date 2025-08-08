@@ -1,0 +1,32 @@
+DEF
+SET obj_25342801 union
+    OBJECT obj_25342802
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\SystemCertificates\Root\Certificates\73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582`
+        name `^.+$`
+    OBJECT_END
+    OBJECT obj_25342803
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates\73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582`
+        name `^.+$`
+    OBJECT_END
+SET_END
+SET obj_25342800 union
+    OBJECT obj_25342801
+        SET_REF `obj_25342801`
+    OBJECT_END
+    OBJECT obj_25342804
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates\73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582`
+        name `^.+$`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_25342800
+        SET_REF obj_25342800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

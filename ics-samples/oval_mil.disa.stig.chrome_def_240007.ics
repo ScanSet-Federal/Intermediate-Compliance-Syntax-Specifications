@@ -1,0 +1,18 @@
+DEF
+VAR var_21 string `Google Encrypted`
+VAR var_11 string `reg_sz`
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_240007
+        type string equals `VAR var_11`
+        value string equals `VAR var_21`
+    STATE_END
+    OBJECT obj_240007
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Google\Chrome`
+        name `DefaultSearchProviderName`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

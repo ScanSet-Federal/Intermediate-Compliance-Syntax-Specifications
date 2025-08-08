@@ -1,0 +1,146 @@
+DEF
+VAR var_640 string ``
+VAR var_641 string ``
+VAR var_649 string ``
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_642 string ``
+VAR var_1 string `sqlserver`
+RUN var_640 CONCAT
+    OBJ obj_644 result
+    literal `\SOFTWARE\Microsoft\Microsoft SQL Server\`
+    OBJ obj_640 result
+    literal `\MSSQLServer\SuperSocketNetLib`
+RUN_END
+RUN var_641 CONCAT
+    literal `SOFTWARE\Microsoft\Microsoft SQL Server\`
+    OBJ obj_640 result
+    literal `\MSSQLServer\SuperSocketNetLib`
+RUN_END
+RUN var_649 EXTRACT
+    OBJ obj_649 value
+RUN_END
+RUN var_642 EXTRACT
+    OBJ obj_642 value
+RUN_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_661
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_641
+        hive `HKEY_LOCAL_MACHINE`
+        key VAR var_641
+        name `ForceEncryption`
+    OBJECT_END
+CTN_END
+CRI OR
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_645
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_645
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT
+    SERVERPROPERTY('isClustered') AS [is_clustered]`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `any exist` all
+    STATE ste_649
+        value record equals `
+    ` `at least one`
+    STATE_END
+    OBJECT obj_643
+        module_name `Microsoft.Powershell.Management`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `ChildItem`
+        parameters record
+            field `Cert:\LocalMachine\my`
+        select record
+            field `issuer,thumbprint`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_645
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_645
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT
+    SERVERPROPERTY('isClustered') AS [is_clustered]`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `any exist` all
+    STATE ste_643
+        value record equals `
+    ` `at least one`
+    STATE_END
+    OBJECT obj_643
+        module_name `Microsoft.Powershell.Management`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `ChildItem`
+        parameters record
+            field `Cert:\LocalMachine\my`
+        select record
+            field `issuer,thumbprint`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CTN sqlext
+    TEST `any exist` all
+    OBJECT obj_644
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT NodeName as 'node_name', status, status_description, is_current_owner   
+FROM sys.dm_os_cluster_nodes;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_642
+        hive `HKEY_LOCAL_MACHINE`
+        key VAR var_640
+        name `Certificate`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    OBJECT obj_640
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `EXECUTE xp_regread @rootkey='HKEY_LOCAL_MACHINE',
+                   @key='SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQl',
+                   @value_name=@@servicename`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

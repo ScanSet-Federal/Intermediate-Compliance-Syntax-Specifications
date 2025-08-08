@@ -1,0 +1,57 @@
+DEF
+VAR var_20 string ``
+VAR var_30 string ``
+VAR var_40 string ``
+RUN var_20 CONCAT
+    OBJ obj_123 result
+    literal `\Inetpub\`
+RUN_END
+RUN var_30 CONCAT
+    OBJ obj_124 result
+    literal `\Program Files\Common Files\System\msadc\`
+RUN_END
+RUN var_40 CONCAT
+    OBJ obj_124 result
+    literal `\Program Files (x86)\Common Files\System\msadc\`
+RUN_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_120
+        path VAR var_20
+        filename `^.*\.([Aa][Ss][Pp]|[Hh][Tt][Mm]|[Hh][Ll][Pp])$`
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `none exist` all
+    OBJECT obj_121
+        path VAR var_30
+        filename `^.*\.([Aa][Ss][Pp]|[Hh][Tt][Mm]|[Hh][Ll][Pp])$`
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `none exist` all
+    OBJECT obj_122
+        path VAR var_40
+        filename `^.*\.([Aa][Ss][Pp]|[Hh][Tt][Mm]|[Hh][Ll][Pp])$`
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_124
+        namespace `root\cimv2`
+        wql `SELECT SystemDrive FROM Win32_OperatingSystem`
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_123
+        namespace `root\cimv2`
+        wql `SELECT name FROM win32_logicaldisk WHERE drivetype=3`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

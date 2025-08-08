@@ -1,0 +1,16 @@
+DEF
+CRI OR
+CTN rpminfo
+    TEST `all exist` all
+    OBJECT obj_10000500
+        name `gnome-shell`
+    OBJECT_END
+CTN_END
+CTN dpkginfo
+    TEST `all exist` all
+    OBJECT obj_10000501
+        name `gnome-shell`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

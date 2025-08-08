@@ -1,0 +1,25 @@
+DEF
+STATE ste_100
+    value int equals `1`
+STATE_END
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_100
+    OBJECT obj_100
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client`
+        name `Install`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_100
+    OBJECT obj_101
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full`
+        name `Install`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` all
+    STATE ste_100
+        config_line string equals `Cisco IOS[ -]XE [Ss]oftware`
+    STATE_END
+    OBJECT obj_100
+        show_subcommand `show version`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

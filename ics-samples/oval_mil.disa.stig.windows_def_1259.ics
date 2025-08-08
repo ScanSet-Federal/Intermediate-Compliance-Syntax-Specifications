@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_17000
+        type string equals `reg_dword`
+        value int equals `4`
+    STATE_END
+    OBJECT obj_17000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\mrxsmb10`
+        name `Start`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

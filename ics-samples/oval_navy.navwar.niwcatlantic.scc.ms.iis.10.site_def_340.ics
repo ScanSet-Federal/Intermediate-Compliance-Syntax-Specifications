@@ -1,0 +1,40 @@
+DEF
+CRI AND
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_30
+        result string equals `Ssl128` `all`
+    STATE_END
+    OBJECT obj_30
+        identifier_type `Site`
+        identifier `.*`
+        section `access`
+        parameter `sslflags`
+    OBJECT_END
+CTN_END
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_151
+        result string equals `SslRequireCert` `all`
+    STATE_END
+    OBJECT obj_30
+        identifier_type `Site`
+        identifier `.*`
+        section `access`
+        parameter `sslflags`
+    OBJECT_END
+CTN_END
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_31
+        result string equals `Ssl` `all`
+    STATE_END
+    OBJECT obj_30
+        identifier_type `Site`
+        identifier `.*`
+        section `access`
+        parameter `sslflags`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,14 @@
+DEF
+CRI AND
+CTN wuaupdatesearcher
+    TEST `any exist` all
+    STATE ste_2
+        is_installed boolean equals `1`
+        days_since_source_modified int `less than or equal` `31`
+    STATE_END
+    OBJECT obj_2
+        search_criteria `(IsHidden=0 and CategoryIDs contains '0FA1201D-4330-4FA8-8AE9-B877473B6441')`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

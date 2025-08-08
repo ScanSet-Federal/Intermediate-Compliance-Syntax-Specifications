@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN global
+    TEST `any exist` all
+    OBJECT obj_13700
+        global_command `login on-failure log`
+    OBJECT_END
+CTN_END
+CTN global
+    TEST `any exist` all
+    OBJECT obj_13900
+        global_command `login on-success log`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

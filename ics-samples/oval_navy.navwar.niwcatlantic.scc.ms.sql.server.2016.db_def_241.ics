@@ -1,0 +1,41 @@
+DEF
+VAR var_242 string ``
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1 string `sqlserver`
+CRI OR
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_241
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name as database_name 
+FROM [master].sys.databases 
+WHERE is_master_key_encrypted_by_server = 1 
+AND owner_sid != 1 
+AND state = 0;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_242
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_241
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name as database_name 
+FROM [master].sys.databases 
+WHERE is_master_key_encrypted_by_server = 1 
+AND owner_sid != 1 
+AND state = 0;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

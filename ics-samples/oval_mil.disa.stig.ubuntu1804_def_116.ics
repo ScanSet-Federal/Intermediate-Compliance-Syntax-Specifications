@@ -1,0 +1,69 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_11600
+        filepath `/etc/pam.d/common-auth`
+        pattern `^\s*auth\s+\[default=die\]\s+pam_faillock\.so\s+authfail\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_11601
+        filepath `/etc/pam.d/common-auth`
+        pattern `^\s*auth\s+sufficient\s+pam_faillock\.so\s+authsucc\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_11602
+        filepath `/etc/security/faillock.conf`
+        pattern `^\s*audit\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_11603
+        filepath `/etc/security/faillock.conf`
+        pattern `^\s*silent\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_11604
+        subexpression int `less than or equal` `3`
+    STATE_END
+    OBJECT obj_11604
+        filepath `/etc/security/faillock.conf`
+        pattern `^\s*deny\s*=\s*([0-9])+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_11605
+        subexpression int `less than or equal` `900`
+    STATE_END
+    OBJECT obj_11605
+        filepath `/etc/security/faillock.conf`
+        pattern `^\s*fail_interval\s*=\s*([0-9]+)+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_11606
+        subexpression int equals `0`
+    STATE_END
+    OBJECT obj_11606
+        filepath `/etc/security/faillock.conf`
+        pattern `^\s*unlock_time\s*=\s*([0-9])+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

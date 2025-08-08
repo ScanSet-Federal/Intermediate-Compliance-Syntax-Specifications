@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_3900
+        subexpression int `greater than or equal` `4` `all`
+    STATE_END
+    OBJECT obj_3900
+        path `/etc/default`
+        filename `login`
+        pattern `^\s*SLEEPTIME=(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

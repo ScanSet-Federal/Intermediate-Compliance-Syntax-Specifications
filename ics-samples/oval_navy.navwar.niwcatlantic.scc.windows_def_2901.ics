@@ -1,0 +1,32 @@
+DEF
+STATE ste_2902
+    enabled boolean equals `false`
+STATE_END
+STATE ste_2901
+    value string equals `1`
+STATE_END
+CRI AND
+CTN ntuser
+    TEST `any exist` all
+    STATE_REF ste_2901
+    OBJECT obj_2901
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer`
+        name `NoPreviewPane`
+        FILTER exclude
+            STATE_REF ste_2902
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN ntuser
+    TEST `any exist` all
+    STATE_REF ste_2901
+    OBJECT obj_2902
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer`
+        name `NoReadingPane`
+        FILTER exclude
+            STATE_REF ste_2902
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

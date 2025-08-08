@@ -1,0 +1,21 @@
+DEF
+STATE ste_1002
+    owrite boolean equals `0`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_1001
+        group_id int `less than` `1000`
+    STATE_END
+    OBJECT obj_1001
+        path `/`
+        filename ``
+        behavior recurse_direction down recurse_file_system local recurse directories
+        FILTER include
+            STATE_REF ste_1002
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

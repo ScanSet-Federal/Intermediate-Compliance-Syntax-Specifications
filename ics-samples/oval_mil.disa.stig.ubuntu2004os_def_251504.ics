@@ -1,0 +1,20 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_25150400
+        filepath `/etc/pam.d/common-password`
+        pattern `\bnullok\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_25150401
+        filepath `/etc/pam.d/common-auth`
+        pattern `\bnullok\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

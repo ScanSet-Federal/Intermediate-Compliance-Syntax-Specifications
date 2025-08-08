@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_242
+        value record equals `
+    ` `all`
+    STATE_END
+    OBJECT obj_422
+        module_name `ServerManager`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `windowsfeature`
+        parameters record
+            field `web-asp-net,web-asp-net45`
+        select record
+            field `installstate`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN process58
+    TEST `none exist` all
+    OBJECT obj_8660900
+        command_line `^(/usr)?/sbin/automount.*`
+        pid `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

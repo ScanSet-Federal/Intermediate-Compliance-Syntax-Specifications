@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `none exist` all
+    OBJECT obj_23832600
+        name `telnetd`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

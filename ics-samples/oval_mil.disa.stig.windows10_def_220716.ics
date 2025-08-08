@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `none exist` all
+    OBJECT obj_25327300
+        namespace `root\cimv2`
+        wql `SELECT name FROM Win32_UserAccount WHERE LocalAccount=TRUE AND Disabled=FALSE AND PasswordExpires=FALSE`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

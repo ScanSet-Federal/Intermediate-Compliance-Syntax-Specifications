@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_10001500
+        name `krb5-workstation`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

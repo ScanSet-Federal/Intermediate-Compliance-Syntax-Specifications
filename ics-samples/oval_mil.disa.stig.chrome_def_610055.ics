@@ -1,0 +1,21 @@
+DEF
+VAR var_10 string `reg_dword`
+CRI AND
+CTN registry
+    TEST `at least one exists` all OR
+    STATE ste_6100550
+        type string equals `VAR var_10`
+        value int equals `1`
+    STATE_END
+    STATE ste_6100551
+        type string equals `VAR var_10`
+        value int equals `2`
+    STATE_END
+    OBJECT obj_610055
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Google\Chrome`
+        name `DownloadRestrictions`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

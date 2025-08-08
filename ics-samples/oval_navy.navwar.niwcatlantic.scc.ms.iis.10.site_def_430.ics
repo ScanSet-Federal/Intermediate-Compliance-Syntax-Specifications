@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_430
+        result string equals `true` `all`
+    STATE_END
+    OBJECT obj_430
+        identifier_type `Apppool`
+        identifier `.*`
+        parameter `failure.rapidFailProtection`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

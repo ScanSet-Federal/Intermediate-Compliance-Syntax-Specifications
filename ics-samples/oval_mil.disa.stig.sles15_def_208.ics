@@ -1,0 +1,84 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20800
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(.*(-S\s+unlink\s+|(\s+|,)unlink(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20801
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(.*(-S\s+unlink\s+|(\s+|,)unlink(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20802
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(.*(-S\s+rename\s+|(\s+|,)rename(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20803
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(.*(-S\s+rename\s+|(\s+|,)rename(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20804
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(.*(-S\s+renameat\s+|(\s+|,)renameat(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20805
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(.*(-S\s+renameat\s+|(\s+|,)renameat(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20806
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(.*(-S\s+rmdir\s+|(\s+|,)rmdir(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20807
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(.*(-S\s+rmdir\s+|(\s+|,)rmdir(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20808
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(.*(-S\s+unlinkat\s+|(\s+|,)unlinkat(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_20809
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(.*(-S\s+unlinkat\s+|(\s+|,)unlinkat(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

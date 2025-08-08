@@ -1,0 +1,29 @@
+DEF
+VAR var_118500 string ``
+RUN var_118500 CONCAT
+    OBJ obj_118500 trustee_domain
+    literal `\Administrator`
+RUN_END
+STATE ste_118500
+    trustee_name string equals `Administrator`
+STATE_END
+STATE ste_118501
+    trustee_name string equals VAR oval:mil.disa.stig.windows:var:118500
+STATE_END
+CRI AND
+CTN sid_sid
+    TEST `any exist` all
+    STATE_REF ste_118500
+    OBJECT obj_118500
+        trustee_sid `^S-1-5-[0-9-]+-500$`
+    OBJECT_END
+CTN_END
+CTN sid_sid
+    TEST `any exist` all
+    STATE_REF ste_118501
+    OBJECT obj_118500
+        trustee_sid `^S-1-5-[0-9-]+-500$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

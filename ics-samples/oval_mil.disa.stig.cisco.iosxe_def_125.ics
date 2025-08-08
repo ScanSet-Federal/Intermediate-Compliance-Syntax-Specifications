@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN global
+    TEST `any exist` all
+    OBJECT obj_12500
+        global_command `service password-encryption`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

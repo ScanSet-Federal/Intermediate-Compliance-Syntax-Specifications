@@ -1,0 +1,19 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `any exist` all
+    STATE ste_25438800
+        result record equals `
+    `
+    STATE_END
+    STATE ste_25438801
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25438800
+        namespace `root\rsop\computer`
+        wql `SELECT setting FROM RSOP_SecuritySettingNumeric WHERE KeyName='MaxTicketAge'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

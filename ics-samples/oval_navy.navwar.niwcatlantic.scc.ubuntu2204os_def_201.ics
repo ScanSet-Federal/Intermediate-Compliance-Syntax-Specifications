@@ -1,0 +1,19 @@
+DEF
+STATE ste_202
+    type string equals `ARPHRD_LOOPBACK`
+STATE_END
+CRI AND
+CTN interface
+    TEST `at least one exists` `at least one`
+    STATE ste_201
+        flag string equals `RUNNING|MULTICAST|BROADCAST|UP`
+    STATE_END
+    OBJECT obj_201
+        name `.*`
+        FILTER exclude
+            STATE_REF ste_202
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

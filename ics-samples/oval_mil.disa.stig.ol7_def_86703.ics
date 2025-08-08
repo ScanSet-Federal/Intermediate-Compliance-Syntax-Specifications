@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN process58
+    TEST `at least one exists` all
+    OBJECT obj_8670300
+        command_line `[\00]*\/sbin\/auditd[\00]*`
+        pid `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,23 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_1921
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_1921
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name, value, value_in_use 
+FROM sys.configurations 
+WHERE name = 'external scripts enabled'; `
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

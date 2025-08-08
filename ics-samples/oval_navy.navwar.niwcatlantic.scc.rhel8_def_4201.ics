@@ -1,0 +1,13 @@
+DEF
+CRI OR
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_4201
+        filepath `/etc/pam.d/system-auth`
+        pattern `nullok`
+        instance `1`
+        behavior multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

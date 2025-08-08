@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_8781500
+        subexpression string equals `(?i)^syslog|single|halt$`
+    STATE_END
+    OBJECT obj_8781500
+        filepath `/etc/audisp/audisp-remote.conf`
+        pattern `(?i)^\s*network_failure_action[ ]*=[ ]*([\w]+)\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

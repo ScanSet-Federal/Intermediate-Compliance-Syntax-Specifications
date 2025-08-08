@@ -1,0 +1,22 @@
+DEF
+SET obj_20001 union
+    OBJECT obj_20002
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Groove\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_20003
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Groove\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_20001
+        SET_REF obj_20001
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

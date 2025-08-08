@@ -1,0 +1,24 @@
+DEF
+VAR var_40 string ``
+RUN var_40 CONCAT
+    OBJ obj_124 result
+    literal `\Program Files (x86)\Common Files\System\msadc\`
+RUN_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_180
+        path VAR var_40
+        filename `^.*\.([Jj][Aa][Vv][Aa]|[Jj][Pp][Pp])$`
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_124
+        namespace `root\cimv2`
+        wql `SELECT SystemDrive FROM Win32_OperatingSystem`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

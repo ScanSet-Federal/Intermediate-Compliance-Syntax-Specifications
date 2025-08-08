@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_109000
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_109000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}`
+        name `NoGPOListChanges`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

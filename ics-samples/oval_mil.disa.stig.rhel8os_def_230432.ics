@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_23043200
+        filepath `/etc/audit/audit.rules`
+        pattern `^\s*-a\s+(always,exit|exit,always)(?:\s+-S\s+all)?\s+-F\s+path=/usr/sbin/setsebool\s+(-F\s+perm=([rwa]*x[rwa]*)\s+)?-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)\S+)?\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

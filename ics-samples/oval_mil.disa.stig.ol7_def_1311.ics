@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN partition
+    TEST `all exist` all
+    OBJECT obj_3017
+        mount_point `/home`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

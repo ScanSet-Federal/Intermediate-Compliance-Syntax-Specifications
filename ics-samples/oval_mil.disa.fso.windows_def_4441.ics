@@ -1,0 +1,53 @@
+DEF
+STATE ste_452700
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_444103
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\WCN\Registrars`
+        name `DisableInBand802DOT11Registrar`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_444104
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\WCN\Registrars`
+        name `DisableFlashConfigRegistrar`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_444102
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\WCN\Registrars`
+        name `DisableUPnPRegistrar`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_444101
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\WCN\Registrars`
+        name `DisableWPDRegistrar`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_444100
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\WCN\Registrars`
+        name `EnableRegistrars`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

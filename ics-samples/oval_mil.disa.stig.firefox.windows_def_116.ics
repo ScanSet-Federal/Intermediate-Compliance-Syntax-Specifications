@@ -1,0 +1,92 @@
+DEF
+STATE ste_2
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11600
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `Cache`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11601
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `Cookies`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11602
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `Downloads`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11603
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `FormData`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11604
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `History`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11605
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `Sessions`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11606
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `SiteSettings`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_11607
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `OfflineApps`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_1
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_11608
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown`
+        name `Locked`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

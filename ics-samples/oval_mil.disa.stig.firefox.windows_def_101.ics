@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_10100
+        type string equals `reg_sz`
+        value string equals `tls1\.[23]`
+    STATE_END
+    OBJECT obj_10100
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox`
+        name `SSLVersionMin`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

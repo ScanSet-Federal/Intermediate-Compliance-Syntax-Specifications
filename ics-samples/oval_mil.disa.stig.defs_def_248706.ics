@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_20000005
+        user_id int equals `0`
+    STATE_END
+    OBJECT obj_24870500
+        filepath `/usr/bin/lastlog`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

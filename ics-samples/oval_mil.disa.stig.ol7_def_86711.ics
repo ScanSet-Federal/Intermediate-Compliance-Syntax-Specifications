@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_8671100
+        subexpression string equals `^[Ss][Yy][Ss][Ll][Oo][Gg]$`
+    STATE_END
+    STATE ste_8671101
+        subexpression string equals `^[Ss][Ii][Nn][Gg][Ll][Ee]$`
+    STATE_END
+    STATE ste_8671102
+        subexpression string equals `^[Hh][Aa][Ll][Tt]$`
+    STATE_END
+    OBJECT obj_8671100
+        filepath `/etc/audisp/audisp-remote.conf`
+        pattern `^\s*disk_full_action\s+=\s+(\S+)\s*$`
+        instance `1`
+        behavior ignore_case true multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

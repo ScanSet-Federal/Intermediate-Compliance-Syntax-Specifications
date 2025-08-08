@@ -1,0 +1,78 @@
+DEF
+CRI OR
+CRI AND
+CTN cmdlet
+    TEST `any exist` all
+    STATE ste_420
+        value record equals `
+    ` `none satisfy`
+    STATE_END
+    OBJECT obj_420
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `elementtagname,roles,users`
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `any exist` all
+    STATE ste_421
+        value record equals `
+    ` `none satisfy`
+    STATE_END
+    OBJECT obj_420
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `elementtagname,roles,users`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_242
+        value record equals `
+    ` `all`
+    STATE_END
+    OBJECT obj_422
+        module_name `ServerManager`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `windowsfeature`
+        parameters record
+            field `web-asp-net,web-asp-net45`
+        select record
+            field `installstate`
+    OBJECT_END
+CTN_END
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_423
+        service_name `SPSearchHostController`
+    OBJECT_END
+CTN_END
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_424
+        service_name `WsusService`
+    OBJECT_END
+CTN_END
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_425
+        service_name `MSExchangeServiceHost`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

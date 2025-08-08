@@ -1,0 +1,46 @@
+DEF
+VAR var_23031600 int 0
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_23031600
+        subexpression string equals `(^|\s)dns(\s|$)`
+    STATE_END
+    OBJECT obj_23031600
+        filepath `/etc/nsswitch.conf`
+        pattern `^\s*hosts:\s*(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_23031600
+        subexpression string equals `(^|\s)dns(\s|$)`
+    STATE_END
+    OBJECT obj_23031600
+        filepath `/etc/nsswitch.conf`
+        pattern `^\s*hosts:\s*(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23031602
+        filepath `/etc/resolv.conf`
+        pattern `^nameserver\s+(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_23031601
+        value int `greater than or equal` `2`
+    STATE_END
+    OBJECT obj_23031601
+        var_ref VAR var_23031600
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

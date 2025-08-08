@@ -1,0 +1,34 @@
+DEF
+CRI OR
+CTN file
+    TEST `none exist` all
+    OBJECT obj_445501
+        path `C:\Windows\WinStore`
+        filename ``
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_453700
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_445500
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\Explorer`
+        name `NoUseStoreOpenWith`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `at least one exists` all
+    OBJECT obj_445501
+        path `C:\Windows\WinStore`
+        filename ``
+        behavior recurse_direction down max_depth -1
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

@@ -1,0 +1,67 @@
+DEF
+VAR var_421 string ``
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1 string `sqlserver`
+STATE ste_421
+    result string equals `
+    `
+STATE_END
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE_REF ste_421
+    OBJECT obj_421
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name AS schema_name, USER_NAME(principal_id) AS user_name
+FROM sys.schemas
+WHERE schema_id != principal_id
+ AND principal_id != 1`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE_REF ste_421
+    OBJECT obj_422
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT object_id, name AS securable, 
+  USER_NAME(principal_id) AS user_name,
+  type_desc
+FROM sys.objects
+WHERE is_ms_shipped = 0 AND principal_id IS NOT NULL
+ORDER BY type_desc, securable, user_name`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE_REF ste_421
+    OBJECT obj_423
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT U.type_desc, U.name AS user_name,
+ DP.class_desc AS securable_type,
+   CASE DP.class
+    WHEN 0 THEN DB_NAME()
+    WHEN 1 THEN OBJECT_NAME(DP.major_id) 
+    WHEN 3 THEN SCHEMA_NAME(DP.major_id)
+   ELSE CAST(DP.major_id AS nvarchar)
+   END AS securable,
+       permission_name, state_desc
+FROM sys.database_permissions DP
+JOIN sys.database_principals U ON DP.grantee_principal_id = U.principal_id
+WHERE DP.state = 'W'
+ORDER BY user_name, securable_type, securable`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

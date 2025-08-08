@@ -1,0 +1,28 @@
+DEF
+CRI OR
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_260
+        result string equals `DetailedLocalOnly` `all`
+    STATE_END
+    OBJECT obj_260
+        identifier_type `Site`
+        identifier `.*`
+        section `system.webServer/httpErrors`
+        parameter `errorMode`
+    OBJECT_END
+CTN_END
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_261
+        result string equals `Custom` `all`
+    STATE_END
+    OBJECT obj_260
+        identifier_type `Site`
+        identifier `.*`
+        section `system.webServer/httpErrors`
+        parameter `errorMode`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

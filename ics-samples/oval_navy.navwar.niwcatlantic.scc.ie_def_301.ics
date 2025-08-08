@@ -1,0 +1,21 @@
+DEF
+STATE ste_302
+    enabled boolean equals `false`
+STATE_END
+CRI AND
+CTN ntuser
+    TEST `at least one exists` all
+    STATE ste_301
+        type string equals `reg_sz`
+        value string equals `no`
+    STATE_END
+    OBJECT obj_301
+        key `Software\Policies\Microsoft\Internet Explorer\Main`
+        name `FormSuggest PW Ask`
+        FILTER exclude
+            STATE_REF ste_302
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,48 @@
+DEF
+CRI XOR true
+CRI OR
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_22081200
+        value record equals `
+    `
+    STATE_END
+    OBJECT obj_22081200
+        module_name `CimCmdlets`
+        module_id ``
+        module_version `1.0.0.0`
+        verb `Get`
+        noun `CimInstance`
+        parameters record
+            field `root\Microsoft\Windows\DeviceGuard`
+        select record
+            field `SecurityServicesRunning`
+    OBJECT_END
+CTN_END
+CTN unknown
+    TEST `any exist` `at least one`
+    OBJECT
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_22081201
+        value record equals `
+    `
+    STATE_END
+    OBJECT obj_22081200
+        module_name `CimCmdlets`
+        module_id ``
+        module_version `1.0.0.0`
+        verb `Get`
+        noun `CimInstance`
+        parameters record
+            field `root\Microsoft\Windows\DeviceGuard`
+        select record
+            field `SecurityServicesRunning`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_2001
+        shell string equals `bash`
+        command string equals `systemctl is-enabled rngd`
+        stdout_line string equals `enabled`
+    STATE_END
+    OBJECT obj_2001
+        shell `bash`
+        command `systemctl is-enabled rngd`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_2002
+        shell string equals `bash`
+        command string equals `systemctl is-active rngd`
+        stdout_line string equals `active`
+    STATE_END
+    OBJECT obj_2002
+        shell `bash`
+        command `systemctl is-active rngd`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

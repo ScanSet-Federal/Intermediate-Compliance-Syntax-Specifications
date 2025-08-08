@@ -1,0 +1,27 @@
+DEF
+VAR var_21000 int 0
+RUN var_21000 EXTRACT
+    OBJ obj_21001 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_21000
+        group_id string equals `VAR var_21000`
+    STATE_END
+    OBJECT obj_21000
+        path `/var/log`
+        filename ``
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_21001
+        path `/etc`
+        filename `group`
+        pattern `^syslog:[^:]*:([0-9]+):`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

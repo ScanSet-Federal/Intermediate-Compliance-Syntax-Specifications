@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_49600
+        type string equals `reg_sz` `all`
+        value int equals `1` `all`
+    STATE_END
+    OBJECT obj_49600
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS`
+        name `(Reserved)`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_23023800
+        path `/etc`
+        filename `\.keytab$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

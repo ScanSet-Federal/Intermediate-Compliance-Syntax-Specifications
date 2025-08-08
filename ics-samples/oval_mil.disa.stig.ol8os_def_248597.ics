@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_23028300
+        path `/`
+        filename `shosts.equiv`
+        behavior max_depth -1 recurse directories recurse_direction down recurse_file_system local
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,52 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2501
+        filepath `/etc/pam.d/password-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so\s+preauth\s+.*?(dir=\S+)\s*.*?\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2502
+        filepath `/etc/pam.d/password-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so\s+authfail\s+.*?(dir=\S+)\s*.*?\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2503
+        filepath `/etc/pam.d/password-auth`
+        pattern `\n*\s*account\s+required\s+pam_faillock.so\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2504
+        filepath `/etc/pam.d/system-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so\s+preauth\s+.*?(dir=\S+)\s*.*?\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2505
+        filepath `/etc/pam.d/system-auth`
+        pattern `\n*\s*auth\s+required\s+pam_faillock.so\s+authfail\s+.*?(dir=\S+)\s*.*?\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_2506
+        filepath `/etc/pam.d/system-auth`
+        pattern `\n*\s*account\s+required\s+pam_faillock.so\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

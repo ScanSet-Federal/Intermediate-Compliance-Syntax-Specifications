@@ -1,0 +1,52 @@
+DEF
+CRI AND
+CTN cmdlet
+    TEST `at least one exists` `only one`
+    STATE ste_50
+        value record equals `
+    ` `at least one`
+    STATE_END
+    OBJECT obj_50
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `logFieldName,sourceType,sourceName`
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `at least one exists` `only one`
+    STATE ste_51
+        value record equals `
+    ` `at least one`
+    STATE_END
+    OBJECT obj_50
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `logFieldName,sourceType,sourceName`
+    OBJECT_END
+CTN_END
+CTN appcmdlistconfig
+    TEST `only one exists` all
+    STATE ste_52
+        result string equals `W3C` `all`
+    STATE_END
+    OBJECT obj_51
+        identifier_type `Webserver`
+        identifier ``
+        section `system.applicationHost/sites`
+        parameter `siteDefaults.logFile.logFormat`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

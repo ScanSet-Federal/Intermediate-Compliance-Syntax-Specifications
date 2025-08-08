@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_11000
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_11000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows Defender\NIS`
+        name `DisableProtocolRecognition`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `all exist` all
+    STATE ste_20000001
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_25342400
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\WindowsInkWorkspace`
+        name `AllowWindowsInkWorkspace`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

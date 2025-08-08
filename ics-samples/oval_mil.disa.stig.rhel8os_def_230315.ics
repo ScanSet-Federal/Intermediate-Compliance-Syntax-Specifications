@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23031500
+        subexpression string equals `0`
+    STATE_END
+    OBJECT obj_23031500
+        filepath `/etc/systemd/coredump.conf`
+        pattern `^\s*ProcessSizeMax\s*=\s*(\w*)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

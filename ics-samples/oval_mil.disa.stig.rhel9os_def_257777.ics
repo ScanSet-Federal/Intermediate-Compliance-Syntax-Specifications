@@ -1,0 +1,37 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_20000004
+        subexpression int equals `2`
+    STATE_END
+    STATE ste_20000006
+        subexpression int equals `4`
+    STATE_END
+    STATE ste_20000007
+        subexpression int equals `5`
+    STATE_END
+    STATE ste_20000008
+        subexpression int equals `6`
+    STATE_END
+    STATE ste_20000009
+        subexpression int equals `7`
+    STATE_END
+    STATE ste_20000010
+        subexpression int equals `8`
+    STATE_END
+    STATE ste_20000011
+        subexpression int equals `9`
+    STATE_END
+    STATE ste_20000012
+        subexpression int equals `10`
+    STATE_END
+    OBJECT obj_25777700
+        path `/etc`
+        filename `redhat-release`
+        pattern `^\s*Red Hat Enterprise Linux release 9\.(\d+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

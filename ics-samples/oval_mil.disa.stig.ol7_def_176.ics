@@ -1,0 +1,21 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_2108
+        filepath `/etc/sudoers`
+        pattern `^(?!#).*[\s]+NOPASSWD[\s]*\:.*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_2109
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^(?!#).*[\s]+NOPASSWD[\s]*\:.*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

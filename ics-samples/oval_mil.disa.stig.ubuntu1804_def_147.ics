@@ -1,0 +1,15 @@
+DEF
+VAR var_14900 string `/lib`
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_14700
+        user_id int equals `0` `all`
+    STATE_END
+    OBJECT obj_14900
+        path VAR var_14900
+        filename ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

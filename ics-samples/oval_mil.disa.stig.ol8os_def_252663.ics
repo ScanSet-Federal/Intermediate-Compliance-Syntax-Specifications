@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN symlink
+    TEST `all exist` all
+    STATE ste_25171800
+        canonical_path string equals `[\S]*\/multi\-user\.target$`
+    STATE_END
+    OBJECT obj_25171800
+        filepath `/etc/systemd/system/default.target`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

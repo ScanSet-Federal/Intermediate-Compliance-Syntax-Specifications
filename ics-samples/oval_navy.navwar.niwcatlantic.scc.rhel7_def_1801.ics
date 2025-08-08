@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN symlink
+    TEST `at least one exists` all
+    STATE ste_1801
+        canonical_path string equals `/etc/pam.d/password-auth-local`
+    STATE_END
+    OBJECT obj_1801
+        filepath `/etc/pam.d/password-auth`
+    OBJECT_END
+CTN_END
+CTN symlink
+    TEST `at least one exists` all
+    STATE ste_1802
+        canonical_path string equals `/etc/pam.d/system-auth-local`
+    STATE_END
+    OBJECT obj_1802
+        filepath `/etc/pam.d/system-auth`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

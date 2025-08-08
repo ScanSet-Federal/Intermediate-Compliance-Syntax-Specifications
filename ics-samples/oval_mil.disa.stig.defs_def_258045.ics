@@ -1,0 +1,27 @@
+DEF
+VAR var_25804501 int 0
+VAR var_25804500 int 0
+RUN var_25804500 COUNT
+    OBJ obj_25804500 user_id
+RUN_END
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_25804500
+        value string equals `VAR var_25804501`
+    STATE_END
+    OBJECT obj_25804501
+        var_ref VAR var_25804500
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `any exist` all
+    OBJECT obj_25804500
+        username `.*`
+        FILTER include
+            STATE_REF ste_25804500
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

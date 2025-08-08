@@ -1,0 +1,18 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_25798900
+        subexpression string equals `aes256-gcm@openssh.com,aes256-ctr,aes128-gcm@openssh.com,aes128-ctr`
+    STATE_END
+    STATE ste_25798901
+        subexpression string equals `"aes256-gcm@openssh.com,aes256-ctr,aes128-gcm@openssh.com,aes128-ctr"`
+    STATE_END
+    OBJECT obj_25798900
+        filepath `/etc/crypto-policies/back-ends/opensshserver.config`
+        pattern `^\s*(?i)Ciphers(?-i)[ \t]+(\S+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_10600
+        subexpression string equals `6`
+    STATE_END
+    OBJECT obj_10600
+        path `/etc/security`
+        filename `policy.conf`
+        pattern `^CRYPT_DEFAULT=(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_10601
+        subexpression string equals `5,6`
+    STATE_END
+    OBJECT obj_10601
+        path `/etc/security`
+        filename `policy.conf`
+        pattern `^CRYPT_ALGORITHMS_ALLOW=(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

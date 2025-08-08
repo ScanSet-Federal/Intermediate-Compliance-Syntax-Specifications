@@ -1,0 +1,33 @@
+DEF
+VAR var_621 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_621
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_621
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT D.name AS database_name, SUSER_SNAME(D.owner_sid) AS owner_name FROM sys.databases as D WHERE containment = 1 `
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_622
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT DB_NAME() AS database_name, USER_NAME(principal_id) as user_name, authentication_type FROM sys.database_principals WHERE authentication_type = 2`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

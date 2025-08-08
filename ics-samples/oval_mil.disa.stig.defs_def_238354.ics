@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `any exist` all
+    OBJECT obj_23835400
+        name `ufw`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

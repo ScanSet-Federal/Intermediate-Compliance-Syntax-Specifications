@@ -1,0 +1,34 @@
+DEF
+STATE ste_8647901
+    configuration_file boolean equals `true`
+STATE_END
+STATE ste_8647900
+    ghost_file boolean equals `true`
+STATE_END
+STATE ste_3860
+    md5_differs string equals `fail`
+STATE_END
+CRI AND
+CTN rpmverifyfile
+    TEST `none exist` all
+    OBJECT obj_3037
+        name `.*`
+        epoch `.*`
+        version `.*`
+        release `.*`
+        arch `.*`
+        filepath `^(|/usr|/usr/local)/(bin|sbin|lib|lib64|libexec)/.+$`
+        behavior nomd5 false noconfigfiles true noghostfiles true
+        FILTER include
+            STATE_REF ste_3860
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_8647900
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_8647901
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

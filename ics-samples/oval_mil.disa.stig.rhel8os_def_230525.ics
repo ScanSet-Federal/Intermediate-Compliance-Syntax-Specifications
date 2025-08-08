@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23052500
+        subexpression string equals `nftables`
+    STATE_END
+    OBJECT obj_23052500
+        filepath `/etc/firewalld/firewalld.conf`
+        pattern `^\s*FirewallBackend\s*=\s*(\w+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,35 @@
+DEF
+STATE ste_14500
+    suid boolean equals `false`
+    sgid boolean equals `false`
+    sticky boolean equals `false`
+    gwrite boolean equals `false`
+    owrite boolean equals `false`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_14500
+    OBJECT obj_14500
+        path `/lib`
+        filename ``
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_14500
+    OBJECT obj_14501
+        path `/lib64`
+        filename ``
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    STATE_REF ste_14500
+    OBJECT obj_14502
+        path `/usr/lib`
+        filename ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

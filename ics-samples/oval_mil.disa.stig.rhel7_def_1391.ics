@@ -1,0 +1,11 @@
+DEF
+VAR var_3866 int 0
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_2994
+        name `openssh-server`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

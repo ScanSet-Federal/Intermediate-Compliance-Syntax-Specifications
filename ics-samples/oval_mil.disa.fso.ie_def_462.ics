@@ -1,0 +1,17 @@
+DEF
+VAR var_46200 string ``
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_46200
+        type string equals `reg_sz`
+        value string equals `VAR var_46200`
+    STATE_END
+    OBJECT obj_46200
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Internet Explorer\Download`
+        name `CheckExeSignatures`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,44 @@
+DEF
+STATE ste_25335900
+    type string equals `reg_dword`
+    value int equals `4096`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25335900
+    OBJECT obj_25335900
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Classes\batfile\shell\runasuser`
+        name `SuppressionPolicy`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25335900
+    OBJECT obj_25335901
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Classes\cmdfile\shell\runasuser`
+        name `SuppressionPolicy`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25335900
+    OBJECT obj_25335902
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Classes\exefile\shell\runasuser`
+        name `SuppressionPolicy`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25335900
+    OBJECT obj_25335903
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Classes\mscfile\shell\runasuser`
+        name `SuppressionPolicy`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

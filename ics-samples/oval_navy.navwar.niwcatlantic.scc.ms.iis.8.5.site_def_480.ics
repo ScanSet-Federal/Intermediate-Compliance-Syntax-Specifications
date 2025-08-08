@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `none exist` all
+    STATE ste_480
+        value string equals `Version 8.5`
+    STATE_END
+    OBJECT obj_480
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\InetStp`
+        name `VersionString`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

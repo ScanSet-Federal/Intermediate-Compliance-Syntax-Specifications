@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_390
+        result int `greater than` `0` `all`
+    STATE_END
+    OBJECT obj_390
+        identifier_type `Apppool`
+        identifier `.*`
+        parameter `recycling.periodicRestart.requests`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,14 @@
+DEF
+VAR var_459200 int 0
+CRI AND
+CTN lockoutpolicy
+    TEST `at least one exists` all
+    STATE ste_459200
+        force_logoff string equals `VAR var_459200`
+    STATE_END
+    OBJECT obj_442300
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

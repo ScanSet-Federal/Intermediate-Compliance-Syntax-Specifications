@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_11000
+        value int equals `1`
+    STATE_END
+    OBJECT obj_11000
+        name `net.ipv4.tcp_syncookies`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

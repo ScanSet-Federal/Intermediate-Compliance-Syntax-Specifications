@@ -1,0 +1,64 @@
+DEF
+VAR var_2 string ``
+VAR var_1 string ``
+VAR var_4 string ``
+VAR var_5 string ``
+VAR var_3 string ``
+RUN var_1 CONCAT
+    OBJ obj_183 value
+    VAR var_2
+RUN_END
+RUN var_4 EXTRACT
+    OBJ obj_184 result
+RUN_END
+RUN var_3 EXTRACT
+    OBJ obj_185 result
+RUN_END
+SET obj_476 union
+    OBJECT obj_477
+        path `VAR var_4`
+        filename `(?i)(^.*\.(bak|old]|temp|tmp|backup])$)|(^copy of)`
+    OBJECT_END
+    OBJECT obj_478
+        path `VAR var_1`
+        filename `(?i)(^.*\.(bak|old]|temp|tmp|backup])$)|(^copy of)`
+    OBJECT_END
+SET_END
+CRI AND
+CTN file
+    TEST `none exist` all
+    OBJECT obj_476
+        SET_REF obj_476
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `any exist` all
+    OBJECT obj_185
+        identifier_type `VDir`
+        identifier `.*`
+        parameter `physicalPath`
+        FILTER include
+            STATE_REF ste_181
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `any exist` all
+    OBJECT obj_184
+        identifier_type `VDir`
+        identifier `.*`
+        parameter `physicalPath`
+        FILTER include
+            STATE_REF ste_180
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN environmentvariable58
+    TEST `any exist` all
+    OBJECT obj_183
+        pid ``
+        name VAR var_5
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

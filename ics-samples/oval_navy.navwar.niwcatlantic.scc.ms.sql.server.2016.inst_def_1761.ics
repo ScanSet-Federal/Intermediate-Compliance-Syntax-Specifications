@@ -1,0 +1,38 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_1761
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT OBJECT_NAME(major_id) AS [Stored Procedure]
+,dpr.NAME AS [Principal]
+FROM sys.database_permissions AS dp
+INNER JOIN sys.database_principals AS dpr ON dp.grantee_principal_id = dpr.principal_id
+WHERE major_id IN (
+ OBJECT_ID('xp_regaddmultistring')
+,OBJECT_ID('xp_regdeletekey')
+,OBJECT_ID('xp_regdeletevalue')
+,OBJECT_ID('xp_regenumvalues')
+,OBJECT_ID('xp_regenumkeys')
+,OBJECT_ID('xp_regremovemultistring')
+,OBJECT_ID('xp_regwrite')
+,OBJECT_ID('xp_instance_regaddmultistring')
+,OBJECT_ID('xp_instance_regdeletekey')
+,OBJECT_ID('xp_instance_regdeletevalue')
+,OBJECT_ID('xp_instance_regenumkeys')
+,OBJECT_ID('xp_instance_regenumvalues')
+,OBJECT_ID('xp_instance_regremovemultistring')
+,OBJECT_ID('xp_instance_regwrite')
+)
+AND dp.[type] = 'EX'
+ORDER BY dpr.NAME;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

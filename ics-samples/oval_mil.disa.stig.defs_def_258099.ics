@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_25810000
+        subexpression int `greater than or equal` `100000`
+    STATE_END
+    OBJECT obj_25809900
+        filepath `/etc/pam.d/password-auth`
+        pattern `^\s*password\s+sufficient\s+pam_unix\.so\s+[^#\n]*\brounds=(\d+)\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

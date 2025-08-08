@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN process58
+    TEST `any exist` all
+    OBJECT obj_14900
+        command_line `^/sbin/auditd\b`
+        pid `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

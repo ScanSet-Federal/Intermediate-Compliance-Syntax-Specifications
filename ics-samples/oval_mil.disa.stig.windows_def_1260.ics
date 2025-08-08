@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_16900
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_16900
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters`
+        name `SMB1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

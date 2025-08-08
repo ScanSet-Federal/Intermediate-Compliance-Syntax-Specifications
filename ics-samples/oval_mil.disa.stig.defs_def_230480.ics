@@ -1,0 +1,21 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all OR
+    STATE ste_23039000
+        subexpression string equals `(?i)^syslog$`
+    STATE_END
+    STATE ste_23039001
+        subexpression string equals `(?i)^single$`
+    STATE_END
+    STATE ste_23039002
+        subexpression string equals `(?i)^halt$`
+    STATE_END
+    OBJECT obj_23048000
+        filepath `/etc/audit/auditd.conf`
+        pattern `(?i)^\s*overflow_action\s*=\s*(\w+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

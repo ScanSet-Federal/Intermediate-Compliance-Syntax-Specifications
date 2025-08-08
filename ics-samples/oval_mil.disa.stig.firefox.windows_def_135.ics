@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_1
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_13500
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox`
+        name `DisableFeedbackCommands`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

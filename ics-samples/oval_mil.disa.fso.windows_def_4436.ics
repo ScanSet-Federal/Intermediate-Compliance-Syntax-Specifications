@@ -1,0 +1,17 @@
+DEF
+VAR var_443600 string ``
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_443600
+        type string equals `reg_sz`
+        value string equals `VAR var_443600`
+    STATE_END
+    OBJECT obj_443600
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\TCPIP\v6Transition`
+        name `Force_Tunneling`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

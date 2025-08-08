@@ -1,0 +1,26 @@
+DEF
+SET obj_25806800 union
+    OBJECT obj_25806801
+        filepath `/etc/profile`
+        pattern `^[^#]*\s*TMOUT=(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25806802
+        path `/etc/profile.d`
+        filename `^.+\.sh$`
+        pattern `^[^#]*\s*TMOUT=(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_20000026
+        subexpression int `less than or equal` `600`
+    STATE_END
+    OBJECT obj_25806800
+        SET_REF obj_25806800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_6400
+        subexpression int equals `6`
+    STATE_END
+    OBJECT obj_6400
+        path `/etc/ssh`
+        filename `sshd_config`
+        pattern `^\s*[Mm][Aa][Xx][Aa][Uu][Tt][Hh][Tt][Rr][Ii][Ee][Ss]\s+(\S+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_6401
+        subexpression int equals `6`
+    STATE_END
+    OBJECT obj_6401
+        path `/etc/ssh`
+        filename `sshd_config`
+        pattern `^\s*[Mm][Aa][Xx][Aa][Uu][Tt][Hh][Tt][Rr][Ii][Ee][Ss][Ll][Oo][Gg]\s+(\S+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

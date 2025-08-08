@@ -1,0 +1,115 @@
+DEF
+VAR var_312 string ``
+VAR var_311 string ``
+VAR var_313 string ``
+VAR var_310 string ``
+VAR var_314 string ``
+VAR var_315 string ``
+RUN var_311 CONCAT
+    OBJ obj_315 value
+    VAR var_312
+RUN_END
+RUN var_313 EXTRACT
+    OBJ obj_316 value
+RUN_END
+RUN var_314 EXTRACT
+    OBJ obj_317 value
+RUN_END
+STATE ste_311
+    standard_delete boolean equals `0`
+    standard_write_dac boolean equals `0`
+    standard_write_owner boolean equals `0`
+    access_system_security boolean equals `0`
+    generic_write boolean equals `0`
+    generic_all boolean equals `0`
+    file_write_data boolean equals `0`
+    file_append_data boolean equals `0`
+    file_write_ea boolean equals `0`
+    file_delete_child boolean equals `0`
+    file_write_attributes boolean equals `0`
+STATE_END
+SET obj_311 union
+    OBJECT obj_318
+        path `VAR var_310`
+        trustee_sid `.*`
+    OBJECT_END
+    OBJECT obj_319
+        path `VAR var_311`
+        trustee_sid `.*`
+    OBJECT_END
+SET_END
+SET obj_312 union
+    OBJECT obj_3110
+        path `VAR var_310`
+        trustee_sid `.*`
+    OBJECT_END
+    OBJECT obj_3111
+        path `VAR var_311`
+        trustee_sid `.*`
+    OBJECT_END
+SET_END
+SET obj_310 union
+    OBJECT obj_313
+        path `VAR var_310`
+        trustee_sid `.*`
+    OBJECT_END
+    OBJECT obj_314
+        path `VAR var_311`
+        trustee_sid `.*`
+    OBJECT_END
+SET_END
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE ste_310
+        trustee_sid string equals `^(S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464|S-1-5-18|S-1-5-32-544|S-1-3-0|S-1-5-32-545|S-1-15-2-1)$` `all`
+    STATE_END
+    OBJECT obj_310
+        SET_REF obj_310
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `any exist` all
+    STATE_REF ste_311
+    OBJECT obj_311
+        SET_REF obj_311
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `any exist` all
+    STATE_REF ste_311
+    OBJECT obj_312
+        SET_REF obj_312
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_317
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\inetStp`
+        name `PathWWWRoot`
+        FILTER include
+            STATE_REF ste_312
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN environmentvariable58
+    TEST `any exist` all
+    OBJECT obj_315
+        pid ``
+        name VAR var_315
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_316
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\inetStp`
+        name `PathWWWRoot`
+        FILTER include
+            STATE_REF ste_313
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_20444300
+        name `ypserv`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

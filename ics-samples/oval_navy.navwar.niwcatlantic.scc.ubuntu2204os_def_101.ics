@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_101
+        exit_status int equals `0`
+        stdout_line string equals `ii\s+gnome-session-bin`
+    STATE_END
+    OBJECT obj_101
+        shell `bash`
+        command `dpkg -l |  grep gnome-session |  grep -E 'ii\s+gnome-session-bin'`
+        pattern `^(.*)$`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_102
+        exit_status int equals `0`
+        stdout_line string equals `^graphical\.target$`
+    STATE_END
+    OBJECT obj_102
+        shell `bash`
+        command `systemctl get-default`
+        pattern `^(.*)$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

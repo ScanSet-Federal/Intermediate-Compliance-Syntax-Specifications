@@ -1,0 +1,16 @@
+DEF
+VAR var_3793 int 0
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_2344
+        subexpression string equals `VAR var_3793`
+    STATE_END
+    OBJECT obj_3729
+        filepath `/etc/login.defs`
+        pattern `^\s*PASS_MAX_DAYS\s+(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

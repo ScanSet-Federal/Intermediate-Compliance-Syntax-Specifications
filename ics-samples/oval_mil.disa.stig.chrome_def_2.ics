@@ -1,0 +1,72 @@
+DEF
+VAR var_200 string ``
+VAR var_201 string ``
+RUN var_200 EXTRACT
+    OBJ obj_204 key
+RUN_END
+RUN var_201 EXTRACT
+    OBJ obj_205 key
+RUN_END
+STATE ste_200
+    value version `greater than or equal` `33`
+STATE_END
+STATE ste_201
+    value string equals `Google Chrome`
+STATE_END
+SET obj_205 union
+    OBJECT obj_201
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall`
+        name `DisplayName`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.chrome:ste:201
+    FILTER_END
+SET_END
+SET obj_204 union
+    OBJECT obj_200
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall`
+        name `DisplayName`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.chrome:ste:201
+    FILTER_END
+SET_END
+CRI AND
+CRI OR
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_204
+        SET_REF obj_204
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_205
+        SET_REF obj_205
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN registry
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_200
+    OBJECT obj_202
+        hive `HKEY_LOCAL_MACHINE`
+        key VAR var_200
+        name `DisplayVersion`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_200
+    OBJECT obj_203
+        hive `HKEY_LOCAL_MACHINE`
+        key VAR var_201
+        name `DisplayVersion`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

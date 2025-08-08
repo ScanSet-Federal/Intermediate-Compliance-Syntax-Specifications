@@ -1,0 +1,58 @@
+DEF
+CRI AND
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_420
+        value record equals `
+    ` `only one`
+    STATE_END
+    OBJECT obj_420
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `elementtagname,roles,users`
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `at least one exists` all
+    STATE ste_421
+        value record equals `
+    ` `only one`
+    STATE_END
+    OBJECT obj_420
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `elementtagname,roles,users`
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `any exist` all
+    STATE ste_425
+        value record equals `
+    ` `none satisfy`
+    STATE_END
+    OBJECT obj_420
+        module_name `WebAdministration`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `WebConfigurationProperty`
+        parameters record
+            field `.`
+        select record
+            field `elementtagname,roles,users`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

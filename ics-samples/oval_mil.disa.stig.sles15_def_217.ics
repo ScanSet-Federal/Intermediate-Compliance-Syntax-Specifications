@@ -1,0 +1,25 @@
+DEF
+STATE ste_21700
+    subexpression string equals `^.*nosuid.*$`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_21700
+    OBJECT obj_21700
+        filepath `/etc/fstab`
+        pattern `^\s*\[?[\.\w:-]+\]?:[/\w-]+\s+[/\w-]+\s+nfs[4]?\s+(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_21700
+    OBJECT obj_21701
+        filepath `/etc/mtab`
+        pattern `^\s*\[?[\.\w:-]+\]?:[/\w-]+\s+[/\w-]+\s+nfs[4]?\s+(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,41 @@
+DEF
+STATE ste_20902
+    filepath string equals `/var/log/wtmp`
+STATE_END
+STATE ste_20901
+    filepath string equals `/var/log/btmp`
+STATE_END
+STATE ste_20903
+    filepath string equals `/var/log/lastlog`
+STATE_END
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_20900
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        uexec boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_20900
+        path `/var/log`
+        filename `.*`
+        behavior max_depth -1 recurse directories recurse_direction down recurse_file_system local
+        FILTER exclude
+            STATE_REF ste_20901
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_20902
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_20903
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

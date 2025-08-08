@@ -1,0 +1,21 @@
+DEF
+CRI AND
+CTN file
+    TEST `all exist` all
+    STATE ste_20000007
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        uexec boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_25817200
+        filepath `/etc/audit/auditd.conf`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,24 @@
+DEF
+CRI AND
+CTN partition
+    TEST `any exist` all
+    STATE ste_20000001
+        mount_options string equals `nodev` `at least one`
+    STATE_END
+    OBJECT obj_23029200
+        mount_point `/var`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_25785400
+        subexpression string equals `(^|,)nodev(,|$)`
+    STATE_END
+    OBJECT obj_25786900
+        filepath `/etc/fstab`
+        pattern `^\s*[^#\s]+\s+/var\s+\S+\s+(\S+)\s+\S+\s+\S+\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

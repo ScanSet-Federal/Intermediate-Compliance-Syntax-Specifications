@@ -1,0 +1,26 @@
+DEF
+SET obj_17902 union
+    OBJECT obj_17900
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults\s+timestamp_timeout\s*=\s*([-\d]+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_17901
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^\s*Defaults\s+timestamp_timeout\s*=\s*([-\d]+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_17900
+        subexpression int `greater than or equal` `0`
+    STATE_END
+    OBJECT obj_17902
+        SET_REF obj_17902
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

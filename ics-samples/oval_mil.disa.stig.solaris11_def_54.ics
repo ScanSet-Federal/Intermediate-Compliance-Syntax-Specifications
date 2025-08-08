@@ -1,0 +1,21 @@
+DEF
+CRI OR
+CTN smf
+    TEST `none exist` all
+    OBJECT obj_5400
+        fmri `svc://localhost/network/ftp:default`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_5400
+        subexpression string equals `077`
+    STATE_END
+    OBJECT obj_5401
+        filepath `/etc/proftpd.conf`
+        pattern `^\s*Umask\s+(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

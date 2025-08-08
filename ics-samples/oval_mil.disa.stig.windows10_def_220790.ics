@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN auditeventpolicysubcategories
+    TEST `at least one exists` all OR
+    STATE ste_25334800
+        mpssvc_rule_level_policy_change string equals `AUDIT_SUCCESS`
+    STATE_END
+    STATE ste_25334801
+        mpssvc_rule_level_policy_change string equals `AUDIT_SUCCESS_FAILURE`
+    STATE_END
+    OBJECT obj_20000000
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

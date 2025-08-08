@@ -1,0 +1,17 @@
+DEF
+VAR var_50900 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_50900
+        type string equals `reg_dword`
+        value string equals `VAR var_50900`
+    STATE_END
+    OBJECT obj_50900
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Internet Explorer\Restrictions`
+        name `NoCrashDetection`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

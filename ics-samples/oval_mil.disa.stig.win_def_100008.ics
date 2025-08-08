@@ -1,0 +1,22 @@
+DEF
+SET obj_10000800 union
+    OBJECT obj_10000801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Excel\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10000802
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Excel\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_10000800
+        SET_REF obj_10000800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

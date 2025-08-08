@@ -1,0 +1,112 @@
+DEF
+VAR var_25334101 string ``
+VAR var_25334102 string ``
+RUN var_25334101 CONCAT
+    OBJ obj_20000015 value
+RUN_END
+STATE ste_20000014
+    trustee_sid string equals `S-1-5-19`
+STATE_END
+STATE ste_20000012
+    trustee_sid string equals `S-1-5-18`
+STATE_END
+STATE ste_20000013
+    trustee_sid string equals `S-1-5-32-544`
+STATE_END
+STATE ste_20000011
+    trustee_sid string equals `S-1-5-80-880578595-1860270145-482643319-2788375705-1540778122`
+STATE_END
+STATE ste_20000015
+    trustee_sid string equals `S-1-15-2-1`
+STATE_END
+SET obj_25334103 union
+    OBJECT obj_25334104
+        filepath `VAR var_25334102`
+        trustee_sid `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000011
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000012
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000013
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000014
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000015
+    FILTER_END
+SET_END
+SET obj_25334100 union
+    OBJECT obj_25334101
+        filepath `VAR var_25334101`
+        trustee_sid `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000011
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000012
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000013
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000014
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.win:ste:20000015
+    FILTER_END
+SET_END
+CRI OR
+CRI AND
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_25334103
+        SET_REF obj_25334103
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_20000016
+        value string equals `^(?i)%SystemRoot%.*$`
+    STATE_END
+    OBJECT obj_25334102
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\EventLog\Security`
+        name `file`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_25334100
+        SET_REF obj_25334100
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_20000016
+        value string equals `^(?i)%SystemRoot%.*$`
+    STATE_END
+    OBJECT obj_25334102
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\EventLog\Security`
+        name `file`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_20000015
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `SystemRoot`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

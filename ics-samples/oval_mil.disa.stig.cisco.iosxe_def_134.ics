@@ -1,0 +1,31 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` all
+    STATE ste_13300
+        config_line string equals `[\r\n]\s*ip ssh version 2[\r\n]`
+    STATE_END
+    OBJECT obj_13300
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_13400
+        config_line string equals `[\r\n]\s*ip ssh server algorithm encryption .+[\r\n]`
+    STATE_END
+    OBJECT obj_13400
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_13401
+        config_line string equals `[\r\n]\s*ip ssh server algorithm encryption(?: .+-cbc.*| .*3des-.+)+[\r\n]`
+    STATE_END
+    OBJECT obj_13400
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

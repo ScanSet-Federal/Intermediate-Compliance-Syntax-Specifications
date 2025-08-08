@@ -1,0 +1,161 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11600
+        config_line string equals `[\r\n]\s*boot network[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11601
+        config_line string equals `[\r\n]\s*ip boot server[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11602
+        config_line string equals `[\r\n]\s*ip bootp server[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11603
+        config_line string equals `[\r\n]\s*ip dns server[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11604
+        config_line string equals `[\r\n]\s*ip identd[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11605
+        config_line string equals `[\r\n]\s*ip finger[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_11606
+        config_line string equals `[\r\n]\s*no ip http server[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11607
+        config_line string equals `[\r\n]\s*ip rcmd rcp-enable[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11608
+        config_line string equals `[\r\n]\s*ip rcmd rsh-enable[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11609
+        config_line string equals `[\r\n]\s*service config[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11610
+        config_line string equals `[\r\n]\s*service finger[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11611
+        config_line string equals `[\r\n]\s*service tcp-small-servers[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11612
+        config_line string equals `[\r\n]\s*service udp-small-servers[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN line
+    TEST `at least one exists` all
+    STATE ste_11613
+        config_line string equals `[\r\n]\s*no service pad[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11614
+        config_line string equals `[\r\n]\s*service pad[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN line
+    TEST `at least one exists` `none satisfy`
+    STATE ste_11615
+        config_line string equals `[\r\n]\s*service call-home[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_11616
+        config_line string equals `[\r\n]\s*no service call-home[\r\n]`
+    STATE_END
+    OBJECT obj_11600
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

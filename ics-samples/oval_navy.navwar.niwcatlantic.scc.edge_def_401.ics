@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_401
+        name string equals `HubsSidebarEnabled`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_401
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `HubsSidebarEnabled`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

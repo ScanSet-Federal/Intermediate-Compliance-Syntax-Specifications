@@ -1,0 +1,23 @@
+DEF
+SET obj_25810100 union
+    OBJECT obj_25810101
+        filepath `/etc/security/pwquality.conf`
+        pattern `^\s*enforce_for_root\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25810102
+        path `/etc/security/pwquality.conf.d`
+        filename `\.conf$`
+        pattern `^\s*enforce_for_root\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25810100
+        SET_REF obj_25810100
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

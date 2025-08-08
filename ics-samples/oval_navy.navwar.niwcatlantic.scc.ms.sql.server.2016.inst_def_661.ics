@@ -1,0 +1,196 @@
+DEF
+STATE ste_662
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+STATE ste_661
+    type string equals `reg_dword`
+    value int equals `1`
+STATE_END
+CRI AND
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_661
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_662
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_663
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_664
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_665
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_666
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_667
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_668
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_669
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_670
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_671
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_672
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_673
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_674
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_675
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_676
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_662
+    OBJECT obj_677
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client`
+        name `Enabled`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_678
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_678
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE_REF ste_661
+    OBJECT obj_680
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server`
+        name `DisabledByDefault`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

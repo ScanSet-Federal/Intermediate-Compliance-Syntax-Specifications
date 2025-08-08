@@ -1,0 +1,44 @@
+DEF
+VAR var_703 string `System32`
+VAR var_702 string ``
+VAR var_701 string ``
+RUN var_702 CONCAT
+    OBJ obj_703 result
+    literal `\\[wW][iI][nN][dD][oO][wW][sS]\\`
+    VAR var_703
+RUN_END
+RUN var_701 EXTRACT
+    OBJ obj_702 filepath
+RUN_END
+CRI AND
+CTN xmlfilecontent
+    TEST `any exist` all
+    STATE ste_701
+        value_of string equals `true`
+    STATE_END
+    OBJECT obj_701
+        filepath VAR var_701
+        xpath `/configuration/runtime/NetFx40_LegacySecurityPolicy/@enabled`
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_703
+        namespace `root\cimv2`
+        wql `SELECT SystemDrive FROM Win32_OperatingSystem`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_702
+        path `.*`
+        filename `.*\.exe\.config$`
+        pattern `.*NetFx40_LegacySecurityPolicy.*`
+        instance `0`
+        FILTER exclude
+            STATE_REF ste_702
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

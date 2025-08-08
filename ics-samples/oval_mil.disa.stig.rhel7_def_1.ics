@@ -1,0 +1,59 @@
+DEF
+CRI OR
+CTN rpminfo
+    TEST `at least one exists` all
+    STATE ste_53
+        version string equals `^7.*$`
+    STATE_END
+    OBJECT obj_52
+        name `redhat-release-client`
+    OBJECT_END
+CTN_END
+CTN rpminfo
+    TEST `at least one exists` all
+    STATE ste_55
+        version string equals `^7.*$`
+    STATE_END
+    OBJECT obj_54
+        name `redhat-release-workstation`
+    OBJECT_END
+CTN_END
+CTN rpminfo
+    TEST `at least one exists` all
+    STATE ste_57
+        version string equals `^7.*$`
+    STATE_END
+    OBJECT obj_56
+        name `redhat-release-server`
+    OBJECT_END
+CTN_END
+CTN rpminfo
+    TEST `at least one exists` all
+    STATE ste_59
+        version string equals `^7.*$`
+    STATE_END
+    OBJECT obj_58
+        name `redhat-release-computenode`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN rpminfo
+    TEST `only one exists` all
+    OBJECT obj_60
+        name `redhat-release-virtualization-host`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_62
+        subexpression string equals `7`
+    STATE_END
+    OBJECT obj_61
+        filepath `/etc/redhat-release`
+        pattern `^Red Hat Enterprise Linux release (\d)\.\d+$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

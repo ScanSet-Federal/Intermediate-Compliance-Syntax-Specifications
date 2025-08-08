@@ -1,0 +1,25 @@
+DEF
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1 string `sqlserver`
+VAR var_141 string ``
+CRI AND
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_141
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_141
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT CONCAT(s.name,':',p.name) as schema_to_owner
+FROM sys.schemas S
+JOIN sys.database_principals P ON S.principal_id = P.principal_id
+ORDER BY schema_to_owner`
+        behavior context database
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

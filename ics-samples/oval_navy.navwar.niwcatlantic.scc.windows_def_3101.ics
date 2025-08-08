@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN registry
+    TEST `none exist` `only one`
+    OBJECT obj_3101
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\\CurrentControlSet\\Services\\PortProxy\\v.tov.\\.*`
+        name `.*`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN registry
+    TEST `none exist` `only one`
+    OBJECT obj_3102
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp`
+        name ``
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

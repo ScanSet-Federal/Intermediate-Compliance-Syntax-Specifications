@@ -1,0 +1,65 @@
+DEF
+VAR var_121 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI OR
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_121
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT P.type_desc AS principal_type, P.name AS user_name, O.type_desc,
+  CASE class
+   WHEN 0 THEN DB_NAME()
+   WHEN 1 THEN OBJECT_SCHEMA_NAME(major_id) + '.' + OBJECT_NAME(major_id)
+   WHEN 3 THEN SCHEMA_NAME(major_id)
+    ELSE class_desc + '(' + CAST(major_id AS nvarchar) + ')'
+   END AS securable_name, DP.state_desc, DP.permission_name
+FROM sys.database_permissions DP
+JOIN sys.database_principals P ON DP.grantee_principal_id = P.principal_id
+LEFT OUTER JOIN sys.all_objects O ON O.object_id = DP.major_id AND O.type IN ('TR','TA','P','X','RF','PC','IF','FN','TF','U')
+WHERE DP.type IN ('AL','ALTG') AND DP.class IN (0, 1, 53)
+SELECT R.name AS role_name, M.type_desc AS principal_type, M.name AS user_name
+FROM sys.database_principals R
+JOIN sys.database_role_members DRM ON R.principal_id = DRM.role_principal_id
+JOIN sys.database_principals M ON DRM.member_principal_id = M.principal_id
+WHERE R.name IN ('db_ddladmin','db_owner')
+   AND M.name != 'dbo'`
+        behavior context database
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_122
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_121
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT P.type_desc AS principal_type, P.name AS user_name, O.type_desc,
+  CASE class
+   WHEN 0 THEN DB_NAME()
+   WHEN 1 THEN OBJECT_SCHEMA_NAME(major_id) + '.' + OBJECT_NAME(major_id)
+   WHEN 3 THEN SCHEMA_NAME(major_id)
+    ELSE class_desc + '(' + CAST(major_id AS nvarchar) + ')'
+   END AS securable_name, DP.state_desc, DP.permission_name
+FROM sys.database_permissions DP
+JOIN sys.database_principals P ON DP.grantee_principal_id = P.principal_id
+LEFT OUTER JOIN sys.all_objects O ON O.object_id = DP.major_id AND O.type IN ('TR','TA','P','X','RF','PC','IF','FN','TF','U')
+WHERE DP.type IN ('AL','ALTG') AND DP.class IN (0, 1, 53)
+SELECT R.name AS role_name, M.type_desc AS principal_type, M.name AS user_name
+FROM sys.database_principals R
+JOIN sys.database_role_members DRM ON R.principal_id = DRM.role_principal_id
+JOIN sys.database_principals M ON DRM.member_principal_id = M.principal_id
+WHERE R.name IN ('db_ddladmin','db_owner')
+   AND M.name != 'dbo'`
+        behavior context database
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

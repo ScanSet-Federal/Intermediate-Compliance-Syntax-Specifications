@@ -1,0 +1,26 @@
+DEF
+STATE ste_17900
+    subexpression int `greater than or equal` `0`
+STATE_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_17900
+    OBJECT obj_17900
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults\s+timestamp_timeout\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_17900
+    OBJECT obj_17901
+        path `/etc/sudoers.d`
+        filename `^.*$`
+        pattern `^\s*Defaults\s+timestamp_timeout\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

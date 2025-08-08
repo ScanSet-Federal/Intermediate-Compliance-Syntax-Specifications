@@ -1,0 +1,26 @@
+DEF
+SET obj_25592500 union
+    OBJECT obj_25592501
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)KexAlgorithms(?-i)\s+"?(\S+)"?\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25592502
+        path `/etc/ssh/sshd_config.d`
+        filename `^.+\.conf$`
+        pattern `^\s*(?i)KexAlgorithms(?-i)\s+"?(\S+)"?\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_25592500
+        subexpression string equals `ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256`
+    STATE_END
+    OBJECT obj_25592500
+        SET_REF obj_25592500
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

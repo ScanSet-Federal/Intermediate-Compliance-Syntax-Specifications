@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_10
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_11800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `ImportShortcuts`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

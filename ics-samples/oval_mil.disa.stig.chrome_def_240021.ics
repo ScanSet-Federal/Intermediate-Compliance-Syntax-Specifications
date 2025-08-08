@@ -1,0 +1,18 @@
+DEF
+VAR var_11 string `reg_sz`
+VAR var_5 string `javascript://*`
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_2400211
+        type string equals `VAR var_11`
+        value string equals `VAR var_5`
+    STATE_END
+    OBJECT obj_2400211
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Google\Chrome\URLBlocklist`
+        name `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,26 @@
+DEF
+SET obj_25798600 union
+    OBJECT obj_25798601
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*UsePAM\s+(\w*)`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25798602
+        path `/etc/ssh/sshd_config.d`
+        filename `.+`
+        pattern `^\s*UsePAM\s+(\w*)`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_20000023
+        subexpression string equals `yes`
+    STATE_END
+    OBJECT obj_25798600
+        SET_REF obj_25798600
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

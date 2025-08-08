@@ -1,0 +1,17 @@
+DEF
+VAR var_52400 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_52400
+        type string equals `reg_dword`
+        value string equals `VAR var_52400`
+    STATE_END
+    OBJECT obj_52400
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4`
+        name `1206`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

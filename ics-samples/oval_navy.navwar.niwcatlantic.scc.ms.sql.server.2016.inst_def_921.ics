@@ -1,0 +1,41 @@
+DEF
+VAR var_921 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_921
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_921
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT C.name AS credential_name, C.credential_identity as credential_identity 
+FROM sys.credentials C`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_922
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_922
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT P.name AS proxy_name, C.name AS user_name, C.credential_identity 
+FROM sys.credentials C  
+JOIN msdb.dbo.sysproxies P ON C.credential_id = P.credential_id 
+WHERE P.enabled = 1`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

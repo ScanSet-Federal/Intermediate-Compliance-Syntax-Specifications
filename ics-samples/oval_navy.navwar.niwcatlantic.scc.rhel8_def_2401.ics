@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `any exist` all
+    STATE ste_2401
+        stderr_line string equals `.*`
+    STATE_END
+    OBJECT obj_2401
+        shell `bash`
+        command `ls -d $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd)`
+        pattern ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

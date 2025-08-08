@@ -1,0 +1,61 @@
+DEF
+SET obj_25814402 union
+    OBJECT obj_25814405
+        filepath `/etc/rsyslog.conf`
+        pattern `^[ \t]*(?:\S+;daemon\.\*|daemon\.\*;\S+|daemon\.\*|\S+;daemon\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25814408
+        path `/etc/rsyslog.d`
+        filename `^.*\.conf$`
+        pattern `^[ \t]*(?:\S+;daemon\.\*|daemon\.\*;\S+|daemon\.\*|\S+;daemon\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_25814401 union
+    OBJECT obj_25814404
+        filepath `/etc/rsyslog.conf`
+        pattern `^[ \t]*(?:\S+;authpriv\.\*|authpriv\.\*;\S+|authpriv\.\*|\S+;authpriv\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25814407
+        path `/etc/rsyslog.d`
+        filename `^.*\.conf$`
+        pattern `^[ \t]*(?:\S+;authpriv\.\*|authpriv\.\*;\S+|authpriv\.\*|\S+;authpriv\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_25814400 union
+    OBJECT obj_25814403
+        filepath `/etc/rsyslog.conf`
+        pattern `^[ \t]*(?:\S+;auth\.\*|auth\.\*;\S+|auth\.\*|\S+;auth\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_25814406
+        path `/etc/rsyslog.d`
+        filename `^.*\.conf$`
+        pattern `^[ \t]*(?:\S+;auth\.\*|auth\.\*;\S+|auth\.\*|\S+;auth\.\*;\S+)[ \t]+\S+\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25814400
+        SET_REF obj_25814400
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25814401
+        SET_REF obj_25814401
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25814402
+        SET_REF obj_25814402
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

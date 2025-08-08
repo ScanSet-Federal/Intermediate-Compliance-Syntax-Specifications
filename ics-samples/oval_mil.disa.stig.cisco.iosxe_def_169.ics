@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` all OR
+    STATE ste_16900
+        config_line string equals `[\r\n]\s*ip pim spt-threshold infinity[\r\n]`
+    STATE_END
+    STATE ste_16901
+        config_line string equals `[\r\n]\s*ip pim spt-threshold [1-9]\d*[\r\n]`
+    STATE_END
+    OBJECT obj_10900
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

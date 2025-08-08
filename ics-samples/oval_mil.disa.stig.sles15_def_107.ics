@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_10700
+        subexpression string equals `SHA512`
+    STATE_END
+    OBJECT obj_10700
+        filepath `/etc/login.defs`
+        pattern `^[ \t]*ENCRYPT_METHOD[ \t]+(\w+)[ \t]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

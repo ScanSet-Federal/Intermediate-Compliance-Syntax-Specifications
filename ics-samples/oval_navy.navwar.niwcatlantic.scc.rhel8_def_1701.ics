@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1701
+        stdout_line string equals `^([^#]+:)*certificate_verification\s+=\s+ocsp_dgst=sha1`
+    STATE_END
+    OBJECT obj_1701
+        shell `bash`
+        command `grep certificate_verification /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf`
+        pattern `^[^#]+`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

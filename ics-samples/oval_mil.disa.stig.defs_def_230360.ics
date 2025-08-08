@@ -1,0 +1,29 @@
+DEF
+SET obj_23036000 union
+    OBJECT obj_23036001
+        filepath `/etc/security/pwquality.conf`
+        pattern `^\s*maxclassrepeat\s*=\s*(-?\d*)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23036002
+        path `/etc/security/pwquality.conf.d`
+        filename `\.conf$`
+        pattern `^\s*maxclassrepeat\s*=\s*(-?\d*)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23036000
+        subexpression int `less than or equal` `4`
+    STATE_END
+    STATE ste_20000015
+        subexpression int `greater than` `0`
+    STATE_END
+    OBJECT obj_23036000
+        SET_REF obj_23036000
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

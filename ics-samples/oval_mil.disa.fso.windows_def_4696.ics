@@ -1,0 +1,24 @@
+DEF
+CRI OR
+CTN wmi
+    TEST `at least one exists` all
+    STATE ste_469600
+        result int equals `-1`
+    STATE_END
+    OBJECT obj_469600
+        namespace `root\rsop\computer`
+        wql `SELECT setting FROM RSOP_SecuritySettingBoolean WHERE KeyName='TicketValidateClient'`
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `at least one exists` all
+    STATE ste_469601
+        result boolean equals `1`
+    STATE_END
+    OBJECT obj_469600
+        namespace `root\rsop\computer`
+        wql `SELECT setting FROM RSOP_SecuritySettingBoolean WHERE KeyName='TicketValidateClient'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

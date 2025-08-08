@@ -1,0 +1,25 @@
+DEF
+VAR var_1702 string `AUDIT_(FAILURE|SUCCESS_FAILURE)`
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_1701
+        value string equals `1`
+    STATE_END
+    OBJECT obj_1701
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\LSA`
+        name `SCENoApplyLegacyAuditPolicy`
+    OBJECT_END
+CTN_END
+CTN auditeventpolicysubcategories
+    TEST `at least one exists` all
+    STATE ste_1702
+        removable_storage string equals `VAR var_1702`
+    STATE_END
+    OBJECT obj_1702
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

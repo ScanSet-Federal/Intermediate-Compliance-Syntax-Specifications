@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_11
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_13900
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Edge`
+        name `SmartScreenPuaEnabled`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

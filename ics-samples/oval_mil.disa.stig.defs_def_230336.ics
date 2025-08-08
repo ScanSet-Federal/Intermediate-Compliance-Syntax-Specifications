@@ -1,0 +1,43 @@
+DEF
+STATE ste_20000002
+    subexpression int equals `0`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_23033600
+        filepath `/etc/pam.d/system-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+preauth.*[ \t]+unlock_time=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_23033601
+        filepath `/etc/pam.d/password-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+preauth.*[ \t]+unlock_time=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_23033602
+        filepath `/etc/pam.d/system-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+authfail.*[ \t]+unlock_time=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_20000002
+    OBJECT obj_23033603
+        filepath `/etc/pam.d/password-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+authfail.*[ \t]+unlock_time=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

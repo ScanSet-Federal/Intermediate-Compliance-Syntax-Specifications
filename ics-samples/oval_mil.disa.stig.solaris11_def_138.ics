@@ -1,0 +1,21 @@
+DEF
+STATE ste_13800
+    service_state string equals `ONLINE`
+STATE_END
+CRI OR
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_13800
+    OBJECT obj_13800
+        fmri `svc://localhost/application/graphical-login/gdm:default`
+    OBJECT_END
+CTN_END
+CTN smf
+    TEST `at least one exists` all
+    STATE_REF ste_13800
+    OBJECT obj_13801
+        fmri `svc://localhost/application/graphical-login/xdm:default`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

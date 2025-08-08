@@ -1,0 +1,36 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_458300
+        type string equals `reg_multi_sz`
+        value string equals `^((Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows)|(System\\CurrentControlSet\\Control\\Print\\Printers)|(System\\CurrentControlSet\\Services\\Eventlog)|(Software\\Microsoft\\OLAP Server)|(Software\\Microsoft\\Windows NT\\CurrentVersion\\Print)|(System\\CurrentControlSet\\Control\\ContentIndex)|(System\\CurrentControlSet\\Control\\Terminal Server)|(System\\CurrentControlSet\\Control\\Terminal Server\\UserConfig)|(System\\CurrentControlSet\\Control\\Terminal Server\\DefaultUserConfiguration)|(Software\\Microsoft\\Windows NT\\CurrentVersion\\Perflib)|(System\\CurrentControlSet\\Services\\Sysmon[Ll]og)|())$` `all`
+    STATE_END
+    OBJECT obj_458300
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_458300
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_462100
+        type string equals `reg_multi_sz`
+        value string equals `.+` `none satisfy`
+    STATE_END
+    OBJECT obj_458300
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths`
+        name `Machine`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

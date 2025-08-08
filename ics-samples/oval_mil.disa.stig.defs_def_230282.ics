@@ -1,0 +1,24 @@
+DEF
+CRI AND
+CTN partition
+    TEST `at least one exists` all
+    STATE ste_23024000
+        fs_type string equals `selinuxfs`
+    STATE_END
+    OBJECT obj_23024000
+        mount_point `/sys/fs/selinux`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23028200
+        subexpression string equals `targeted`
+    STATE_END
+    OBJECT obj_23028200
+        filepath `/etc/selinux/config`
+        pattern `^\s*SELINUXTYPE\s*=\s*(\w+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

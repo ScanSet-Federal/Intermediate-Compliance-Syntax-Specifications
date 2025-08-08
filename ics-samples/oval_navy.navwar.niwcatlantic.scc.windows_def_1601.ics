@@ -1,0 +1,38 @@
+DEF
+CRI AND
+CTN cmdlet
+    TEST `at least one exists` `at least one`
+    STATE ste_1601
+        value record equals `
+    `
+    STATE_END
+    OBJECT obj_1601
+        module_name `TrustedPlatformModule`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `Tpm`
+        select record
+            field `tpmpresent,tpmready,tpmenabled`
+    OBJECT_END
+CTN_END
+CTN cmdlet
+    TEST `at least one exists` `at least one`
+    STATE ste_1602
+        value record equals `
+    `
+    STATE_END
+    OBJECT obj_1602
+        module_name `CimCmdlets`
+        module_id ``
+        module_version ``
+        verb `Get`
+        noun `CimInstance`
+        parameters record
+            field `root\cimv2\security\microsofttpm`
+        select record
+            field `specversion`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

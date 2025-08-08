@@ -1,0 +1,17 @@
+DEF
+VAR var_448700 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_448700
+        type string equals `reg_dword`
+        value string equals `VAR var_448700`
+    STATE_END
+    OBJECT obj_448700
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows\WDI\{9c5a40da-b965-4fc3-8781-88dd50a6299d}`
+        name `ScenarioExecutionEnabled`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

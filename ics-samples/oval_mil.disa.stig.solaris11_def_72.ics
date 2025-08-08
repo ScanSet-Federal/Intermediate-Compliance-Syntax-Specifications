@@ -1,0 +1,92 @@
+DEF
+VAR var_7200 string ``
+RUN var_7200 EXTRACT
+    OBJ obj_7200 subexpression
+RUN_END
+STATE ste_7203
+    subexpression string equals `nobody4`
+STATE_END
+STATE ste_7200
+    subexpression string equals `aiuser`
+STATE_END
+STATE ste_7201
+    subexpression string equals `noaccess`
+STATE_END
+STATE ste_7202
+    subexpression string equals `nobody`
+STATE_END
+STATE ste_7204
+    username string equals VAR oval:mil.disa.stig.solaris11:var:7200
+STATE_END
+STATE ste_4901
+    user_id int `less than` `100`
+STATE_END
+SET obj_7201 union
+    OBJECT obj_4901
+        username `^[^-+].*$`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.solaris11:ste:4901
+    FILTER_END
+SET_END
+SET obj_7202 union
+    OBJECT obj_7201
+        SET_REF `obj_7201`
+    OBJECT_END
+    FILTER exclude
+        STATE_REF oval:mil.disa.stig.solaris11:ste:7204
+    FILTER_END
+SET_END
+CRI OR
+CTN smf
+    TEST `none exist` all
+    OBJECT obj_5400
+        fmri `svc://localhost/network/ftp:default`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_7200
+    OBJECT obj_7200
+        filepath `/etc/ftpd/ftpusers`
+        pattern `^(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_7201
+    OBJECT obj_7200
+        filepath `/etc/ftpd/ftpusers`
+        pattern `^(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_7202
+    OBJECT obj_7200
+        filepath `/etc/ftpd/ftpusers`
+        pattern `^(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE_REF ste_7203
+    OBJECT obj_7200
+        filepath `/etc/ftpd/ftpusers`
+        pattern `^(.*)$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN password
+    TEST `none exist` all
+    OBJECT obj_7202
+        SET_REF obj_7202
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

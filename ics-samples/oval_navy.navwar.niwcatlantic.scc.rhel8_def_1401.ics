@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `only one exists` all
+    STATE ste_1401
+        text string equals `-oCiphers=\s*aes256-gcm@openssh.com\s*,\s*aes128-gcm@openssh.com\s*,\s*aes256-ctr\s*,\s*aes128-ctr\s*`
+    STATE_END
+    OBJECT obj_1401
+        filepath `/etc/crypto-policies/back-ends/opensshserver.config`
+        pattern `^[ \t]*CRYPTO_POLICY=.*-oCiphers=.+`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

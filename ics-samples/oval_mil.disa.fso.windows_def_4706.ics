@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_470600
+        sedenyinteractivelogonright boolean equals `1`
+    STATE_END
+    OBJECT obj_469500
+        security_principle `Guests`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

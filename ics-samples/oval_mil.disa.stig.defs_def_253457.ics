@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_25345700
+        type string equals `reg_sz`
+        value string equals `O:BAG:BAD:(A;;RC;;;BA)`
+    STATE_END
+    OBJECT obj_25345700
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\Lsa`
+        name `RestrictRemoteSAM`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

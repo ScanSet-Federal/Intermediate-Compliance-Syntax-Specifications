@@ -1,0 +1,26 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_501
+        value string equals `DoD Notice and Consent Banner`
+    STATE_END
+    OBJECT obj_501
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `LegalNoticeCaption`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_502
+        value string equals `US Department of Defense Warning Statement`
+    STATE_END
+    OBJECT obj_501
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `LegalNoticeCaption`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN global
+    TEST `any exist` all
+    OBJECT obj_11000
+        global_command `^service[ \t]+timestamps[ \t]+log[ \t]+datetime(?:[ \t]+localtime|[ \t]+msec|[ \t]+show-timezone|[ /t]+year){0,4}[ \t]*$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

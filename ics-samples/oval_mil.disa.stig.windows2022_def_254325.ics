@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN auditeventpolicysubcategories
+    TEST `at least one exists` all OR
+    STATE ste_25432500
+        ipsec_driver string equals `AUDIT_SUCCESS`
+    STATE_END
+    STATE ste_25432501
+        ipsec_driver string equals `AUDIT_SUCCESS_FAILURE`
+    STATE_END
+    OBJECT obj_25432500
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,30 @@
+DEF
+STATE ste_116203
+    security_principle string equals `Administrators`
+STATE_END
+SET obj_116300 union
+    OBJECT obj_116201
+        security_principle `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.windows:ste:116203
+    FILTER_END
+SET_END
+CRI AND
+CTN wmi57
+    TEST `at least one exists` all OR
+    STATE ste_101000
+        result record equals `
+    `
+    STATE_END
+    STATE ste_101001
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_101000
+        namespace `root\cimv2`
+        wql `SELECT DomainRole FROM win32_computersystem`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

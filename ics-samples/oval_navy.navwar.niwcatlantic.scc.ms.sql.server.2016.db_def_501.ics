@@ -1,0 +1,78 @@
+DEF
+VAR var_501 string ``
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1 string `sqlserver`
+CRI OR
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_501
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_501
+        namespace `root\cimv2\security\microsoftvolumeencryption`
+        wql `SELECT protectionstatus FROM win32_encryptablevolume`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_502
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_502
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT
+db.name AS [database_name], db.is_encrypted,  CASE dm.encryption_state
+WHEN 0 THEN 'NoDatabaseEncryptionKey' 
+WHEN 1 THEN 'Unencrypted' 
+WHEN 2 THEN 'Encryption in progress' 
+WHEN 3 THEN 'Encrypted' 
+WHEN 4 THEN 'Key change in progress' 
+WHEN 5 THEN 'Decryption in progress' 
+WHEN 6 THEN 'Protection change in progress' 
+ELSE 'NoDatabaseEncryptionKey'
+END AS [encryption_state]
+FROM
+    sys.databases db
+    LEFT OUTER JOIN sys.dm_database_encryption_keys dm
+        ON db.database_id = dm.database_id
+WHERE db.name = DB_NAME();`
+        behavior context database
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `at least one exists` all
+    STATE ste_503
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_502
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT
+db.name AS [database_name], db.is_encrypted,  CASE dm.encryption_state
+WHEN 0 THEN 'NoDatabaseEncryptionKey' 
+WHEN 1 THEN 'Unencrypted' 
+WHEN 2 THEN 'Encryption in progress' 
+WHEN 3 THEN 'Encrypted' 
+WHEN 4 THEN 'Key change in progress' 
+WHEN 5 THEN 'Decryption in progress' 
+WHEN 6 THEN 'Protection change in progress' 
+ELSE 'NoDatabaseEncryptionKey'
+END AS [encryption_state]
+FROM
+    sys.databases db
+    LEFT OUTER JOIN sys.dm_database_encryption_keys dm
+        ON db.database_id = dm.database_id
+WHERE db.name = DB_NAME();`
+        behavior context database
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

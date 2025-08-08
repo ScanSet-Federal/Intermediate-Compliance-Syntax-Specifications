@@ -1,0 +1,29 @@
+DEF
+STATE ste_802
+    shell string equals `bash`
+    command string equals `blkid`
+    pattern string equals `TYPE="(.*?)"`
+    exit_status int equals `0`
+    stdout_line string equals `(/boot|/proc|/sys)`
+STATE_END
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_801
+        shell string equals `bash`
+        command string equals `blkid`
+        pattern string equals `TYPE="(.*?)"`
+        exit_status int equals `0`
+        subexpression string equals `crypto_LUKS`
+    STATE_END
+    OBJECT obj_801
+        shell `bash`
+        command `blkid`
+        pattern `TYPE="(.*?)"`
+        FILTER include
+            STATE_REF ste_802
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

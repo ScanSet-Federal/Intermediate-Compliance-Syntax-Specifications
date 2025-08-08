@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_23000
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_23000
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows Defender\Scan`
+        name `DisableArchiveScanning`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

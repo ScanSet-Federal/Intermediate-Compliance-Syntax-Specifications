@@ -1,0 +1,25 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_469400
+        type string equals `reg_sz`
+        value string equals ``
+    STATE_END
+    OBJECT obj_469400
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\TCPIP\Parameters`
+        name `Domain`
+    OBJECT_END
+CTN_END
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_470600
+        sedenyinteractivelogonright boolean equals `1`
+    STATE_END
+    OBJECT obj_469500
+        security_principle `Guests`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

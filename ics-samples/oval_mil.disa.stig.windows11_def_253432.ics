@@ -1,0 +1,24 @@
+DEF
+VAR var_25343200 string ``
+RUN var_25343200 EXTRACT
+    OBJ obj_25343201 result
+RUN_END
+CRI AND
+CTN user_sid55
+    TEST `any exist` `at least one`
+    STATE ste_25343200
+        enabled boolean equals `0`
+    STATE_END
+    OBJECT obj_25343200
+        user_sid VAR var_25343200
+    OBJECT_END
+CTN_END
+CTN wmi57
+    TEST `any exist` all
+    OBJECT obj_25343201
+        namespace `root\cimv2`
+        wql `SELECT SID FROM Win32_UserAccount WHERE LocalAccount=True AND SID LIKE 'S-1-5-21-%-500'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

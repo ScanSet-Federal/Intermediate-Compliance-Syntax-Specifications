@@ -1,0 +1,18 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_20000019
+        subexpression int `greater than or equal` `0`
+    STATE_END
+    STATE ste_23037300
+        subexpression int `less than or equal` `35`
+    STATE_END
+    OBJECT obj_23037300
+        filepath `/etc/default/useradd`
+        pattern `(?i)^\s*INACTIVE\s*=\s*(-?\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

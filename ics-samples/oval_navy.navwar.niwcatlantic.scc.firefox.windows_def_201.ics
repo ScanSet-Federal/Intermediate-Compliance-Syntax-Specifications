@@ -1,0 +1,14 @@
+DEF
+VAR var_201 string ``
+CRI AND
+CTN variable
+    TEST `any exist` all
+    STATE ste_201
+        value string equals `"browser.search.update": \{    "Value": false,    "Status": "locked"  }`
+    STATE_END
+    OBJECT obj_201
+        var_ref VAR var_201
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

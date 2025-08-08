@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` `at least one`
+    STATE ste_2201
+        command string equals `$user = Get-ADUser krbtgt -properties passwordlastset; ([datetime]::Now - $user.PasswordLastSet).Days`
+        stdout_line int `less than or equal` `180`
+    STATE_END
+    OBJECT obj_2201
+        shell `powershell`
+        command `$user = Get-ADUser krbtgt -properties passwordlastset; ([datetime]::Now - $user.PasswordLastSet).Days`
+        pattern ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

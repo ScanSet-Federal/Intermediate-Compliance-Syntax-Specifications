@@ -1,0 +1,14 @@
+DEF
+CRI AND
+CTN wmi
+    TEST `at least one exists` all
+    STATE ste_473600
+        result string equals `Auto`
+    STATE_END
+    OBJECT obj_473600
+        namespace `root\cimv2`
+        wql `SELECT startmode FROM Win32_Service WHERE name='SCPolicySvc'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

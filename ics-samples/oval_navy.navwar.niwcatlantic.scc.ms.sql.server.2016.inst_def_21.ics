@@ -1,0 +1,42 @@
+DEF
+VAR var_21 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI OR
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_21
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_21
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly')    
+		WHEN 1 THEN 'Windows Authentication'    
+		WHEN 0 THEN 'Windows and SQL Server Authentication'    
+		END as [authentication_mode]`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_22
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_22
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name as user_name
+		FROM sys.sql_logins 
+		WHERE type_desc = 'SQL_LOGIN' AND is_disabled = 0;`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

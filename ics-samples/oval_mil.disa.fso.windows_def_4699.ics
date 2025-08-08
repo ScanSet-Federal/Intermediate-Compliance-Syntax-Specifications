@@ -1,0 +1,14 @@
+DEF
+CRI AND
+CTN wmi
+    TEST `at least one exists` all
+    STATE ste_469900
+        result int `less than or equal` `7`
+    STATE_END
+    OBJECT obj_469900
+        namespace `root\rsop\computer`
+        wql `SELECT setting FROM RSOP_SecuritySettingNumeric WHERE KeyName='MaxRenewAge'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

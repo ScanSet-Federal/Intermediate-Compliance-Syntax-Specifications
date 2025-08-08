@@ -1,0 +1,11 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `none exist` all
+    OBJECT obj_25326500
+        namespace `root\cimv2`
+        wql `SELECT deviceid FROM win32_logicaldisk WHERE drivetype=3 AND filesystem!="NTFS"`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

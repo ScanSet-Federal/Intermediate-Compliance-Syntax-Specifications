@@ -1,0 +1,27 @@
+DEF
+VAR var_301 string ``
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_301
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_301
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT login.name as user_name, perm.permission_name, perm.state_desc 
+FROM sys.server_permissions perm 
+JOIN sys.server_principals login 
+ON perm.grantee_principal_id = login.principal_id 
+WHERE permission_name in ('ALTER ANY DATABASE AUDIT', 'ALTER ANY SERVER AUDIT', 'CONTROL SERVER') 
+and login.name not like '##MS_%';`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

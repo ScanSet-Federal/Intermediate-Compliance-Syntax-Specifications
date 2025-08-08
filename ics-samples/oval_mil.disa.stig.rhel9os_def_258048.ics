@@ -1,0 +1,25 @@
+DEF
+VAR var_25804800 int 0
+RUN var_25804800 EXTRACT
+    OBJ obj_25804800 subexpression
+RUN_END
+CRI AND
+CTN password
+    TEST `all exist` all
+    STATE ste_25804800
+        group_id string equals `VAR var_25804800`
+    STATE_END
+    OBJECT obj_25804800
+        username `.*`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25804800
+        filepath `/etc/group`
+        pattern `^[^:#]*:[^:]*:(\d+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

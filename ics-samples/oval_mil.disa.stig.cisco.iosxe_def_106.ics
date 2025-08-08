@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN global
+    TEST `any exist` all
+    OBJECT obj_10600
+        global_command `^login[ \t]+block-for[ \t]+\d+[ \t]+attempts[ \t]+(?:1|2|3)[ \t]+within[ \t]+\d+[ \t]*$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

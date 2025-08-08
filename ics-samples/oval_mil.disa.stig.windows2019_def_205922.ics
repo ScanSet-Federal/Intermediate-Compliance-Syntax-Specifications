@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_25346500
+        type string equals `reg_dword`
+        value int equals `537395200`
+    STATE_END
+    OBJECT obj_25346500
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0`
+        name `NTLMMinServerSec`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

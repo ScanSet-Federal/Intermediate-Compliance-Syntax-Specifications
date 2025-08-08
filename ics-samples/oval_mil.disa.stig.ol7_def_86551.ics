@@ -1,0 +1,32 @@
+DEF
+VAR var_8655100 string ``
+VAR var_8655102 string ``
+VAR var_8655101 int 65534
+RUN var_8655100 EXTRACT
+    OBJ obj_8655101 username
+RUN_END
+RUN var_8655102 CONCAT
+    literal `^`
+    VAR var_8655100
+    literal `:[^:]*:[^:]*::`
+RUN_END
+CRI AND
+CTN shadow
+    TEST `any exist` all
+    STATE ste_8655100
+        chg_allow int `greater than or equal` `1`
+    STATE_END
+    OBJECT obj_8655100
+        username VAR var_8655100
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_8655102
+        filepath `/etc/shadow`
+        pattern VAR var_8655102
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

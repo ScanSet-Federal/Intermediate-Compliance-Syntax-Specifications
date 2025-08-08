@@ -1,0 +1,17 @@
+DEF
+VAR var_109600 int 0
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_109600
+        type string equals `reg_dword`
+        value string equals `VAR var_109600`
+    STATE_END
+    OBJECT obj_109600
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\AppCompat`
+        name `DisableInventory`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

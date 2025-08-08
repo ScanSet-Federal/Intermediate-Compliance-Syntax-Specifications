@@ -1,0 +1,56 @@
+DEF
+STATE ste_470600
+    sedenyinteractivelogonright boolean equals `1`
+STATE_END
+SET obj_472100 union
+    OBJECT obj_472105
+        security_principle `Domain Admins`
+    OBJECT_END
+    OBJECT obj_472107
+        security_principle `^.*\\Domain Admins$`
+    OBJECT_END
+SET_END
+SET obj_472101 union
+    OBJECT obj_472102
+        security_principle `^.*\\Enterprise Admins$`
+    OBJECT_END
+    OBJECT obj_472103
+        security_principle `Enterprise Admins`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_449800
+        type string equals `reg_sz`
+        value string equals `^.+$`
+    STATE_END
+    OBJECT obj_469400
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\TCPIP\Parameters`
+        name `Domain`
+    OBJECT_END
+CTN_END
+CTN accesstoken
+    TEST `any exist` all
+    STATE_REF ste_470600
+    OBJECT obj_469500
+        security_principle `Guests`
+    OBJECT_END
+CTN_END
+CTN accesstoken
+    TEST `any exist` `at least one`
+    STATE_REF ste_470600
+    OBJECT obj_472100
+        SET_REF obj_472100
+    OBJECT_END
+CTN_END
+CTN accesstoken
+    TEST `any exist` `at least one`
+    STATE_REF ste_470600
+    OBJECT obj_472101
+        SET_REF obj_472101
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

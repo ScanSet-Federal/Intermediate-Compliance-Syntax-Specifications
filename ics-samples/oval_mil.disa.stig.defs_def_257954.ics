@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `at least one exists` all
+    OBJECT obj_25795400
+        name `libreswan`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

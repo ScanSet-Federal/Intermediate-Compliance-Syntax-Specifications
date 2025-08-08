@@ -1,0 +1,26 @@
+DEF
+SET obj_23035800 union
+    OBJECT obj_23035801
+        filepath `/etc/security/pwquality.conf`
+        pattern `^\s*lcredit\s*=\s*(-?\d*)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23035802
+        path `/etc/security/pwquality.conf.d`
+        filename `\.conf$`
+        pattern `^\s*lcredit\s*=\s*(-?\d*)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_20000020
+        subexpression int `less than` `0`
+    STATE_END
+    OBJECT obj_23035800
+        SET_REF obj_23035800
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN appcmdlistconfig
+    TEST `at least one exists` all
+    STATE ste_290
+        result int `less than or equal` `20` `all`
+    STATE_END
+    OBJECT obj_290
+        identifier_type `Site`
+        identifier `.*`
+        section `system.web/sessionState`
+        parameter `timeout`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

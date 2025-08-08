@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN password
+    TEST `any exist` all
+    STATE ste_11100
+        home_dir string equals `^.+`
+    STATE_END
+    OBJECT obj_4901
+        username `^[^-+].*$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

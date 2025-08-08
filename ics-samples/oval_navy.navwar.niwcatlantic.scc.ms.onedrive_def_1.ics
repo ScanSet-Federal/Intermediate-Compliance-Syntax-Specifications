@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_1
+        value string equals `\d*\.\d*\.\d*\.\d*`
+    STATE_END
+    OBJECT obj_1
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\OneDrive`
+        name `Version`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

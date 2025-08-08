@@ -1,0 +1,93 @@
+DEF
+VAR var_20000006 string `^\s*-a\s+(?:always,exit|exit,always)`
+VAR var_20000013 string `(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$`
+VAR var_20000010 string `-S\s+[,\w]*\b`
+VAR var_20000012 string `-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)`
+VAR var_20000009 string `\s+(?:-S\s+[,\w]+\s+)*`
+VAR var_20000007 string `\s+-F\s+arch=b32`
+VAR var_20000008 string `\s+-F\s+arch=b64`
+VAR var_20000011 string `\b[,\w]*`
+VAR var_20000016 string `-F\s+auid=0`
+VAR var_25303801 string ``
+VAR var_25303800 string ``
+VAR var_25303803 string ``
+VAR var_25303802 string ``
+RUN var_25303801 CONCAT
+    VAR var_20000006
+    VAR var_20000008
+    VAR var_20000009
+    VAR var_20000010
+    literal `removexattr`
+    VAR var_20000011
+    VAR var_20000009
+    VAR var_20000012
+    VAR var_20000013
+RUN_END
+RUN var_25303800 CONCAT
+    VAR var_20000006
+    VAR var_20000007
+    VAR var_20000009
+    VAR var_20000010
+    literal `removexattr`
+    VAR var_20000011
+    VAR var_20000009
+    VAR var_20000012
+    VAR var_20000013
+RUN_END
+RUN var_25303803 CONCAT
+    VAR var_20000006
+    VAR var_20000007
+    VAR var_20000009
+    VAR var_20000010
+    literal `removexattr`
+    VAR var_20000011
+    VAR var_20000009
+    VAR var_20000016
+    VAR var_20000013
+RUN_END
+RUN var_25303802 CONCAT
+    VAR var_20000006
+    VAR var_20000007
+    VAR var_20000009
+    VAR var_20000010
+    literal `removexattr`
+    VAR var_20000011
+    VAR var_20000009
+    VAR var_20000016
+    VAR var_20000013
+RUN_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25303800
+        filepath `/etc/audit/audit.rules`
+        pattern VAR var_25303800
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25303801
+        filepath `/etc/audit/audit.rules`
+        pattern VAR var_25303801
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25303802
+        filepath `/etc/audit/audit.rules`
+        pattern VAR var_25303802
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_25303803
+        filepath `/etc/audit/audit.rules`
+        pattern VAR var_25303803
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

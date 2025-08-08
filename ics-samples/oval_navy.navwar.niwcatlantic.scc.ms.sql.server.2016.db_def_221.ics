@@ -1,0 +1,44 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI OR
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_221
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_221
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT COUNT(name) as count
+FROM sys.symmetric_keys s, sys.key_encryptions k 
+WHERE s.name = '##MS_DatabaseMasterKey##' 
+AND s.symmetric_key_id = k.key_id 
+AND k.crypt_type in ('ESKP', 'ESP2', 'ESP3')`
+        behavior context database
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_222
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_221
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT COUNT(name) as count
+FROM sys.symmetric_keys s, sys.key_encryptions k 
+WHERE s.name = '##MS_DatabaseMasterKey##' 
+AND s.symmetric_key_id = k.key_id 
+AND k.crypt_type in ('ESKP', 'ESP2', 'ESP3')`
+        behavior context database
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,38 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1201
+        stdout_line string equals `^\s*enabled`
+    STATE_END
+    OBJECT obj_1201
+        shell `bash`
+        command `systemctl is-enabled apparmor.service `
+        pattern `enabled`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1202
+        stdout_line string equals `^\s*active`
+    STATE_END
+    OBJECT obj_1202
+        shell `bash`
+        command `systemctl is-active apparmor.service`
+        pattern `active`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1203
+        subexpression int `greater than or equal` `1`
+    STATE_END
+    OBJECT obj_1203
+        shell `bash`
+        command `apparmor_status | grep -i profile`
+        pattern `
+				^(\d+)\s+profiles\s+are\s+(?:loaded|in\s+enforce\s+mode)\s*`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

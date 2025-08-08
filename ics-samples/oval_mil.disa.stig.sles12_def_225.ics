@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `all exist` all
+    OBJECT obj_9900
+        name `openssh`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

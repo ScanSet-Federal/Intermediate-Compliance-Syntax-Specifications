@@ -1,0 +1,50 @@
+DEF
+VAR var_20000017 string `/run/sysctl.d`
+STATE ste_23026900
+    subexpression int equals `1`
+STATE_END
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_23026900
+        value int equals `1`
+    STATE_END
+    OBJECT obj_23026900
+        name `kernel.dmesg_restrict`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_23026900
+    OBJECT obj_23026900
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^\s*kernel\.dmesg_restrict\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `none exist` all
+    OBJECT obj_23026900
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^\s*kernel\.dmesg_restrict\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_23026900
+    OBJECT obj_23026901
+        path VAR var_20000017
+        filename `^.*\.conf$`
+        pattern `^\s*kernel\.dmesg_restrict\s*=\s*(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI_END
+DEF_END

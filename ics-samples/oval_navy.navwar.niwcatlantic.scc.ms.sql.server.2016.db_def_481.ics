@@ -1,0 +1,63 @@
+DEF
+VAR var_2 string `2016|2017|2019|2022`
+VAR var_1 string `sqlserver`
+VAR var_481 string ``
+CRI OR
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_481
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT 
+              D.name AS database_name, SUSER_SNAME(D.owner_sid) AS owner_name,
+              FRM.is_fixed_role_member
+FROM sys.databases D
+OUTER APPLY (
+              SELECT MAX(fixed_role_member) AS is_fixed_role_member
+              FROM (
+                            SELECT IS_SRVROLEMEMBER(R.name, SUSER_SNAME(D.owner_sid)) AS fixed_role_member
+                            FROM sys.server_principals R
+                            WHERE is_fixed_role = 1
+              ) A
+) FRM
+WHERE D.database_id > 4
+              AND (FRM.is_fixed_role_member = 1 
+                            OR FRM.is_fixed_role_member IS NULL)
+ORDER BY database_name`
+        behavior context database
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_482
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_481
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database `.*`
+        sql `SELECT 
+              D.name AS database_name, SUSER_SNAME(D.owner_sid) AS owner_name,
+              FRM.is_fixed_role_member
+FROM sys.databases D
+OUTER APPLY (
+              SELECT MAX(fixed_role_member) AS is_fixed_role_member
+              FROM (
+                            SELECT IS_SRVROLEMEMBER(R.name, SUSER_SNAME(D.owner_sid)) AS fixed_role_member
+                            FROM sys.server_principals R
+                            WHERE is_fixed_role = 1
+              ) A
+) FRM
+WHERE D.database_id > 4
+              AND (FRM.is_fixed_role_member = 1 
+                            OR FRM.is_fixed_role_member IS NULL)
+ORDER BY database_name`
+        behavior context database
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

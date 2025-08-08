@@ -1,0 +1,23 @@
+DEF
+VAR var_25343300 string ``
+RUN var_25343300 EXTRACT
+    OBJ obj_20000016 trustee_sid
+RUN_END
+CRI AND
+CTN user_sid55
+    TEST `at least one exists` all
+    STATE ste_20000017
+        enabled boolean equals `0`
+    STATE_END
+    OBJECT obj_25343300
+        user_sid VAR var_25343300
+    OBJECT_END
+CTN_END
+CTN sid_sid
+    TEST `any exist` all
+    OBJECT obj_20000016
+        trustee_sid `^S-1-5-[0-9-]+-501$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

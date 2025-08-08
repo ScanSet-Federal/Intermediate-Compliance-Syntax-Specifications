@@ -1,0 +1,44 @@
+DEF
+STATE ste_452700
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443101
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `AllowLLTDIOOnDomain`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443102
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `AllowLLTDIOOnPublicNet`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443103
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `EnableLLTDIO`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443100
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `ProhibitLLTDIOOnPrivateNet`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

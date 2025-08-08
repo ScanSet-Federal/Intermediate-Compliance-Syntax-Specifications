@@ -1,0 +1,35 @@
+DEF
+CRI AND
+CTN family
+    TEST `any exist` all
+    STATE ste_10000000
+        family string equals `windows`
+    STATE_END
+    OBJECT obj_10000000
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE ste_10000000
+        value string equals `^[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 1[01].*$`
+    STATE_END
+    OBJECT obj_10000000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `ProductName`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    STATE ste_10000001
+        value int `greater than or equal` `22000`
+    STATE_END
+    OBJECT obj_10000001
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `CurrentBuildNumber`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

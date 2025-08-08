@@ -1,0 +1,30 @@
+DEF
+STATE ste_20000024
+    subexpression int `not equal` `0`
+STATE_END
+STATE ste_23033400
+    subexpression int `less than or equal` `900`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_23033400
+    STATE_REF ste_20000024
+    OBJECT obj_23033400
+        filepath `/etc/pam.d/system-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+preauth.*[ \t]+fail_interval=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE_REF ste_23033400
+    STATE_REF ste_20000024
+    OBJECT obj_23033401
+        filepath `/etc/pam.d/password-auth`
+        pattern `^\s*auth\s+required\s+pam_faillock\.so\s+preauth.*[ \t]+fail_interval=([0-9]+)(?:[ \t]+.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

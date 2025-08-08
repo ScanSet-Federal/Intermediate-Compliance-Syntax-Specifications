@@ -1,0 +1,78 @@
+DEF
+VAR var_23764200 string ``
+RUN var_23764200 EXTRACT
+    OBJ obj_23764200 filepath
+RUN_END
+CRI OR
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764200
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults\s+!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764203
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults\s+!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764205
+        filepath `/etc/sudoers`
+        pattern `^\s*Defaults\s+!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_23764200
+        subexpression string equals `/etc/sudoers.d`
+    STATE_END
+    OBJECT obj_23764201
+        filepath `/etc/sudoers`
+        pattern `^\s*[#@]includedir\s+(\S+)\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764202
+        filepath VAR var_23764200
+        pattern `^\s*Defaults\s+!targetpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764204
+        filepath VAR var_23764200
+        pattern `^\s*Defaults\s+!rootpw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_23764206
+        filepath VAR var_23764200
+        pattern `^\s*Defaults\s+!runaspw\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN file
+    TEST `any exist` all
+    OBJECT obj_23764200
+        path `/etc/sudoers.d`
+        filename `^[^.]*[^.~]$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

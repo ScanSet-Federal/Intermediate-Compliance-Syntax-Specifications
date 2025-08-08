@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN registry
+    TEST `none exist` all
+    OBJECT obj_130
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\InetStp\Components`
+        name `WebDAV`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

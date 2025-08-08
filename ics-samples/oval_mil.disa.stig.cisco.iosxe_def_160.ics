@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` all
+    STATE ste_16000
+        config_line string equals `[\r\n]\s*no\s+mpls\s+ip\s+propagate\-ttl\s*[\r\n]`
+    STATE_END
+    OBJECT obj_10900
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

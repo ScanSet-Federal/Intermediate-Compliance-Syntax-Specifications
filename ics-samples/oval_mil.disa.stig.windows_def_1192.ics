@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_119200
+        type string equals `reg_dword`
+        value int `less than or equal` `30`
+    STATE_END
+    OBJECT obj_119200
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\Netlogon\Parameters`
+        name `MaximumPasswordAge`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_119201
+        type string equals `reg_dword`
+        value int `greater than` `0`
+    STATE_END
+    OBJECT obj_119200
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\Netlogon\Parameters`
+        name `MaximumPasswordAge`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

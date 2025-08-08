@@ -1,0 +1,40 @@
+DEF
+CRI AND
+CTN family
+    TEST `at least one exists` all
+    STATE ste_102
+        family string equals `unix` `all`
+    STATE_END
+    OBJECT obj_102
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN uname
+    TEST `all exist` all
+    STATE ste_101
+        os_name string equals `SunOS` `all`
+    STATE_END
+    OBJECT obj_101
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN uname
+    TEST `at least one exists` all
+    STATE ste_103
+        os_release string equals `5.11` `all`
+    STATE_END
+    OBJECT obj_101
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN uname
+    TEST `at least one exists` all
+    STATE ste_104
+        processor_type string equals `^i.*86` `all`
+    STATE_END
+    OBJECT obj_101
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

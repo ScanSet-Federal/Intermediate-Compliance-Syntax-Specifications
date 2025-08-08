@@ -1,0 +1,39 @@
+DEF
+CRI OR
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_3095
+        filepath `/etc/sysctl.conf`
+        pattern `^[\s]*net\.ipv6\.conf\.all\.disable_ipv6[\s]*=[\s]*1[\s]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_3096
+        path `/etc/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^[\s]*net\.ipv6\.conf\.all\.disable_ipv6[\s]*=[\s]*1[\s]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_3097
+        path `/run/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^[\s]*net\.ipv6\.conf\.all\.disable_ipv6[\s]*=[\s]*1[\s]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_3098
+        path `/usr/lib/sysctl.d`
+        filename `^.*\.conf$`
+        pattern `^[\s]*net\.ipv6\.conf\.all\.disable_ipv6[\s]*=[\s]*1[\s]*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

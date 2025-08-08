@@ -1,0 +1,53 @@
+DEF
+VAR var_15000 string `/bin`
+STATE ste_15000
+    type string equals `symbolic link` `all`
+STATE_END
+STATE ste_15400
+    sgid boolean equals `true` `all`
+STATE_END
+SET obj_15401 union
+    OBJECT obj_15000
+        path `VAR var_15000`
+        filename `.*`
+    OBJECT_END
+    FILTER exclude
+        STATE_REF oval:mil.disa.stig.ubuntu1804:ste:15000
+    FILTER_END
+    FILTER exclude
+        STATE_REF oval:mil.disa.stig.ubuntu1804:ste:15400
+    FILTER_END
+SET_END
+SET obj_15400 union
+    OBJECT obj_15000
+        path `VAR var_15000`
+        filename `.*`
+    OBJECT_END
+    FILTER exclude
+        STATE_REF oval:mil.disa.stig.ubuntu1804:ste:15000
+    FILTER_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.ubuntu1804:ste:15400
+    FILTER_END
+SET_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_15401
+        group_id int equals `0` `all`
+    STATE_END
+    OBJECT obj_15401
+        SET_REF obj_15401
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `at least one exists` all
+    STATE ste_15402
+        group_id int `less than` `1000` `all`
+    STATE_END
+    OBJECT obj_15400
+        SET_REF obj_15400
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

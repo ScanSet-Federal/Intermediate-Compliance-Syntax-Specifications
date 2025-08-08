@@ -1,0 +1,25 @@
+DEF
+STATE ste_23030100
+    subexpression string equals `(?:^nodev$|^nodev,|,nodev$|,nodev,)`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_23030100
+    OBJECT obj_23030600
+        filepath `/etc/fstab`
+        pattern `^\s*\[?[\.\w:-]+\]?:[/\w-]+\s+[/\w-]+\s+nfs[4]?\s+(.*)$`
+        instance `0`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_23030100
+    OBJECT obj_23030601
+        filepath `/etc/mtab`
+        pattern `^\s*\[?[\.\w:-]+\]?:[/\w-]+\s+[/\w-]+\s+nfs[4]?\s+(.*)$`
+        instance `0`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

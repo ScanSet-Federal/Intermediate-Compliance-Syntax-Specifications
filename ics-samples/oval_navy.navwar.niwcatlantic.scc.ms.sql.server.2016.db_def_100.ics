@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN sqlext
+    TEST `at least one exists` all
+    OBJECT obj_100
+        engine `sqlserver`
+        version `2016|2017|2019|2022`
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

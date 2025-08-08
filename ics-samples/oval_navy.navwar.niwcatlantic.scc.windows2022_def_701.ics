@@ -1,0 +1,25 @@
+DEF
+VAR var_701 string ``
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_701
+        value int equals `0`
+    STATE_END
+    OBJECT obj_701
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\Lsa`
+        name `everyoneincludesanonymous`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` `only one`
+    STATE ste_702
+        value string equals `^(?i).* NT SERVICE\\TrustedInstaller:\(F\)\s+NT SERVICE\\TrustedInstaller:\(CI\)\(IO\)\(F\)\s+NT AUTHORITY\\SYSTEM:\(M\)\s+NT AUTHORITY\\SYSTEM:\(OI\)\(CI\)\(IO\)\(F\)\s+BUILTIN\\Administrators:\(M\)\s+BUILTIN\\Administrators:\(OI\)\(CI\)\(IO\)\(F\)\s+BUILTIN\\Users:\(RX\)\s+BUILTIN\\Users:\(OI\)\(CI\)\(IO\)\(GR,GE\)\s+CREATOR OWNER:\(OI\)\(CI\)\(IO\)\(F\)\s+APPLICATION PACKAGE AUTHORITY\\ALL APPLICATION PACKAGES:\(RX\)\s+APPLICATION PACKAGE AUTHORITY\\ALL APPLICATION PACKAGES:\(OI\)\(CI\)\(IO\)\(GR,GE\)\s+APPLICATION PACKAGE AUTHORITY\\ALL RESTRICTED APPLICATION PACKAGES:\(RX\)\s+APPLICATION PACKAGE AUTHORITY\\ALL RESTRICTED APPLICATION PACKAGES:\(OI\)\(CI\)\(IO\)\(GR,GE\).*`
+    STATE_END
+    OBJECT obj_703
+        var_ref VAR var_701
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_444400
+        type string equals `reg_dword`
+        value int equals `2`
+    STATE_END
+    OBJECT obj_444400
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\Windows\CurrentVersion\Policies\Servicing`
+        name `UseWindowsUpdate`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

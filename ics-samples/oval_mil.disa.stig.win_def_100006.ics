@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_10000600
+        type string equals `reg_sz`
+        value string equals `Server Core`
+    STATE_END
+    OBJECT obj_10000600
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `InstallationType`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

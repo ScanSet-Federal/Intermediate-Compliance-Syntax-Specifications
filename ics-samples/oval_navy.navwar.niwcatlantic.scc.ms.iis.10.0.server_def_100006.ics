@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_290
+        value string equals `0`
+    STATE_END
+    OBJECT obj_290
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Microsoft\WebManagement\Server`
+        name `EnableRemoteManagement`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

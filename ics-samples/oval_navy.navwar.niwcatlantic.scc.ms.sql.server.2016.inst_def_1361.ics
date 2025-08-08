@@ -1,0 +1,43 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `any exist` `at least one`
+    STATE ste_1101
+        result string equals `
+    `
+    STATE_END
+    OBJECT obj_1101
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name AS 'audit_name',
+				status_desc AS 'audit_status',
+				audit_file_path AS 'current_audit_file'
+				FROM sys.dm_server_audit_status`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    OBJECT obj_1301
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT a.name AS 'AuditName', 
+  s.name AS 'SpecName', 
+  d.audit_action_name AS 'ActionName', 
+  d.audited_result AS 'Result' 
+FROM sys.server_audit_specifications s 
+JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
+JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
+WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_CHANGE_GROUP' 
+						`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

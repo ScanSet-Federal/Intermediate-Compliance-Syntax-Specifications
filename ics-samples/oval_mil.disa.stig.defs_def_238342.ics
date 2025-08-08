@@ -1,0 +1,27 @@
+DEF
+VAR var_23834200 int 0
+RUN var_23834200 EXTRACT
+    OBJ obj_23834201 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_23834200
+        user_id string equals `VAR var_23834200`
+    STATE_END
+    OBJECT obj_23834200
+        path `/var/log`
+        filename `syslog`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_23834201
+        path `/etc`
+        filename `passwd`
+        pattern `^syslog:x:([0-9]+):[0-9]+::.*:.*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,56 @@
+DEF
+STATE ste_901
+    instance int `greater than or equal` `1`
+    subexpression int `less than or equal` `17`
+STATE_END
+STATE ste_902
+    instance int `greater than or equal` `1`
+    subexpression string equals `(tick\.usno\.navy\.mil|tock\.usno\.navy\.mil|ntp2\.usno\.navy\.mil)`
+STATE_END
+CRI OR
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_901
+    OBJECT obj_901
+        filepath `/etc/chrony.conf`
+        pattern `^\s*server\s+\S+\s+iburst\s+maxpoll\s+(\d+)`
+        instance `1`
+        behavior ignore_case false multiline true singleline false
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_902
+    OBJECT obj_903
+        filepath `/etc/chrony.conf`
+        pattern `^\s*server\s+(\S+)\s+iburst\s+maxpoll\s+\d+`
+        instance `1`
+        behavior ignore_case false multiline true singleline false
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_901
+    OBJECT obj_902
+        path `/etc/chrony`
+        filename `.*\.(sources|conf)`
+        pattern `^\s*server\s+\S+\s+iburst\s+maxpoll\s+(\d+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_902
+    OBJECT obj_904
+        path `/etc/chrony`
+        filename `.*\.(sources|conf)`
+        pattern `^\s*server\s+(\S+)\s+iburst\s+maxpoll\s+\d+`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

@@ -1,0 +1,11 @@
+DEF
+CRI AND true
+CTN wmi57
+    TEST `any exist` `at least one`
+    OBJECT obj_102400
+        namespace `root\cimv2`
+        wql `SELECT filesystem FROM win32_logicaldisk WHERE drivetype=3 AND filesystem!='NTFS' AND filesystem!='ReFS'`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

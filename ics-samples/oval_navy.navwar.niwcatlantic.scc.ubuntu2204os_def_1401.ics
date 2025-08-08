@@ -1,0 +1,38 @@
+DEF
+STATE ste_1402
+    exit_status int equals `0`
+    subexpression int equals `0`
+STATE_END
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1401
+        exit_status int equals `0`
+        stdout_line string equals `true`
+    STATE_END
+    OBJECT obj_1401
+        shell `bash`
+        command `gsettings get org.gnome.desktop.screensaver lock-enabled`
+        pattern `true`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE_REF ste_1402
+    OBJECT obj_1402
+        shell `bash`
+        command `gsettings get org.gnome.desktop.screensaver lock-delay `
+        pattern `uint32\s+(\d+)`
+    OBJECT_END
+CTN_END
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE_REF ste_1402
+    OBJECT obj_1402
+        shell `bash`
+        command `gsettings get org.gnome.desktop.screensaver lock-delay `
+        pattern `uint32\s+(\d+)`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

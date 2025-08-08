@@ -1,0 +1,33 @@
+DEF
+VAR var_3100 string ``
+RUN var_3100 CONCAT
+    literal `/`
+    OBJ obj_3103 subexpression
+    literal `/boot/grub`
+RUN_END
+CRI OR
+CTN file
+    TEST `none exist` all
+    OBJECT obj_10900
+        filepath `/etc/zones/index`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_10901
+        filepath `/etc/zones/index`
+        pattern `^global:`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_3103
+        path `/etc`
+        filename `mnttab`
+        pattern `^([^\s/]+)\S+[ \t]+[/][ \t]+zfs[ \t]+`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

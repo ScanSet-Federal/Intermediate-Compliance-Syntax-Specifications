@@ -1,0 +1,24 @@
+DEF
+CRI OR
+CTN global
+    TEST `any exist` all
+    OBJECT obj_11300
+        global_command `^logging[ \t]+persistent\b`
+    OBJECT_END
+CTN_END
+CRI OR
+CTN global
+    TEST `any exist` all
+    OBJECT obj_11500
+        global_command `^file[ \t]+privilege`
+    OBJECT_END
+CTN_END
+CTN global
+    TEST `any exist` all
+    OBJECT obj_11501
+        global_command `^file[ \t]+privilege[ \t]+15[ \t]*$`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

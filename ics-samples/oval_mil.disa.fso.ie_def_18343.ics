@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    STATE ste_24230
+        value string equals `^11\..*$`
+    STATE_END
+    OBJECT obj_23453
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Internet Explorer`
+        name `svcVersion`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

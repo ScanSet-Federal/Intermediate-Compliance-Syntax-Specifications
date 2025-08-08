@@ -1,0 +1,14 @@
+DEF
+VAR var_443000 boolean false
+CRI AND
+CTN passwordpolicy
+    TEST `at least one exists` all
+    STATE ste_443000
+        reversible_encryption string equals `VAR var_443000`
+    STATE_END
+    OBJECT obj_442600
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN registry
+    TEST `any exist` all
+    STATE ste_901
+        value string equals `1`
+    STATE_END
+    OBJECT obj_901
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox`
+        name `DisablePocket`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

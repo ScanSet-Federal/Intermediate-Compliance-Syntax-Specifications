@@ -1,0 +1,42 @@
+DEF
+CRI OR
+CTN textfilecontent54
+    TEST `all exist` all OR
+    STATE ste_8658500
+        subexpression string equals `7.0`
+    STATE_END
+    STATE ste_8658501
+        subexpression string equals `7.1`
+    STATE_END
+    OBJECT obj_16900
+        filepath `/etc/redhat-release`
+        pattern `^Red Hat Enterprise Linux.*release\s+(\S+)\s+`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `none exist` all
+    OBJECT obj_2713
+        filepath `/boot/efi/EFI/redhat/grub.cfg`
+    OBJECT_END
+CTN_END
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_9571900
+        filepath `/boot/efi/EFI/redhat/user.cfg`
+        pattern `^[\s]*GRUB2_PASSWORD=grub\.pbkdf2\.sha512\.\S+$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_9571901
+        filepath `/boot/efi/EFI/redhat/grub.cfg`
+        pattern `^[\s]*set[\s]+superusers=\"\S+\"$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

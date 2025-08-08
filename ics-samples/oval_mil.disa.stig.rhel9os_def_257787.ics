@@ -1,0 +1,26 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_25778700
+        subexpression string equals `^\S+$`
+    STATE_END
+    OBJECT obj_25778700
+        filepath `/etc/grub2.cfg`
+        pattern `^\s*set\s+superusers\s*=\s*"(\S+)"\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    STATE ste_25778701
+        subexpression string equals `^grub\.pbkdf2\.sha512\.`
+    STATE_END
+    OBJECT obj_25778701
+        filepath `/boot/grub2/user.cfg`
+        pattern `^\s*GRUB2_PASSWORD=(\S+)\b`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

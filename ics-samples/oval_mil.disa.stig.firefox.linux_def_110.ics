@@ -1,0 +1,29 @@
+DEF
+VAR var_1 string ``
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_1
+        subexpression string equals `true` `all`
+    STATE_END
+    OBJECT obj_11000
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="Preferences")"Preferences":\s*\{[\s\S]*?(?="dom\.disable_window_flip")"dom\.disable_window_flip":\s*\{\s*[^}]+(?=[^"])Value":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_3
+        subexpression string equals `"locked"` `all`
+    STATE_END
+    OBJECT obj_11001
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="Preferences")"Preferences":\s*\{[\s\S]*?(?="dom\.disable_window_flip")"dom\.disable_window_flip":\s*\{\s*[^}]+(?=[^"])Status":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    OBJECT obj_1601
+        filepath `/etc/crypto-policies/back-ends/gnutls.config`
+        pattern `\n\s*SYSTEM=[^#\n]+-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

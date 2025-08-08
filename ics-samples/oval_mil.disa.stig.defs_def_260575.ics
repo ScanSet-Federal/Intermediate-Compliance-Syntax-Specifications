@@ -1,0 +1,52 @@
+DEF
+STATE ste_20000016
+    subexpression string equals `^(yes|"yes")$`
+STATE_END
+CRI AND
+CRI OR
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_25798801
+        subexpression string equals `/etc/ssh/sshd_config.d/*.conf`
+    STATE_END
+    OBJECT obj_25798800
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*include\s+(.*)\s*$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_20000016
+    OBJECT obj_25798300
+        path `/etc/ssh/sshd_config.d`
+        filename `^.+\.conf$`
+        pattern `^\s*(?i)PubkeyAuthentication(?-i)[ \t]+([\w\"]+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_20000016
+    OBJECT obj_25798301
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)PubkeyAuthentication(?-i)[ \t]+([\w\"]+)[\s]*(?:|(?:#.*))?$`
+        instance `1`
+        behavior ignore_case true
+    OBJECT_END
+CTN_END
+CRI_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_26057501
+        filepath `/etc/pam.d/common-auth`
+        pattern `^\s*auth\s+.*pam_pkcs11\.so\s*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

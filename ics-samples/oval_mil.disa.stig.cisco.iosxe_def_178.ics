@@ -1,0 +1,22 @@
+DEF
+CRI OR
+CTN line
+    TEST `at least one exists` all
+    STATE ste_17800
+        config_line string equals `[\r\n]\s*ip options drop[\r\n]`
+    STATE_END
+    OBJECT obj_10900
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_17801
+        config_line string equals `[\r\n]\s*ip options ignore[\r\n]`
+    STATE_END
+    OBJECT obj_10900
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

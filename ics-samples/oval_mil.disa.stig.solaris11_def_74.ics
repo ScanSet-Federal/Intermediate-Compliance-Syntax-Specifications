@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` `none satisfy`
+    STATE ste_7400
+        text string equals `.*(auth|account).*`
+    STATE_END
+    OBJECT obj_7400
+        filepath `/etc/pam.d/gdm-autologin`
+        pattern `^[^#].*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

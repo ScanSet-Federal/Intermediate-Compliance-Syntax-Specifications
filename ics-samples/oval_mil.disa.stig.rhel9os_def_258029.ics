@@ -1,0 +1,31 @@
+DEF
+VAR var_23035100 string ``
+RUN var_23035100 EXTRACT
+    OBJ obj_23035100 path
+RUN_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` `at least one`
+    STATE ste_25802900
+        text string equals `\ndisable-restart-buttons=(true|'true')\s*(\n|$)`
+    STATE_END
+    OBJECT obj_25802900
+        path VAR var_23035100
+        filename `.*`
+        pattern `^\[org/gnome/login-screen](?:\r?\n(?:[^[\r\n].*)?)*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `any exist` all
+    OBJECT obj_23035100
+        path `/etc/dconf/db`
+        filename ``
+        behavior max_depth 1 recurse_direction down
+        FILTER include
+            STATE_REF ste_23035100
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

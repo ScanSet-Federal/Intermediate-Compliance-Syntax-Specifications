@@ -1,0 +1,58 @@
+DEF
+STATE ste_23025501
+    subexpression string equals `TLSv1\.[2|3]`
+STATE_END
+CRI OR
+CRI AND
+CTN rpminfo
+    TEST `any exist` all
+    STATE ste_23025500
+        version version `greater than or equal` `20210617`
+    STATE_END
+    OBJECT obj_23025500
+        name `crypto-policies`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_23025501
+    OBJECT obj_23025501
+        filepath `/etc/crypto-policies/back-ends/opensslcnf.config`
+        pattern `^\s*MinProtocol\s*=\s*([\.\w]+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN rpminfo
+    TEST `any exist` all
+    STATE ste_23025500
+        version version `greater than or equal` `20210617`
+    STATE_END
+    OBJECT obj_23025500
+        name `crypto-policies`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_23025501
+    OBJECT obj_23025502
+        filepath `/etc/crypto-policies/back-ends/opensslcnf.config`
+        pattern `^\s*TLS\.MinProtocol\s*=\s*([\.\w]+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_23025502
+        subexpression string equals `DTLSv1\.[2|3]`
+    STATE_END
+    OBJECT obj_23025503
+        filepath `/etc/crypto-policies/back-ends/opensslcnf.config`
+        pattern `^\s*DTLS\.MinProtocol\s*=\s*([\.\w]+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

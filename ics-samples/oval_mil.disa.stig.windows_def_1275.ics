@@ -1,0 +1,22 @@
+DEF
+CRI OR
+CTN auditeventpolicysubcategories
+    TEST `at least one exists` all
+    STATE ste_127500
+        other_object_access_events string equals `AUDIT_FAILURE`
+    STATE_END
+    OBJECT obj_105500
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN auditeventpolicysubcategories
+    TEST `at least one exists` all
+    STATE ste_127501
+        other_object_access_events string equals `AUDIT_SUCCESS_FAILURE`
+    STATE_END
+    OBJECT obj_105500
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

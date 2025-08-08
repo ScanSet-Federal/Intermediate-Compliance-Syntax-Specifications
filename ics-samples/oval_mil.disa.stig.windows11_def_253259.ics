@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN wmi57
+    TEST `all exist` all
+    STATE ste_25325900
+        result record equals `
+    `
+    STATE_END
+    OBJECT obj_25325900
+        namespace `root\cimv2\security\microsoftvolumeencryption`
+        wql `SELECT protectionstatus FROM win32_encryptablevolume`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

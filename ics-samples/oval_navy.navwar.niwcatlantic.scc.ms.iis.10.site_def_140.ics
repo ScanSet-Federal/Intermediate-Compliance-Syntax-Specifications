@@ -1,0 +1,32 @@
+DEF
+STATE ste_142
+    result string equals `:443` `all`
+STATE_END
+CRI AND
+CTN appcmd
+    TEST `any exist` all
+    STATE ste_140
+        result string equals `http\/[\.0-9]+:80:\w+` `all`
+    STATE_END
+    OBJECT obj_140
+        identifier_type `Site`
+        identifier `.*`
+        parameter `bindings`
+        FILTER exclude
+            STATE_REF ste_142
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_141
+        result string equals `https\/[\.0-9]+:443:\w+` `all`
+    STATE_END
+    OBJECT obj_141
+        identifier_type `Site`
+        identifier `.*`
+        parameter `bindings`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

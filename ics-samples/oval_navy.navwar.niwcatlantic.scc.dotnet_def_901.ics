@@ -1,0 +1,64 @@
+DEF
+VAR var_902 string ``
+VAR var_901 string ``
+RUN var_902 EXTRACT
+    OBJ obj_907 filepath
+RUN_END
+RUN var_901 EXTRACT
+    OBJ obj_902 filepath
+RUN_END
+CRI AND
+CRI OR
+CTN xmlfilecontent
+    TEST `any exist` all
+    STATE ste_901
+        value_of string equals `false`
+    STATE_END
+    OBJECT obj_901
+        filepath VAR var_901
+        xpath `/configuration/system.net[1]/defaultProxy[1]/@enabled`
+    OBJECT_END
+CTN_END
+CTN xmlfilecontent
+    TEST `none exist` `at least one`
+    OBJECT obj_903
+        filepath VAR var_901
+        xpath `/configuration/system.net/defaultProxy/bypasslist/@*`
+    OBJECT_END
+CTN_END
+CTN xmlfilecontent
+    TEST `none exist` `at least one`
+    OBJECT obj_904
+        filepath VAR var_901
+        xpath `/configuration/system.net/defaultProxy/module/@*`
+    OBJECT_END
+CTN_END
+CTN xmlfilecontent
+    TEST `none exist` `at least one`
+    OBJECT obj_905
+        filepath VAR var_901
+        xpath `/configuration/system.net/defaultProxy/proxy/@*`
+    OBJECT_END
+CTN_END
+CRI_END
+CTN xmlfilecontent
+    TEST `any exist` all
+    STATE ste_902
+        value_of string equals `true`
+    STATE_END
+    OBJECT obj_906
+        filepath VAR var_902
+        xpath `/configuration/system.net[1]/defaultProxy[1]/proxy[1]/@usesystemdefault`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    OBJECT obj_907
+        path `.*`
+        filename `.*\.exe\.config$`
+        pattern `(?i)usesystemdefault`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

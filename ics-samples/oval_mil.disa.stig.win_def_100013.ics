@@ -1,0 +1,22 @@
+DEF
+SET obj_10001300 union
+    OBJECT obj_10001301
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Visio\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001302
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Visio\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_10001300
+        SET_REF obj_10001300
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

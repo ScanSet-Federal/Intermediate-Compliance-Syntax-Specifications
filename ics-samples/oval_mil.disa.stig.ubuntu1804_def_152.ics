@@ -1,0 +1,26 @@
+DEF
+VAR var_15000 string `/bin`
+STATE ste_15000
+    type string equals `symbolic link` `all`
+STATE_END
+SET obj_15200 union
+    OBJECT obj_15000
+        path `VAR var_15000`
+        filename `.*`
+    OBJECT_END
+    FILTER include
+        STATE_REF oval:mil.disa.stig.ubuntu1804:ste:15000
+    FILTER_END
+SET_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_15201
+        user_id int equals `0` `all`
+    STATE_END
+    OBJECT obj_15200
+        SET_REF obj_15200
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

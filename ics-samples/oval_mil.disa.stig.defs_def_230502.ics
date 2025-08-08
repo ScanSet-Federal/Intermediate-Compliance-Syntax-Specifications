@@ -1,0 +1,14 @@
+DEF
+CRI AND
+CTN systemdunitproperty
+    TEST `any exist` all
+    STATE ste_20000007
+        value string equals `inactive`
+    STATE_END
+    OBJECT obj_23050200
+        unit `autofs.service`
+        property `ActiveState`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

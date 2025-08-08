@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_1301
+        exit_status int equals `0`
+        stdout_line string equals `true`
+    STATE_END
+    OBJECT obj_1301
+        shell `bash`
+        command `gsettings get org.gnome.desktop.screensaver lock-enabled`
+        pattern `true`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

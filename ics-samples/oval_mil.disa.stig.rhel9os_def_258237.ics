@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN symlink
+    TEST `at least one exists` all
+    STATE ste_25823604
+        canonical_path string equals `/usr/share/crypto-policies/FIPS/krb5.txt`
+    STATE_END
+    OBJECT obj_25823604
+        filepath `/etc/crypto-policies/back-ends/krb5.config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

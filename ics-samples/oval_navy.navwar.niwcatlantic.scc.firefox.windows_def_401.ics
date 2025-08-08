@@ -1,0 +1,14 @@
+DEF
+VAR var_401 string ``
+CRI AND
+CTN variable
+    TEST `any exist` all
+    STATE ste_401
+        value string equals `"dom.disable_window_move_resize": \{    "Value": true,    "Status": "locked"  }`
+    STATE_END
+    OBJECT obj_401
+        var_ref VAR var_401
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

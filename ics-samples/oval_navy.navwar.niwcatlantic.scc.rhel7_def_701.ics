@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN systemdunitproperty
+    TEST `at least one exists` all
+    STATE ste_701
+        property string equals `ActiveState`
+        value string equals `active`
+    STATE_END
+    OBJECT obj_701
+        unit `kdump.service`
+        property `ActiveState`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN shadow
+    TEST `any exist` all
+    STATE ste_23832900
+        password string equals `^!`
+    STATE_END
+    OBJECT obj_23832900
+        username `root`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

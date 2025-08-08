@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_120900
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_120900
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\LanManServer\Parameters`
+        name `restrictnullsessaccess`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

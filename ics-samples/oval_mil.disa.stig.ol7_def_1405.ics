@@ -1,0 +1,21 @@
+DEF
+CRI OR
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_3081
+        filepath `/etc/sssd/sssd.conf`
+        pattern `^[\s]*\[sssd\]([^\n]*\n+)+?[\s]*services.*pam.*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `all exist` all
+    OBJECT obj_140601
+        path `/etc/sssd/conf.d`
+        filename `^.*\.conf$`
+        pattern `^[\s]*\[sssd\]([^\n]*\n+)+?[\s]*services.*pam.*$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

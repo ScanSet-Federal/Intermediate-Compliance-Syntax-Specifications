@@ -1,0 +1,26 @@
+DEF
+CRI OR
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_401
+        value string equals `You are accessing a U.S. Government \(USG\) Information System \(IS\) that is provided for USG-authorized use only.`
+    STATE_END
+    OBJECT obj_401
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `LegalNoticeText`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_402
+        value string equals `By using this IS \(which includes any device attached to this IS\), you consent to the following conditions:`
+    STATE_END
+    OBJECT obj_401
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`
+        name `LegalNoticeText`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

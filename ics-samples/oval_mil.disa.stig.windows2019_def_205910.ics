@@ -1,0 +1,23 @@
+DEF
+VAR var_25343600 string ``
+RUN var_25343600 CONCAT
+    OBJ obj_25343600 trustee_domain
+    literal `\Guest`
+RUN_END
+STATE ste_25343601
+    trustee_name string equals VAR oval:mil.disa.stig.win:var:25343600
+STATE_END
+STATE ste_25343600
+    trustee_name string equals `Guest`
+STATE_END
+CRI AND
+CTN sid_sid
+    TEST `any exist` all AND
+    STATE_REF ste_25343600
+    STATE_REF ste_25343601
+    OBJECT obj_25343600
+        trustee_sid `^S-1-5-[0-9-]+-501$`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,166 @@
+DEF
+SET obj_10001400 union
+    OBJECT obj_10001401
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Word\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001402
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Word\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_22329619 union
+    OBJECT obj_22329621
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths`
+        name `mse7.exe`
+    OBJECT_END
+    OBJECT obj_22329622
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths`
+        name `mse7.exe`
+    OBJECT_END
+SET_END
+SET obj_10000900 union
+    OBJECT obj_10000901
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Outlook\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10000902
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Outlook\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_10000800 union
+    OBJECT obj_10000801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Excel\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10000802
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Excel\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_10000700 union
+    OBJECT obj_10000701
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Access\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10000702
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Access\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_22329611 union
+    OBJECT obj_22329613
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths`
+        name `pptview.exe`
+    OBJECT_END
+    OBJECT obj_22329614
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths`
+        name `pptview.exe`
+    OBJECT_END
+SET_END
+SET obj_10001000 union
+    OBJECT obj_10001001
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\PowerPoint\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001002
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\PowerPoint\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_22329615 union
+    OBJECT obj_22329617
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths`
+        name `exprwd.exe`
+    OBJECT_END
+    OBJECT obj_22329618
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths`
+        name `exprwd.exe`
+    OBJECT_END
+SET_END
+SET obj_20001 union
+    OBJECT obj_20002
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Groove\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_20003
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Groove\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_10001300 union
+    OBJECT obj_10001301
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Visio\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001302
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Visio\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_10001100 union
+    OBJECT obj_10001101
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Project\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001102
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Project\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_10001200 union
+    OBJECT obj_10001201
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\Publisher\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_10001202
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\Publisher\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+SET obj_24033 union
+    OBJECT obj_23573
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\WOW6432Node\Microsoft\Office\16.0\OneNote\InstallRoot`
+        name `Path`
+    OBJECT_END
+    OBJECT obj_23944
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Office\16.0\OneNote\InstallRoot`
+        name `Path`
+    OBJECT_END
+SET_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `at least one`
+    OBJECT obj_10001400
+        SET_REF obj_10001400
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

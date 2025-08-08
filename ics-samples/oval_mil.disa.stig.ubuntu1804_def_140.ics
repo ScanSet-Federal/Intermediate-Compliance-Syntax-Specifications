@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN file
+    TEST `any exist` all
+    STATE ste_14000
+        suid boolean equals `false`
+        sgid boolean equals `false`
+        sticky boolean equals `false`
+        uexec boolean equals `false`
+        gwrite boolean equals `false`
+        gexec boolean equals `false`
+        oread boolean equals `false`
+        owrite boolean equals `false`
+        oexec boolean equals `false`
+    STATE_END
+    OBJECT obj_14000
+        path `/var/log`
+        filename `syslog`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

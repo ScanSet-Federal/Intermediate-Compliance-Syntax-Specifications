@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_12000
+        type string equals `reg_sz`
+        value string equals `block-audio-video`
+    STATE_END
+    OBJECT obj_12000
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\Permissions\Autoplay`
+        name `Default`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

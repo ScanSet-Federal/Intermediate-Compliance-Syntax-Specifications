@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `at least one exists` all
+    OBJECT obj_25803500
+        name `usbguard`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

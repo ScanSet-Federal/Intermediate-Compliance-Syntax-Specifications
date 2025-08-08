@@ -1,0 +1,27 @@
+DEF
+STATE ste_20000027
+    days_since_modified int `greater than` `35`
+STATE_END
+STATE ste_20000026
+    enabled boolean equals `false`
+STATE_END
+CRI AND
+CTN ntuser
+    TEST `all exist` all
+    STATE ste_20000021
+        type string equals `reg_dword`
+        value int equals `0`
+    STATE_END
+    OBJECT obj_22331000
+        key `Software\Policies\Microsoft\Office\16.0\excel\security\trusted locations`
+        name `AllowNetworkLocations`
+        FILTER exclude
+            STATE_REF ste_20000026
+        FILTER_END
+        FILTER exclude
+            STATE_REF ste_20000027
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

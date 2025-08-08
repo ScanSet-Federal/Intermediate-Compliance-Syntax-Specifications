@@ -1,0 +1,20 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_1741
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name, type_desc, encryption_algorithm_desc
+FROM sys.service_broker_endpoints
+WHERE encryption_algorithm != 2
+				`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

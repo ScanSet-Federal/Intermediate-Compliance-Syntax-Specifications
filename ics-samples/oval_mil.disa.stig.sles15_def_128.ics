@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_12800
+        value int equals `2`
+    STATE_END
+    OBJECT obj_12800
+        name `kernel.randomize_va_space`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

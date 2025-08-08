@@ -1,0 +1,16 @@
+DEF
+VAR var_3761 int 0
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_2056
+        subexpression string equals `VAR var_3761`
+    STATE_END
+    OBJECT obj_2055
+        filepath `/etc/login.defs`
+        pattern `^[\s]*FAIL_DELAY[\s]+([^#\s]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,34 @@
+DEF
+VAR var_80 string ``
+CRI AND
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_50
+        result string equals `W3C` `all`
+    STATE_END
+    OBJECT obj_50
+        identifier_type `Site`
+        identifier `.*`
+        parameter `logfile.logFormat`
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_80
+        value string equals `sourceName:"Connection"\s+sourceType:"RequestHeader"` `all`
+    STATE_END
+    OBJECT obj_80
+        var_ref VAR var_80
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `at least one exists` all
+    STATE ste_81
+        value string equals `sourceName:"Warning"\s+sourceType:"RequestHeader"` `all`
+    STATE_END
+    OBJECT obj_80
+        var_ref VAR var_80
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

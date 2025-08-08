@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_501
+        subexpression string equals `^logout\s*=\s*''$`
+    STATE_END
+    OBJECT obj_501
+        path `/etc/dconf/db/local.d/`
+        filename `.*`
+        pattern `^\n*[\s#]*(logout\s*=\s*\S+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

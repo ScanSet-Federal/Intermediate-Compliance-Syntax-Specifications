@@ -1,0 +1,76 @@
+DEF
+VAR var_2 string ``
+VAR var_1 string ``
+VAR var_4 string ``
+VAR var_6 string ``
+VAR var_3 string ``
+VAR var_5 string ``
+RUN var_1 CONCAT
+    OBJ obj_183 value
+    VAR var_2
+RUN_END
+RUN var_4 EXTRACT
+    OBJ obj_184 result
+RUN_END
+RUN var_6 EXTRACT
+    OBJ obj_186 result
+RUN_END
+RUN var_3 EXTRACT
+    OBJ obj_185 result
+RUN_END
+SET obj_180 union
+    OBJECT obj_181
+        var_ref `VAR var_1`
+    OBJECT_END
+    OBJECT obj_182
+        var_ref `VAR var_4`
+    OBJECT_END
+SET_END
+CRI AND
+CTN variable
+    TEST `at least one exists` `none satisfy`
+    STATE ste_182
+        value string equals `VAR var_6`
+    STATE_END
+    OBJECT obj_180
+        SET_REF obj_180
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `any exist` all
+    OBJECT obj_185
+        identifier_type `VDir`
+        identifier `.*`
+        parameter `physicalPath`
+        FILTER include
+            STATE_REF ste_181
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN wmi
+    TEST `any exist` all
+    OBJECT obj_186
+        namespace `root\cimv2`
+        wql `SELECT SystemDrive FROM Win32_OperatingSystem`
+    OBJECT_END
+CTN_END
+CTN appcmd
+    TEST `any exist` all
+    OBJECT obj_184
+        identifier_type `VDir`
+        identifier `.*`
+        parameter `physicalPath`
+        FILTER include
+            STATE_REF ste_180
+        FILTER_END
+    OBJECT_END
+CTN_END
+CTN environmentvariable58
+    TEST `any exist` all
+    OBJECT obj_183
+        pid ``
+        name VAR var_5
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_10000003
+        path `/etc`
+        filename `os-release`
+        pattern `^CPE_NAME="cpe:/o:suse:sles:12:?[^"]*"$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

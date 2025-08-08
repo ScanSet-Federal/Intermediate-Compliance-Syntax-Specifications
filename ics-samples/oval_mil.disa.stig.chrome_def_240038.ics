@@ -1,0 +1,23 @@
+DEF
+VAR var_10 string `reg_dword`
+VAR var_3 string `2`
+VAR var_2 string `1`
+CRI AND
+CTN registry
+    TEST `at least one exists` all OR
+    STATE ste_240038
+        type string equals `VAR var_10`
+        value string equals `VAR var_2`
+    STATE_END
+    STATE ste_24003801
+        type string equals `VAR var_10`
+        value string equals `VAR var_3`
+    STATE_END
+    OBJECT obj_240038
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Google\Chrome`
+        name `SafeBrowsingProtectionLevel`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

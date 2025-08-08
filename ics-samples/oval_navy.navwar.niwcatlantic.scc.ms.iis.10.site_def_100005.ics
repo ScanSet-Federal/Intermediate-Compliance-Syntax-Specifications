@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN service
+    TEST `at least one exists` all
+    OBJECT obj_31
+        service_name `WsusService`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

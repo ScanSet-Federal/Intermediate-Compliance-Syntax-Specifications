@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN sysctl
+    TEST `all exist` all
+    STATE ste_2182
+        value int equals `0`
+    STATE_END
+    OBJECT obj_2181
+        name `net.ipv4.conf.default.accept_source_route`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

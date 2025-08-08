@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN accesstoken
+    TEST `any exist` all
+    STATE ste_123600
+        setrustedcredmanaccessnameright boolean equals `0`
+    STATE_END
+    OBJECT obj_123600
+        security_principle `.*`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

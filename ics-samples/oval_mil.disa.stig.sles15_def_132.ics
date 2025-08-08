@@ -1,0 +1,13 @@
+DEF
+CRI AND
+CTN password
+    TEST `any exist` all
+    STATE ste_13200
+        user_id int `not equal` `0`
+    STATE_END
+    OBJECT obj_13200
+        username `root`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

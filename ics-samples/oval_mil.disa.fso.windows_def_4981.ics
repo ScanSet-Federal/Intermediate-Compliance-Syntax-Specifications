@@ -1,0 +1,293 @@
+DEF
+VAR var_498102 string ``
+VAR var_498100 string ``
+VAR var_498101 string ``
+RUN var_498102 EXTRACT
+    OBJ obj_498120 value
+RUN_END
+RUN var_498100 EXTRACT
+    OBJ obj_498100 value
+RUN_END
+STATE ste_498102
+    standard_delete boolean equals `true`
+    standard_read_control boolean equals `true`
+    standard_write_dac boolean equals `true`
+    standard_write_owner boolean equals `true`
+    standard_synchronize boolean equals `true`
+    generic_read boolean equals `true`
+    generic_write boolean equals `true`
+    generic_execute boolean equals `true`
+    file_read_data boolean equals `true`
+    file_write_data boolean equals `true`
+    file_append_data boolean equals `true`
+    file_read_ea boolean equals `true`
+    file_write_ea boolean equals `true`
+    file_execute boolean equals `true`
+    file_delete_child boolean equals `true`
+    file_read_attributes boolean equals `true`
+    file_write_attributes boolean equals `true`
+STATE_END
+STATE ste_498101
+    trustee_sid string equals `S-1-5-18`
+STATE_END
+STATE ste_498100
+    trustee_sid string equals `S-1-5-32-544`
+STATE_END
+STATE ste_498103
+    standard_delete boolean equals `false`
+    standard_read_control boolean equals `false`
+    standard_write_dac boolean equals `false`
+    standard_write_owner boolean equals `false`
+    standard_synchronize boolean equals `false`
+    generic_read boolean equals `false`
+    generic_write boolean equals `false`
+    generic_execute boolean equals `false`
+    file_read_data boolean equals `false`
+    file_write_data boolean equals `false`
+    file_append_data boolean equals `false`
+    file_read_ea boolean equals `false`
+    file_write_ea boolean equals `false`
+    file_execute boolean equals `false`
+    file_delete_child boolean equals `false`
+    file_read_attributes boolean equals `false`
+    file_write_attributes boolean equals `false`
+STATE_END
+CRI AND
+CRI OR
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498102
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498103
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498104
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498108
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498109
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498110
+        path VAR var_498100
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI OR
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498105
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498106
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498107
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498111
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498112
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498113
+        path VAR var_498101
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CRI OR
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498114
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498115
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498116
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498117
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `S-1-5-18`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `at least one exists` all
+    STATE_REF ste_498102
+    OBJECT obj_498118
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `S-1-5-32-544`
+    OBJECT_END
+CTN_END
+CTN fileeffectiverights53
+    TEST `none exist` all
+    OBJECT obj_498119
+        path VAR var_498102
+        filename `^(.*)$`
+        trustee_sid `.*`
+        FILTER include
+            STATE_REF ste_498100
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498101
+        FILTER_END
+        FILTER include
+            STATE_REF ste_498103
+        FILTER_END
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_498120
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\NTDS\Parameters`
+        name `DSA Working Directory`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

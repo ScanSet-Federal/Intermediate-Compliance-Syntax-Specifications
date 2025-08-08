@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN lockoutpolicy
+    TEST `at least one exists` all
+    STATE ste_25329900
+        lockout_observation_window int `greater than or equal` `900`
+    STATE_END
+    OBJECT obj_20000001
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CTN lockoutpolicy
+    TEST `at least one exists` all
+    STATE ste_25329801
+        lockout_threshold int `greater than` `0`
+    STATE_END
+    OBJECT obj_20000001
+        # Empty object - no fields required for this test type
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

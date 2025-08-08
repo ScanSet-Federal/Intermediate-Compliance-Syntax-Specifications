@@ -1,0 +1,44 @@
+DEF
+STATE ste_452700
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443202
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `AllowRspndrOnDomain`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443203
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `AllowRspndrOnPublicNet`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443201
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `EnableRspndr`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_452700
+    OBJECT obj_443200
+        hive `HKEY_LOCAL_MACHINE`
+        key `Software\Policies\Microsoft\Windows\LLTD`
+        name `ProhibitRspndrOnPrivateNet`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

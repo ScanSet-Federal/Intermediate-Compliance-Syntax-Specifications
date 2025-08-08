@@ -1,0 +1,19 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all OR
+    STATE ste_3801
+        text string equals `auth\s+required\s+pam_faillock.so preauth`
+    STATE_END
+    STATE ste_3802
+        text string equals `auth\s+required\s+pam_faillock.so\s+preauth.*\n.*account\s+required\s+pam_unix.so`
+    STATE_END
+    OBJECT obj_3801
+        filepath `/etc/pam.d/password-auth`
+        pattern `^.+$`
+        instance `1`
+        behavior singleline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

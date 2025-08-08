@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `any exist` all
+    OBJECT obj_25782800
+        name `nfs-utils`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

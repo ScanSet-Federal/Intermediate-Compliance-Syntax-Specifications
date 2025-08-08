@@ -1,0 +1,28 @@
+DEF
+CRI AND
+CTN registry
+    TEST `all exist` all
+    STATE ste_470100
+        type string equals `reg_multi_sz`
+        value string equals `^((^|[Nn][Ee][Tt][Ll][Oo][Gg][Oo][Nn])|([Ss][Aa][Mm][Rr])|([Ll][Ss][Aa][Rr][Pp][Cc]))$` `all`
+    STATE_END
+    STATE ste_470101
+        type string equals `reg_multi_sz`
+        value string equals `^([Nn][Ee][Tt][Ll][Oo][Gg][Oo][Nn])$` `at least one`
+    STATE_END
+    STATE ste_470102
+        type string equals `reg_multi_sz`
+        value string equals `^([Ss][Aa][Mm][Rr])$` `at least one`
+    STATE_END
+    STATE ste_470103
+        type string equals `reg_multi_sz`
+        value string equals `^([Ll][Ss][Aa][Rr][Pp][Cc])$` `at least one`
+    STATE_END
+    OBJECT obj_470100
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Services\LanManServer\Parameters`
+        name `NullSessionPipes`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

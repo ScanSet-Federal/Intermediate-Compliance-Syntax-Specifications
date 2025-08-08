@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` all
+    STATE ste_401
+        stdout_line string equals `(?i)wireless`
+    STATE_END
+    OBJECT obj_401
+        shell `bash`
+        command `lspci |  grep -i wireless`
+        pattern `(?i)wireless`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

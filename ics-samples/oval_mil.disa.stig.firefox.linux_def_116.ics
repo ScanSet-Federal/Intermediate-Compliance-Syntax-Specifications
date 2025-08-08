@@ -1,0 +1,100 @@
+DEF
+VAR var_1 string ``
+STATE ste_2
+    subexpression string equals `false` `all`
+STATE_END
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11600
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])Cache":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11601
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])Cookies":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11602
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])Downloads":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11603
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])FormData":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11604
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])History":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11605
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])Sessions":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11606
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])SiteSettings":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_2
+    OBJECT obj_11607
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])OfflineApps":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_1
+        subexpression string equals `true` `all`
+    STATE_END
+    OBJECT obj_11608
+        path VAR var_1
+        filename `policies.json`
+        pattern `^(?i)\{\s*"policies":\s*\{[\s\S]*?(?="SanitizeOnShutdown")"SanitizeOnShutdown":\s*\{\s*[^}]+?(?=[^"])Locked":\s*([^,}]+),*?\s*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

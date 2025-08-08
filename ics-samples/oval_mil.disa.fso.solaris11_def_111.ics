@@ -1,0 +1,107 @@
+DEF
+VAR var_11101 string `rc.config.d`
+VAR var_11100 string `/etc/`
+VAR var_11102 string ``
+VAR var_11107 string ``
+VAR var_11103 string `/etc`
+VAR var_11106 string ``
+VAR var_11104 string ``
+VAR var_11105 string ``
+RUN var_11102 CONCAT
+    VAR var_11100
+    VAR var_11101
+RUN_END
+RUN var_11107 SPLIT
+    delimiter `:`
+    OBJ obj_11103 subexpression
+RUN_END
+RUN var_11106 SPLIT
+    delimiter `:`
+    OBJ obj_11102 subexpression
+RUN_END
+RUN var_11104 SPLIT
+    delimiter `:`
+    OBJ obj_11100 subexpression
+RUN_END
+RUN var_11105 SPLIT
+    delimiter `:`
+    OBJ obj_11101 subexpression
+RUN_END
+STATE ste_11100
+    value string equals `^(\$\{PATH\}|\$PATH|^/)` `all`
+STATE_END
+CRI AND
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_11100
+        path VAR var_11102
+        filename `.*`
+        pattern `^[\s]*PATH=([^ \s]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `any exist` all
+    STATE_REF ste_11100
+    OBJECT obj_11104
+        var_ref VAR var_11104
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_11101
+        path `/etc/init.d`
+        filename `.*`
+        pattern `^[\s]*PATH=([^ \s]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `any exist` all
+    STATE_REF ste_11100
+    OBJECT obj_11105
+        var_ref VAR var_11105
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_11102
+        path `/lib/svc/method`
+        filename `.*`
+        pattern `^[\s]*PATH=([^ \s]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `any exist` all
+    STATE_REF ste_11100
+    OBJECT obj_11106
+        var_ref VAR var_11106
+    OBJECT_END
+CTN_END
+CRI_END
+CRI OR
+CTN textfilecontent54
+    TEST `at least one exists` all
+    OBJECT obj_11103
+        path VAR var_11103
+        filename `^rc[012356S]`
+        pattern `^[\s]*PATH=([^ \s]*)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `any exist` all
+    STATE_REF ste_11100
+    OBJECT obj_11107
+        var_ref VAR var_11107
+    OBJECT_END
+CTN_END
+CRI_END
+CRI_END
+DEF_END

@@ -1,0 +1,17 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `any exist` all
+    OBJECT obj_23052600
+        name `openssh-server`
+    OBJECT_END
+CTN_END
+CTN process58
+    TEST `all exist` all
+    OBJECT obj_23052601
+        command_line `^/usr/sbin/sshd\b`
+        pid `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

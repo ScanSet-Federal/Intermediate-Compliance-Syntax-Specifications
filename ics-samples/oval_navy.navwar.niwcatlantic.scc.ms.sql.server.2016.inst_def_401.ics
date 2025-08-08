@@ -1,0 +1,17 @@
+DEF
+VAR var_1 string `sqlserver`
+VAR var_2 string `2016|2017|2019|2022`
+CRI AND
+CTN sqlext
+    TEST `none exist` all
+    OBJECT obj_401
+        engine VAR var_1
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql `SELECT name FROM sysdatabases WHERE name LIKE 'Northwind' OR name LIKE 'AdventureWorks' OR name LIKE 'pubs' OR name LIKE 'WorldwideImporters';`
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

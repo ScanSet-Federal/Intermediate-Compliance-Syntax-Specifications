@@ -1,0 +1,26 @@
+DEF
+SET obj_23055500 union
+    OBJECT obj_23055501
+        filepath `/etc/ssh/sshd_config`
+        pattern `^\s*(?i)X11Forwarding[ \t]+([^\s#]*)[ \t]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23055502
+        path `/etc/ssh/sshd_config.d`
+        filename `.+`
+        pattern `^\s*(?i)X11Forwarding[ \t]+([^\s#]*)[ \t]*(?:|(?:#.*))?$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE ste_20000017
+        subexpression string equals `^(no|"no")$`
+    STATE_END
+    OBJECT obj_23055500
+        SET_REF obj_23055500
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

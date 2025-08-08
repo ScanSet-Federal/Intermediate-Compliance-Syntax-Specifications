@@ -1,0 +1,14 @@
+DEF
+VAR var_440 int 0
+CRI AND
+CTN variable
+    TEST `at least one exists` all
+    STATE ste_440
+        value int `less than or equal` `000500` `all`
+    STATE_END
+    OBJECT obj_440
+        var_ref VAR var_440
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

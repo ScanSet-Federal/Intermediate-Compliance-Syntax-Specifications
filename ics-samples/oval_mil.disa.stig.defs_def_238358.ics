@@ -1,0 +1,15 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE ste_20000017
+        subexpression string equals `^(no|"no")$`
+    STATE_END
+    OBJECT obj_23835800
+        filepath `/etc/default/aide`
+        pattern `(?i)^\s*SILENTREPORTS\s*=\s*(\w+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

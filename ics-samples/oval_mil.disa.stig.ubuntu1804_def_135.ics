@@ -1,0 +1,18 @@
+DEF
+VAR var_13500 int 0
+RUN var_13500 EXTRACT
+    OBJ obj_13500 subexpression
+RUN_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    STATE ste_13500
+        group_id string equals `VAR var_13500`
+    STATE_END
+    OBJECT obj_13600
+        path `/var/log`
+        filename ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

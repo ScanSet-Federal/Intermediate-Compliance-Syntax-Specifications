@@ -1,0 +1,18 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all AND
+    STATE ste_25816800
+        subexpression int `greater than or equal` `1`
+    STATE_END
+    STATE ste_25816801
+        subexpression int `less than or equal` `100`
+    STATE_END
+    OBJECT obj_25816800
+        filepath `/etc/audit/auditd.conf`
+        pattern `(?i)^\s*freq\s*=\s*(\S+)\s*(?:#.*)?$`
+        instance `1`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

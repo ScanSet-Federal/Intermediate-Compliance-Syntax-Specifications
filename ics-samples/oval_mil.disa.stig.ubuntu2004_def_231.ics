@@ -1,0 +1,16 @@
+DEF
+CRI AND
+CTN dpkginfo
+    TEST `all exist` all
+    OBJECT obj_23100
+        name `aide`
+    OBJECT_END
+CTN_END
+CTN file
+    TEST `all exist` all
+    OBJECT obj_23101
+        filepath `/var/lib/aide/aide.db`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

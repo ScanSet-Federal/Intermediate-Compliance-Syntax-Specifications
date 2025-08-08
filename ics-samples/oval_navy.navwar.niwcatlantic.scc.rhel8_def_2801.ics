@@ -1,0 +1,33 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `only one exists` all
+    STATE ste_2801
+        subexpression string equals `[Tt][Rr][Uu][Ee]`
+    STATE_END
+    OBJECT obj_2801
+        filepath `/etc/sssd/sssd.conf`
+        pattern `^\s*pam_cert_auth\s*=\s*(\S+)`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `only one exists` all
+    OBJECT obj_2802
+        filepath `/etc/pam.d/smartcard-auth`
+        pattern `^[ \t]*auth\s+sufficient\s+pam_sss\.so\s+(try|require)_cert_auth`
+        instance `1`
+        behavior multiline true
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `only one exists` all
+    OBJECT obj_2803
+        filepath `/etc/pam.d/system-auth`
+        pattern `^[ \t]*auth\s+\[success=done authinfo_unavail=ignore ignore=ignore default=die\]\s+pam_sss.so\s+(try|require)_cert_auth`
+        instance `1`
+        behavior multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

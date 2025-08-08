@@ -1,0 +1,47 @@
+DEF
+STATE ste_23034600
+    subexpression int `less than or equal` `10`
+STATE_END
+SET obj_23034603 union
+    OBJECT obj_23034604
+        filepath `/etc/security/limits.conf`
+        pattern `^\s*[^#*\s]+\s+(?:(?:hard)|(?:-))\s+maxlogins\s+(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23034605
+        path `/etc/security/limits.d`
+        filename `.*\.conf$`
+        pattern `^\s*[^#*\s]+\s+(?:(?:hard)|(?:-))\s+maxlogins\s+(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+SET obj_23034600 union
+    OBJECT obj_23034601
+        filepath `/etc/security/limits.conf`
+        pattern `^\s*\*\s+(?:(?:hard)|(?:-))\s+maxlogins\s+(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+    OBJECT obj_23034602
+        path `/etc/security/limits.d`
+        filename `.*\.conf$`
+        pattern `^\s*\*\s+(?:(?:hard)|(?:-))\s+maxlogins\s+(\d+)\s*$`
+        instance `1`
+    OBJECT_END
+SET_END
+CRI AND
+CTN textfilecontent54
+    TEST `at least one exists` all
+    STATE_REF ste_23034600
+    OBJECT obj_23034600
+        SET_REF obj_23034600
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_23034600
+    OBJECT obj_23034603
+        SET_REF obj_23034603
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

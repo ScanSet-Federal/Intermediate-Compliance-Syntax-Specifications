@@ -1,0 +1,35 @@
+DEF
+VAR var_202 string ``
+VAR var_201 string ``
+RUN var_202 CONCAT
+    OBJ obj_202 value
+    literal `\Microsoft.NET\Framework64\v4.0.30319`
+RUN_END
+RUN var_201 CONCAT
+    VAR var_202
+    literal `\caspol.exe -m -lg`
+RUN_END
+CRI AND
+CTN shellcommand
+    TEST `at least one exists` `at least one`
+    STATE ste_201
+        shell string equals `cmd`
+        command string equals `VAR var_201`
+        stdout_line string equals `1\.6\.  Publisher +.* +FullTrust`
+    STATE_END
+    OBJECT obj_201
+        shell `cmd`
+        command VAR var_201
+        pattern `1\.6\.`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_202
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Windows NT\CurrentVersion`
+        name `SystemRoot`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

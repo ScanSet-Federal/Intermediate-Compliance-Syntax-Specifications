@@ -1,0 +1,44 @@
+DEF
+STATE ste_25336201
+    type string equals `reg_sz`
+    value string equals `(^|[ *, *])RequireMutualAuthentication=(?!1( *, *|$))` `none satisfy`
+STATE_END
+STATE ste_25336200
+    type string equals `reg_sz`
+    value string equals `(^| *, *)RequireMutualAuthentication=1( *, *|$)`
+STATE_END
+STATE ste_25336202
+    type string equals `reg_sz`
+    value string equals `(^| *, *)RequireIntegrity=1( *, *|$)`
+STATE_END
+STATE ste_25336203
+    type string equals `reg_sz`
+    value string equals `(^| *, *)RequireIntegrity=(?!1( *, *|$))` `none satisfy`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25336200
+    STATE_REF ste_25336201
+    STATE_REF ste_25336202
+    STATE_REF ste_25336203
+    OBJECT obj_25336200
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths`
+        name `\\*\SYSVOL`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_25336200
+    STATE_REF ste_25336201
+    STATE_REF ste_25336202
+    STATE_REF ste_25336203
+    OBJECT obj_25336201
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths`
+        name `\\*\NETLOGON`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

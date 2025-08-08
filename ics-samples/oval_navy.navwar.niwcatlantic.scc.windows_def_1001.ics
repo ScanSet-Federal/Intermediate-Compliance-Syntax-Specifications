@@ -1,0 +1,34 @@
+DEF
+VAR var_1001 string ``
+VAR var_1002 string ``
+STATE ste_1002
+    value string equals `^(?i).* NT SERVICE\\TrustedInstaller:\(F\)\s+NT SERVICE\\TrustedInstaller:\(CI\)\(IO\)\(F\)\s+NT AUTHORITY\\SYSTEM:\(M\)\s+NT AUTHORITY\\SYSTEM:\(OI\)\(CI\)\(IO\)\(F\)\s+BUILTIN\\Administrators:\(M\)\s+BUILTIN\\Administrators:\(OI\)\(CI\)\(IO\)\(F\)\s+BUILTIN\\Users:\(RX\)\s+BUILTIN\\Users:\(OI\)\(CI\)\(IO\)\(GR,GE\)\s+CREATOR OWNER:\(OI\)\(CI\)\(IO\)\(F\)\s+APPLICATION PACKAGE AUTHORITY\\ALL APPLICATION PACKAGES:\(RX\)\s+APPLICATION PACKAGE AUTHORITY\\ALL APPLICATION PACKAGES:\(OI\)\(CI\)\(IO\)\(GR,GE\)\s+APPLICATION PACKAGE AUTHORITY\\ALL RESTRICTED APPLICATION PACKAGES:\(RX\)\s+APPLICATION PACKAGE AUTHORITY\\ALL RESTRICTED APPLICATION PACKAGES:\(OI\)\(CI\)\(IO\)\(GR,GE\).*`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    STATE ste_1001
+        value int equals `0`
+    STATE_END
+    OBJECT obj_1001
+        hive `HKEY_LOCAL_MACHINE`
+        key `SYSTEM\CurrentControlSet\Control\Lsa`
+        name `everyoneincludesanonymous`
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` `only one`
+    STATE_REF ste_1002
+    OBJECT obj_1003
+        var_ref VAR var_1001
+    OBJECT_END
+CTN_END
+CTN variable
+    TEST `at least one exists` `only one`
+    STATE_REF ste_1002
+    OBJECT obj_1005
+        var_ref VAR var_1002
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

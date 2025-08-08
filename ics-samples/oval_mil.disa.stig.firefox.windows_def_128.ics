@@ -1,0 +1,83 @@
+DEF
+STATE ste_2
+    type string equals `reg_dword`
+    value int equals `0`
+STATE_END
+CRI AND
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12800
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `TopSites`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12801
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `SponsoredTopSites`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12802
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `Pocket`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12803
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `SponsoredPocket`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12804
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `Highlights`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12805
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `Snippets`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE ste_1
+        type string equals `reg_dword`
+        value int equals `1`
+    STATE_END
+    OBJECT obj_12806
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `Locked`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `at least one exists` all
+    STATE_REF ste_2
+    OBJECT obj_12807
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Policies\Mozilla\Firefox\FirefoxHome`
+        name `Search`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

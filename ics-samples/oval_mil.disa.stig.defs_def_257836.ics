@@ -1,0 +1,10 @@
+DEF
+CRI AND
+CTN rpminfo
+    TEST `none exist` all
+    OBJECT obj_25783600
+        name `quagga`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

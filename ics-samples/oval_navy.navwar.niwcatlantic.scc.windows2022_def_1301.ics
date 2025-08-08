@@ -1,0 +1,12 @@
+DEF
+CRI AND
+CTN registry
+    TEST `at least one exists` `only one`
+    OBJECT obj_1301
+        hive `HKEY_LOCAL_MACHINE`
+        key `System\CurrentControlSet\Control\SecureBoot\State`
+        name ``
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

@@ -1,0 +1,185 @@
+DEF
+VAR var_444 string ``
+VAR var_440 string ``
+VAR var_443 string ``
+VAR var_441 string ``
+VAR var_442 string ``
+VAR var_2 string `2016|2017|2019|2022`
+RUN var_444 CONCAT
+    OBJ obj_372 value
+    literal `Log\Summary.txt`
+RUN_END
+RUN var_440 CONCAT
+    OBJ obj_363 value
+    literal `Log\Summary.txt`
+RUN_END
+RUN var_443 CONCAT
+    OBJ obj_369 value
+    literal `Log\Summary.txt`
+RUN_END
+RUN var_442 CONCAT
+    OBJ obj_366 value
+    literal `Log\Summary.txt`
+RUN_END
+STATE ste_441
+    text string equals VAR oval:navy.navwar.niwcatlantic.scc.ms.sql.server.2016.inst:var:441
+STATE_END
+CRI OR
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    OBJECT obj_451
+        filepath VAR var_440
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_441
+    OBJECT obj_441
+        filepath VAR var_440
+        pattern `^  SQL Server 2016      .*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_362
+        version string equals `2016`
+    STATE_END
+    OBJECT obj_362
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    OBJECT obj_452
+        filepath VAR var_442
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_441
+    OBJECT obj_442
+        filepath VAR var_442
+        pattern `^  SQL Server 2017      .*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_365
+        version string equals `2017`
+    STATE_END
+    OBJECT obj_365
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    OBJECT obj_453
+        filepath VAR var_443
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_441
+    OBJECT obj_443
+        filepath VAR var_443
+        pattern `^  SQL Server 2019      .*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_368
+        version string equals `2019`
+    STATE_END
+    OBJECT obj_368
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CRI AND
+CTN file
+    TEST `at least one exists` all
+    OBJECT obj_454
+        filepath VAR var_444
+    OBJECT_END
+CTN_END
+CTN textfilecontent54
+    TEST `any exist` all
+    STATE_REF ste_441
+    OBJECT obj_444
+        filepath VAR var_444
+        pattern `^  SQL Server 2022      .*`
+        instance `1`
+    OBJECT_END
+CTN_END
+CTN sqlext
+    TEST `any exist` all
+    STATE ste_371
+        version string equals `2022`
+    STATE_END
+    OBJECT obj_371
+        engine `sqlserver`
+        version VAR var_2
+        instance `.*`
+        database ``
+        sql ``
+        behavior context instance
+    OBJECT_END
+CTN_END
+CRI_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_366
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\140\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_363
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\130\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_372
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\160\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CTN registry
+    TEST `any exist` all
+    OBJECT obj_369
+        hive `HKEY_LOCAL_MACHINE`
+        key `SOFTWARE\Microsoft\Microsoft SQL Server\150\Bootstrap`
+        name `BootstrapDir`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

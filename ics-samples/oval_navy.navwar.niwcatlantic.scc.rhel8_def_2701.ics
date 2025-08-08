@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN textfilecontent54
+    TEST `only one exists` all
+    STATE ste_2701
+        text string equals `\n+\s*matchrule\s*=\s*[^#]+\n*`
+    STATE_END
+    STATE ste_2702
+        text string equals `\n+\s*maprule\s*=\s*[^#]+\n*`
+    STATE_END
+    STATE ste_2703
+        text string equals `\n+\s*domains\s*=\s*[^#]+\n*`
+    STATE_END
+    OBJECT obj_2701
+        filepath `/etc/sssd/sssd.conf`
+        pattern `\s*\[certmap.*\]([\n\r ]+.*)+`
+        instance `1`
+        behavior singleline false multiline true
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END

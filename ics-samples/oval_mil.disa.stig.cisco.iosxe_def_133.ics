@@ -1,0 +1,22 @@
+DEF
+CRI AND
+CTN line
+    TEST `at least one exists` all
+    STATE ste_13300
+        config_line string equals `[\r\n]\s*ip ssh version 2[\r\n]`
+    STATE_END
+    OBJECT obj_13300
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CTN line
+    TEST `at least one exists` all
+    STATE ste_13301
+        config_line string equals `[\r\n]\s*ip ssh server algorithm mac(?: hmac-sha2-256| hmac-sha2-512| hmac-sha2-256-etm@openssh\.com| hmac-sha2-512-etm@openssh\.com)+[\r\n]`
+    STATE_END
+    OBJECT obj_13300
+        show_subcommand `show running-config`
+    OBJECT_END
+CTN_END
+CRI_END
+DEF_END
